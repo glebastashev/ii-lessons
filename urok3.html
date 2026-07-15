@@ -85,6 +85,13 @@ h1 .acc{font-style:normal}
 .slide.fit2 .imgslot{display:none}
 .slide.fit2 .pic img{max-height:24vh}
 .slide.fit2 .cards{gap:8px}.slide.fit2 .card{padding:11px 14px}
+.slide.fit3 h1{font-size:clamp(19px,2.6vw,32px)!important;margin-bottom:12px}
+.slide.fit3 .lead{font-size:clamp(12px,1.25vw,15px)!important;margin-bottom:10px}
+.slide.fit3 .kick{margin-bottom:12px}
+.slide.fit3 .cards{gap:7px}.slide.fit3 .card{padding:9px 13px;border-radius:12px}
+.slide.fit3 .card .t{font-size:clamp(12.5px,1.35vw,15px);margin-bottom:3px}
+.slide.fit3 .card .d{font-size:clamp(11.5px,1.2vw,13.5px);line-height:1.4}
+.slide.fit3.top{padding-top:min(5vh,40px)}
 /* HUD */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px min(3vw,30px);pointer-events:none;font-family:var(--mono)}
 #hud .lbl{font-size:11px;letter-spacing:.1em;color:rgba(150,155,170,.85);text-transform:uppercase}
@@ -193,9 +200,9 @@ slides.forEach((s,i)=>{
 const els=[...document.querySelectorAll('.slide')];
 let cur=0;
 function fit(el){
-  el.classList.remove('fit1','fit2');
+  el.classList.remove('fit1','fit2','fit3');
   const z=el.querySelector('.z'); if(!z) return;
-  for(const c of ['fit1','fit2']){
+  for(const c of ['fit1','fit2','fit3']){
     if(z.getBoundingClientRect().bottom > innerHeight-52) el.classList.add(c); else break;
   }
 }
