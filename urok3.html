@@ -38,14 +38,14 @@ body{font-family:var(--body);background:var(--ink);overflow:hidden}
 .slide.cream{background:var(--paper);color:var(--grif)}
 .slide.blue{background:var(--blue);color:#fff}
 .z{position:relative;z-index:1;max-width:62vw}
-.kick{font-family:var(--mono);font-size:clamp(11px,1.3vw,14px);letter-spacing:.12em;text-transform:uppercase;margin-bottom:26px}
+.kick{font-family:var(--mono);font-size:clamp(12px,1.45vw,15.5px);letter-spacing:.12em;text-transform:uppercase;margin-bottom:26px}
 .dark .kick{color:var(--blue-soft)} .cream .kick{color:var(--blue-deep)} .blue .kick{color:rgba(255,255,255,.75)}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.6vw,46px);}
-.slide.xl h1{font-size:clamp(32px,5.2vw,68px);line-height:1.1}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.6vw,46px);line-height:1.14;letter-spacing:-.01em;margin-bottom:26px}
+.slide.xl h1{font-size:clamp(36px,5.9vw,78px);line-height:1.08}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.3vw,56px);line-height:1.13;letter-spacing:-.01em;margin-bottom:26px}
 h1 .acc{font-style:normal}
 .dark h1 .acc{color:var(--blue-soft)} .cream h1 .acc{color:var(--blue-deep)} .blue h1 .acc{color:var(--ink)}
-.lead{font-size:clamp(14px,1.5vw,18px);line-height:1.55;max-width:640px;font-weight:600}
+.lead{font-size:clamp(15.5px,1.75vw,21px);line-height:1.55;max-width:700px;font-weight:600}
 .dark .lead{color:#C3C7D1} .cream .lead{color:#4A4C51} .blue .lead{color:rgba(255,255,255,.92)}
 .cards{display:grid;gap:14px;margin-top:34px}
 .cards.c2{grid-template-columns:1fr 1fr}.cards.c3{grid-template-columns:1fr 1fr 1fr}.cards.c4{grid-template-columns:1fr 1fr}
@@ -56,8 +56,8 @@ h1 .acc{font-style:normal}
 .blue .card{background:#5570CF;border:1px solid rgba(255,255,255,.2)}
 .card .n{font-family:var(--mono);font-size:12px;color:var(--blue-soft);margin-bottom:8px}
 .cream .card .n{color:var(--blue-deep)}
-.card .t{font-weight:800;font-size:clamp(14px,1.6vw,18px);line-height:1.3;margin-bottom:6px}
-.card .d{font-size:clamp(12.5px,1.35vw,15px);line-height:1.5;opacity:.75}
+.card .t{font-weight:800;font-size:clamp(15px,1.8vw,20px);line-height:1.3;margin-bottom:6px}
+.card .d{font-size:clamp(13.5px,1.5vw,16.5px);line-height:1.5;opacity:.75}
 .split{display:flex;flex-direction:column;gap:20px;max-width:62vw}
 .split .pic{align-self:flex-start}
 @media(max-width:860px){.split,.z{max-width:92vw}.pic img{max-width:86vw}}
@@ -72,6 +72,19 @@ h1 .acc{font-style:normal}
 @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(4deg)}}
 .under{position:relative;display:inline-block}
 .under svg{position:absolute;left:0;bottom:-.12em;width:100%;height:.16em}
+
+/* автофит при переполнении */
+.slide.fit1 h1{font-size:clamp(24px,3.5vw,45px)!important}
+.slide.fit1.xl h1{font-size:clamp(30px,4.8vw,62px)!important}
+.slide.fit1 .lead{font-size:clamp(14px,1.5vw,18px)!important}
+.slide.fit1 .imgslot{height:15vh;min-height:70px;margin-top:18px}
+.slide.fit1 .pic img{max-height:28vh}
+.slide.fit1.top{padding-top:min(7vh,56px)}
+.slide.fit2 h1{font-size:clamp(21px,3vw,38px)!important}
+.slide.fit2 .lead{font-size:clamp(13px,1.35vw,16px)!important}
+.slide.fit2 .imgslot{display:none}
+.slide.fit2 .pic img{max-height:24vh}
+.slide.fit2 .cards{gap:8px}.slide.fit2 .card{padding:11px 14px}
 /* HUD */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px min(3vw,30px);pointer-events:none;font-family:var(--mono)}
 #hud .lbl{font-size:11px;letter-spacing:.1em;color:rgba(150,155,170,.85);text-transform:uppercase}
@@ -173,9 +186,17 @@ slides.forEach((s,i)=>{
 });
 const els=[...document.querySelectorAll('.slide')];
 let cur=0;
+function fit(el){
+  el.classList.remove('fit1','fit2');
+  const z=el.querySelector('.z'); if(!z) return;
+  for(const c of ['fit1','fit2']){
+    if(z.getBoundingClientRect().bottom > innerHeight-52) el.classList.add(c); else break;
+  }
+}
 function go(n,push=true){
   cur=Math.max(0,Math.min(els.length-1,n));
   els.forEach((e,i)=>e.classList.toggle('on',i===cur));
+  fit(els[cur]);
   document.getElementById('cnt').textContent=(cur+1)+' / '+els.length;
   document.getElementById('bar').style.width=((cur+1)/els.length*100)+'%';
   if(push) history.replaceState(null,'','#'+(cur+1));
@@ -190,6 +211,7 @@ let tx=null;
 addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
 addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1));tx=null;},{passive:true});
 go(parseInt(location.hash.slice(1)||'1',10)-1,false);
+addEventListener('resize',()=>fit(els[cur]));
 </script>
 </body>
 </html>
