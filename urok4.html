@@ -6,436 +6,227 @@
 <title>ИИ-ИНЖЕНЕР · Урок 4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#111827;--panel:#1A2333;--line:#2A3346;--paper:#F9F8F3;--cream2:#EFEEE7;--cream-line:#DBDAD2;
-  --text:#E7E5E0;--soft:#B9BDC9;--muted:#7A8093;--ink:#2C2E31;--blue:#4460C4;--blue2:#3552B0;--blueSoft:#7D95E6;
-  --disp:'Unbounded',sans-serif;--body:'Manrope',sans-serif;--mono:'JetBrains Mono',monospace;
+  --ink:#111827; --paper:#F9F8F3; --blue:#4460C4; --blue-deep:#3552B0; --blue-soft:#7D95E6;
+  --grif:#2C2E31; --silver:#E7E5E0;
+  --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
 }
-html,body{width:100%;height:100%;overflow:hidden;background:#0B111C;font-family:var(--body)}
-#stage{position:fixed;inset:0;background:#0B111C}
-.slide{position:absolute;inset:0;display:none;overflow:hidden;color:var(--text);background:var(--bg);padding:clamp(58px,8vw,112px) clamp(64px,8vw,124px) clamp(86px,9vw,126px);isolation:isolate;flex-direction:column;justify-content:center}
-.slide.on{display:flex;animation:fade .34s ease both}@keyframes fade{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
-.slide.dark{background:radial-gradient(circle at 75% 20%,rgba(68,96,196,.18),transparent 36%),radial-gradient(circle at 12% 78%,rgba(231,229,224,.05),transparent 30%),var(--bg);color:var(--text)}
-.slide.cream{background:radial-gradient(circle at 82% 17%,rgba(68,96,196,.14),transparent 31%),linear-gradient(135deg,var(--paper),var(--cream2));color:var(--ink)}
-.slide.blue,.slide.dgreen{background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.16),transparent 32%),linear-gradient(135deg,var(--blue2),var(--blue));color:#fff}
-.slide::before{content:'';position:absolute;inset:0;opacity:.17;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E")}
-.slide.cream::before{opacity:.085}.slide::after{content:'';position:absolute;inset:20px;border-radius:32px;border:1px solid rgba(231,229,224,.13);pointer-events:none;z-index:0}.slide.cream::after{border-color:rgba(44,46,49,.16)}.slide.blue::after{border-color:rgba(255,255,255,.22)}
-.z{position:relative;z-index:2;width:min(1060px,82vw);max-height:calc(100vh - 170px)}
-.slide:not(.top) .z{margin:auto;text-align:center}.slide.top .z{margin:auto 0}.slide.top.cream .z{margin-left:min(7vw,80px)}
-.glyph{position:absolute;right:44px;bottom:36px;font-family:var(--mono);font-weight:800;font-size:clamp(140px,18vw,270px);line-height:1;color:rgba(231,229,224,.06);z-index:1;pointer-events:none}.cream .glyph{color:rgba(53,82,176,.08)}.blue .glyph{color:rgba(255,255,255,.09)}
-.vstrip{position:absolute;top:0;right:27px;height:100%;display:flex;align-items:center;z-index:3;pointer-events:none}.vstrip span{writing-mode:vertical-rl;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.31em;text-transform:uppercase;color:rgba(231,229,224,.14)}.cream .vstrip span{color:rgba(53,82,176,.24)}.blue .vstrip span{color:rgba(255,255,255,.24)}
-.kick{font-family:var(--mono);font-size:clamp(12px,1.3vw,17px);font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--blueSoft);margin-bottom:30px}.cream .kick{color:var(--blue2)}.blue .kick{color:rgba(255,255,255,.8)}
-.spark{width:42px;height:42px;margin-bottom:28px;opacity:.85}.slide:not(.top) .spark{margin-left:auto;margin-right:auto}.spark svg{width:100%;height:100%}
-h1{font-family:var(--disp);font-weight:900;font-size:clamp(40px,5.3vw,76px);line-height:1.07;letter-spacing:-.045em;margin-bottom:30px;max-width:980px;text-wrap:balance}.slide:not(.top) h1{margin-left:auto;margin-right:auto}.slide.xl h1{font-size:clamp(54px,7.2vw,106px);line-height:.96}.slide.fit-title h1{font-size:clamp(30px,3.95vw,56px)}
-h1 .acc{font-style:normal;color:var(--blueSoft)}.cream h1 .acc{color:var(--blue2)}.blue h1 .acc{color:#111827}
-.lead{font-size:clamp(19px,2.05vw,29px);line-height:1.44;color:var(--soft);font-weight:650;max-width:900px;margin:0 0 14px;text-wrap:pretty}.slide:not(.top) .lead{margin-left:auto;margin-right:auto}.cream .lead{color:#3F4148}.blue .lead{color:rgba(255,255,255,.92)}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px;width:min(1010px,80vw)}.slide:not(.top) .cards{margin-left:auto;margin-right:auto}.cards.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.cards.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.cardx{background:var(--panel);border:1px solid var(--line);border-top:6px solid var(--text);padding:28px 28px 30px;min-height:126px}.cream .cardx{background:rgba(239,238,231,.86);border-color:var(--cream-line);border-top-color:var(--ink)}.blue .cardx{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.22);border-top-color:#fff}.cardx .ct{font-size:clamp(19px,2vw,26px);line-height:1.25;font-weight:850;letter-spacing:-.02em}.cardx .cd{font-size:clamp(15px,1.45vw,19px);line-height:1.45;color:var(--soft);font-weight:550;margin-top:10px}.cream .cardx .cd{color:#56584F}.blue .cardx .cd{color:rgba(255,255,255,.78)}
-.pic{margin-top:34px;width:100%;display:flex;justify-content:center}.pic img{max-width:min(920px,74vw);max-height:48vh;width:auto;height:auto;border-radius:0;box-shadow:0 22px 70px rgba(0,0,0,.32);border:1px solid rgba(231,229,224,.16)}.cream .pic img{box-shadow:0 18px 54px rgba(44,46,49,.14);border-color:rgba(44,46,49,.14)}.pic.wide img{max-width:min(900px,72vw);max-height:28vh}.pic.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;width:min(960px,78vw)}.pic.duo img{width:100%;max-height:32vh;object-fit:contain;background:rgba(255,255,255,.38)}
-.imgslot{margin-top:34px;width:min(860px,72vw);height:28vh;min-height:160px;border:2px dashed rgba(231,229,224,.26);background:rgba(231,229,224,.035)}.cream .imgslot{border-color:rgba(44,46,49,.22);background:rgba(255,255,255,.42)}
-.bignum{font-family:var(--disp);font-weight:900;font-size:clamp(70px,9vw,140px);line-height:.95;color:var(--blueSoft);margin:18px 0}.cream .bignum{color:var(--blue2)}
-.footer{position:absolute;left:clamp(46px,5.8vw,84px);right:clamp(46px,5.8vw,84px);bottom:clamp(34px,4vw,52px);z-index:3;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(122,128,147,.92)}.footer b{font-family:var(--disp);letter-spacing:0;font-size:18px;color:var(--blueSoft)}.cream .footer{color:rgba(106,108,112,.78)}.cream .footer b{color:var(--blue2)}.blue .footer{color:rgba(255,255,255,.65)}.blue .footer b{color:#fff}
-.navbtn{position:fixed;top:0;bottom:0;width:16%;z-index:20;border:0;background:transparent;cursor:pointer}#prev{left:0}#next{right:0}#bar{position:fixed;top:0;left:0;height:4px;background:var(--blueSoft);z-index:40;transition:width .25s}#hint,#hud{display:none!important}
-@media(max-width:900px){.slide{padding:52px 34px 82px}.z{width:min(92vw,760px)}h1{font-size:clamp(31px,9vw,56px)}.lead{font-size:clamp(17px,4.3vw,24px)}.cards,.cards.c2,.cards.c3{grid-template-columns:1fr;width:100%}.vstrip{display:none}.pic.duo{grid-template-columns:1fr}.pic.duo img{max-height:24vh}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--body);background:var(--ink);overflow:hidden}
+#stage{position:fixed;inset:0}
+.slide{
+  position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+  padding:min(7vw,88px);overflow:hidden;
+}
+.slide.top{justify-content:flex-start;padding-top:min(11vh,92px)}
+.imgslot{
+  margin-top:28px;height:24vh;min-height:100px;max-width:52vw;border:2px dashed;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;
+}
+.dark .imgslot{border-color:rgba(249,248,243,.3);color:#9BA0AE}
+.cream .imgslot{border-color:rgba(17,24,39,.3);color:#8B8877}
+.blue .imgslot{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.8)}
+.imgslot.photo{border-color:var(--blue-soft);color:var(--blue-soft);border-style:dashed}
+.slide.on{display:flex;animation:in .45s cubic-bezier(.22,.8,.3,1)}
+@keyframes in{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E")}
+.slide.cream::before{opacity:.09}
+.slide.dark{background:var(--ink);color:var(--paper)}
+.slide.cream{background:var(--paper);color:var(--grif)}
+.slide.blue{background:var(--blue);color:#fff}
+.z{position:relative;z-index:1;max-width:62vw}
+.kick{font-family:var(--mono);font-size:clamp(12px,1.45vw,15.5px);letter-spacing:.12em;text-transform:uppercase;margin-bottom:26px}
+.dark .kick{color:var(--blue-soft)} .cream .kick{color:var(--blue-deep)} .blue .kick{color:rgba(255,255,255,.75)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.6vw,46px);}
+.slide.xl h1{font-size:clamp(36px,5.9vw,78px);line-height:1.08}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.3vw,56px);line-height:1.13;letter-spacing:-.01em;margin-bottom:26px}
+h1 .acc{font-style:normal}
+.dark h1 .acc{color:var(--blue-soft)} .cream h1 .acc{color:var(--blue-deep)} .blue h1 .acc{color:var(--ink)}
+.lead{font-size:clamp(15.5px,1.75vw,21px);line-height:1.55;max-width:700px;font-weight:600}
+.dark .lead{color:#C3C7D1} .cream .lead{color:#4A4C51} .blue .lead{color:rgba(255,255,255,.92)}
+.cards{display:grid;gap:14px;margin-top:34px}
+.cards.c2{grid-template-columns:1fr 1fr}.cards.c3{grid-template-columns:1fr 1fr 1fr}.cards.c4{grid-template-columns:1fr 1fr}
+@media(max-width:760px){.cards.c2,.cards.c3,.cards.c4{grid-template-columns:1fr}}
+.card{border-radius:18px;padding:22px 24px}
+.dark .card{background:rgba(249,248,243,.055);border:1px solid rgba(249,248,243,.13)}
+.cream .card{background:#fff;border:1px solid rgba(17,24,39,.12)}
+.blue .card{background:#5570CF;border:1px solid rgba(255,255,255,.2)}
+.card .n{font-family:var(--mono);font-size:12px;color:var(--blue-soft);margin-bottom:8px}
+.cream .card .n{color:var(--blue-deep)}
+.card .t{font-weight:800;font-size:clamp(15px,1.8vw,20px);line-height:1.3;margin-bottom:6px}
+.card:has(.d) .t{color:#7D95E6;margin-bottom:12px}
+.cream .card:has(.d) .t{color:#3552B0}
+.blue .card:has(.d) .t{color:#fff}
+.card .d{font-size:clamp(13.5px,1.5vw,16.5px);line-height:1.5;opacity:.75}
 
-.slide.dense1 h1{font-size:clamp(28px,3.45vw,50px)}.slide.dense1 .lead{font-size:clamp(16px,1.55vw,22px)}.slide.dense1 .cards{gap:16px}.slide.dense1 .cardx{padding:20px 22px}.slide.dense2 .imgslot{display:none}.slide.dense2 .pic img{max-height:30vh}.slide.dense2 h1{font-size:clamp(24px,3vw,42px)}.slide.dense2 .lead{font-size:clamp(14px,1.35vw,19px)}
+@media(max-width:860px){.split{grid-template-columns:1fr}.split,.z{max-width:92vw}.pic img{display:block;max-height:46vh;width:auto;max-width:min(58vw,720px);height:auto;border-radius:14px;box-shadow:0 10px 34px rgba(0,0,0,.3)}}
+.pic{margin-top:26px}
+
+.pic img{display:block;max-height:46vh;width:auto;max-width:min(58vw,720px);height:auto;border-radius:14px;box-shadow:0 10px 34px rgba(0,0,0,.3)}
+.mono-sub{font-family:var(--mono);font-size:clamp(12px,1.4vw,15px)}
+.blue .pic,.dark .pic{margin-top:26px}
+.bignum{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,96px);line-height:1;color:var(--blue-soft);white-space:nowrap;margin:10px 0 14px}
+.cream .bignum{color:var(--blue-deep)}
+.spark{display:inline-block;margin-bottom:20px;opacity:.9;animation:float 5.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(4deg)}}
+.under{position:relative;display:inline-block}
+.under svg{position:absolute;left:0;bottom:-.12em;width:100%;height:.16em}
+
+/* автофит при переполнении */
+.slide.fit1 h1{font-size:clamp(24px,3.5vw,45px)!important}
+.slide.fit1.xl h1{font-size:clamp(30px,4.8vw,62px)!important}
+.slide.fit1 .lead{font-size:clamp(14px,1.5vw,18px)!important}
+.slide.fit1 .imgslot{height:15vh;min-height:70px;margin-top:18px}
+.slide.fit1 .pic img{display:block;max-height:46vh;width:auto;max-width:min(58vw,720px);height:auto;border-radius:14px;box-shadow:0 10px 34px rgba(0,0,0,.3)}
+.slide.fit1.top{padding-top:min(7vh,56px)}
+.slide.fit2 h1{font-size:clamp(21px,3vw,38px)!important}
+.slide.fit2 .lead{font-size:clamp(13px,1.35vw,16px)!important}
+.slide.fit2 .imgslot{display:none}
+.slide.fit2 .pic img{display:block;max-height:46vh;width:auto;max-width:min(58vw,720px);height:auto;border-radius:14px;box-shadow:0 10px 34px rgba(0,0,0,.3)}
+.slide.fit2 .cards{gap:8px}.slide.fit2 .card{padding:11px 14px}
+.slide.fit3 h1{font-size:clamp(19px,2.6vw,32px)!important;margin-bottom:12px}
+.slide.fit3 .lead{font-size:clamp(12px,1.25vw,15px)!important;margin-bottom:10px}
+.slide.fit3 .kick{margin-bottom:12px}
+.slide.fit3 .cards{gap:7px}.slide.fit3 .card{padding:9px 13px;border-radius:12px}
+.slide.fit3 .card .t{font-size:clamp(12.5px,1.35vw,15px);margin-bottom:3px}
+.slide.fit3 .card .d{font-size:clamp(11.5px,1.2vw,13.5px);line-height:1.4}
+.slide.fit3.top{padding-top:min(5vh,40px)}
+.slide.fit4 .pic,.slide.fit4 .imgslot{display:none!important}
+.slide.fit4 h1{font-size:clamp(19px,2.6vw,32px)!important}
+/* HUD */
+#hud{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px min(3vw,30px);pointer-events:none;font-family:var(--mono)}
+#hud .lbl{font-size:11px;letter-spacing:.1em;color:rgba(150,155,170,.85);text-transform:uppercase}
+#hud .cnt{font-size:12px;color:rgba(150,155,170,.95)}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--blue-soft);z-index:41;transition:width .3s}
+.navbtn{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer;border:none;background:transparent}
+#prev{left:0}#next{right:0}
+#hint{position:fixed;right:min(3vw,30px);top:16px;z-index:40;font-family:var(--mono);font-size:11px;color:rgba(150,155,170,.7);letter-spacing:.06em}
 </style>
 </head>
-<body class="lesson-4">
+<body>
 <div id="bar"></div>
-<div id="stage">
-<section class="slide dark top">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>урок 4</h1><p class="lead">Где искать клиентов и как их находят наши студенты</p><p class="lead">В прошлом уроке ты собрал свой первый лендинг с помощью ИИ. Сегодня разбираем, где искать клиентов на услуги ИИ-инженера</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>01</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="kick">в этом уроке</div><h1>Что ты узнаешь</h1><div class="cards c2"><div class="cardx"><div class="ct">Как новичку выделиться на фоне опытных ИИ-инженеров и продать себя</div></div><div class="cardx"><div class="ct">Кто основные сегменты клиентов для ИИ-инженера сегодня</div></div><div class="cardx"><div class="ct">Семь рабочих способов поиска клиентов, которые использую я и мои ученики</div></div><div class="cardx"><div class="ct">Как закрыть клиента даже без отзывов и кейсов</div></div></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>02</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">ключевой момент</div><h1>Перед тем как начнём</h1><p class="lead">Поговорим о том, почему одни выходят на результат даже с базовыми знаниями, а другие знают про нейросети всё, смотрят сто роликов, но как считали деньги до зарплаты, так и считают.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>03</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Комфорт это тёплая ловушка</h1><p class="lead">Пожалуй, самое коварное состояние, в котором может застрять человек. Он не трясёт за плечи, не кричит. Он тихо шепчет: «живи как живёшь, потом разберёшься».</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>04</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Оправдания бездействия из-за страхов</h1><p class="lead">За первые годы в нейросетях я много раз слышал оправдания бездействия из-за страхов. Мои ровесники, нормальные мужики. Идут работать грузчиками, курьерами, на смену. Даже не попробовав.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>05</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Технарём быть и не нужно</h1><p class="lead">Никто из моих учеников, как и я, в начале не был технарём. Никто не рождается с флешкой в голове. Фраза «у меня не технический склад ума» это удобная отговорка, а не особенность. Звучит вроде убедительно, но по факту это то же самое, что сказать: «я не умею водить, потому что не родился с рулём в руках».</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>06</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">быть технарём не нужно</div><h1>Это про чёткие пошаговые действия</h1><p class="lead">Если ты когда-то собирал шкаф по инструкции или просто понимаешь, как это делается, значит, ты уже готов быть ИИ-инженером. Работа с нейросетями это не про изобретения, а про чёткие пошаговые действия.</p><p class="lead">Открыл сервис</p><p class="lead">Настроил</p><p class="lead">Проверил</p><p class="lead">Готово</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>07</b></div>
-</section>
-<section class="slide dark fit-title">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><div class="kick">инструкция есть ко всему</div><h1>Любой результат это просто алгоритм, с поиском клиентов все так же</h1><p class="lead">Мы живём во время, когда инструкция есть буквально ко всему. Раньше, чтобы разобраться, надо было годами пробовать, ошибаться, искать. Сейчас весь путь до результата уже протоптан другими. Его не надо изобретать, его надо применить.</p><p class="lead">Находишь инструкцию</p><p class="lead">Получаешь доступ</p><p class="lead">Повторяешь шаг за шагом</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>08</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Это не волшебство, а отработанная система</h1><p class="lead">Доход на нейросетях это не везение, а предсказуемая модель, которую уже прошли десятки людей.</p><p class="lead">150–300к ₽. в месяц по отработанной системе</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>09</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>шаг 1</h1><p class="lead">Учим навык</p><p class="lead">Например, создание чат-ботов на нейросетях.</p><p class="lead">Смотрят записанные мной уроки</p><p class="lead">Повторяют действия</p><p class="lead">Получают поддержку наставника, если что-то непонятно</p><p class="lead">Никаких «догадайся сам». Просто повтор и закрепление</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>10</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>шаг 2</h1><p class="lead">Превращаем навык в услуги</p><p class="lead">Из одного навыка делаем 3–4 востребованных формата.</p><p class="lead">Собрать бота с нуля</p><p class="lead">Доработать существующий</p><p class="lead">Сделать автоматизацию</p><p class="lead">Настроить ИИ-аналитику или ИИ-контент</p><p class="lead">Сразу знаешь, какие услуги самые выгодные. Благодаря опыту людей, кто уже вышел на 150–300к в месяц</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>11</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><h1>шаг 3</h1><div class="cards c3"><div class="cardx"><div class="ct">Запускаем воронку сбора лидов на услугу</div></div><div class="cardx"><div class="ct">Тут не нужно сидеть и ждать удачи. Всё уже разложено по шагам, задача просто делать.</div></div><div class="cardx"><div class="ct">Списки чатов и площадок с заказами</div></div><div class="cardx"><div class="ct">Готовые скрипты первых сообщений</div></div><div class="cardx"><div class="ct">Понимание, как себя подать и что говорить</div></div><div class="cardx"><div class="ct">Уроки по переговорам и закрытию сделок</div></div></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>12</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>шаг 4</h1><p class="lead">Предоплата и масштаб</p><p class="lead">Получаем предоплату, выполняем услугу и масштабируем. Клиент доволен, ты берёшь дальше.</p><p class="lead">Рекомендацию</p><p class="lead">Переход на сопровождение. Уже не разово за 10–15к, а на постоянку за 40–90к в месяц</p><p class="lead">Повторяешь модель снова. Только уже быстрее и смелее</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>13</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Что происходит, когда живёшь в страхе</h1><p class="lead">Когда ты говоришь себе:</p><p class="lead">j«Я не технарь», «Как я могу это продавать! Это не честно!…»</p><p class="lead">Самоограничения «Это не для меня, слишком сложно». И пока ты сомневаешься, жизнь идёт. Каждый день. Каждый месяц. Каждый год</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>14</b></div>
-</section>
-<section class="slide cream">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Непринятое решение это тоже решение</h1><p class="lead">Сейчас важно, чтобы ты это понял.</p><p class="lead">Не сделаешь шаг вперёд, останешься там, где есть. С той же усталостью, теми же мыслями, теми же «потом»</p><p class="lead">Тот, кто сегодня сказал «ладно, попробую», через год будет на другом уровне</p><p class="lead">А тот, кто отложил, останется ровно там же, где сидит сейчас. И знаешь, что самое обидное? Разница между ними — одно решение</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>15</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Поэтому давайте ещё раз</h1><p class="lead">Ты не обязан знать всё заранее</p><p class="lead">Ты не обязан «быть айтишником»</p><p class="lead">Ты не обязан сразу всё уметь</p><p class="lead">Но ты обязан сделать шаг. Если не хочешь застрять в жизни, которая тебя больше не радует. Как когда-то сделал это я, о чём ни разу не пожалел</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>16</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="kick">секретный код</div><h1>Цифра четвёртая — 2</h1><p class="lead">Уроки 1, 2 и 3 уже дали тебе три цифры — это последняя. Собери код из четырёх цифр и напиши его в чат: он откроет тебе бонус.</p><div class="cards c2"><div class="cardx"><div class="ct">Урок 1</div><div class="cd">Пройден</div></div><div class="cardx"><div class="ct">Урок 2</div><div class="cd">Пройден</div></div><div class="cardx"><div class="ct">Урок 3</div><div class="cd">Цифра 1</div></div><div class="cardx"><div class="ct">Урок 4</div><div class="cd">Закрыт</div></div></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>17</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Переходим к поиску клиентов</h1><p class="lead">Зачем бизнесу заказывать у новичка, когда есть уже опытные ИИ-инженеры?</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>18</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Рынок растёт каждый день</h1><p class="lead">Рынок ИИ только родился и растёт каждый день, бизнес массово внедряет нейросети. Опытных на всех не хватает, и они дорогие. Новичок выигрывает ценой и скоростью.</p><p class="lead">820-30к ₽. твоя цена бота на старте</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>19</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Переходим к способам поиска клиентов</h1><p class="lead">Разбираем рабочие способы поиска клиентов на услуги ИИ-инженера.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>20</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Категории клиентов, которые хорошо платят</h1><p class="lead">Я дошёл до чеков 300–500к ₽ за проект и собрал агентство ИИ-разработки. На этом опыте я выделил несколько категорий клиентов, которые хорошо платят за внедрение нейросетей</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>21</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Малый бизнес</h1><p class="lead">Салоны красоты и барбершопы</p><p class="lead">Автосервисы</p><p class="lead">Магазины и доставки</p><p class="lead">Общепит</p><p class="lead">Фитнес-залы</p><p class="lead">Лучше всего покупают в чеке до 300к рублей. За услуги по автоматизации, чат-боты по обработке входящих заявок, внедрение аналитики</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>22</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Онлайн-школы</h1><p class="lead">Школы, которые обучают людей какому-то навыку.</p><p class="lead">Как печь торты</p><p class="lead">Курсы по медицине</p><p class="lead">Курсы по ведению блога</p><p class="lead">Лучше всего покупают в чеке до 500к рублей, более. платежеспособные За услуги по автоворонкам, чат-боты по обработке входящих заявок, внедрение сквозной аналитики, чат-боты внутри обучений и продуктов</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>23</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Каждому из владельцев нужен ИИ-инженер</h1><p class="lead">Они понимают, что пора внедрять чат-ботов и нейросети и делать рассылки по своей базе, чтобы вернуть клиентов в свой бизнес.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>24</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Не нужно быть супер-уникумом</h1><p class="lead">И весь прикол в том, что тебе не нужно быть каким-то супер-уникумом. Нужно просто иметь желание.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>25</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><div class="kick">история ученика</div><h1>Артём, 33 года: офис, склад, курьер</h1><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>26</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Работа выматывала</h1><p class="lead">Больше десяти лет по сменам: даже когда смена заканчивалась, оставалась усталость, выгорание и ощущение, что это тупик.</p><p class="lead">Дорога каждый день. Жёсткая привязка к месту Работа без удовольствия Деньги впритык</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>27</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Решился, хотя были сомнения</h1><p class="lead">В 32 казалось, что поздно: за спиной больше десяти лет смен и подработок, никакого ИТ-опыта. Решился, потому что оставаться было страшнее.</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>28</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>С первых уроков понял, что зря боялся</h1><p class="lead">Всё по инструкциям: открыл, повторил, проверил. Первые задачи закрыл ещё во время обучения.</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>29</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Артём ведёт клиентов на сопровождении</h1><p class="lead">Прошло чуть больше года. Сегодня Артём ведёт несколько бизнесов на сопровождении. Плюс берёт разовые задачи: чат-боты, автоматизации, аналитику для онлайн-школ.</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>30</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">было / стало</div><h1>Раньше дорога, сейчас свобода</h1><p class="lead">o— 3 часа в день на дорогу. Встаёт за 10 минут до начала работы</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>31</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><div class="kick">история артёма</div><h1>То, что раньше казалось недоступным</h1><p class="lead">Собрал компьютер за 250 000 ₽. Взял iPhone сразу после релиза Делает подарки девушке Одежда, техника, мелочи</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>32</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">история артёма</div><h1>Появилось окружение</h1><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>33</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>История Артёма — не исключение</h1><p class="lead">Таких историй у нас десятки: люди без технического опыта за год выходят на стабильные деньги. Дальше — те самые способы, откуда к таким специалистам приходят клиенты.</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>34</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Два типа клиентов</h1><p class="lead">Мы уже знаем, что есть два типа клиентов, с которыми мы работаем.</p><p class="lead">обычно</p><p class="lead">Разовые задачи</p><p class="lead">с нами</p><p class="lead">Постоянное ведение</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>35</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>способ №1</h1><p class="lead">Чаты Telegram + чаты и клубы онлайн-школ</p><p class="lead">В Telegram можно не только читать новости, но и искать заказчиков. Заказы и за 5к ₽, и полноценные проекты в диапазоне 50к-100к ₽</p><p class="lead">Чаты, где ищут исполнителей на заказы</p><p class="lead">(новичок)</p><p class="lead">Открытые биржи для владельцев и управленцев онлайн школ где ищут исполнителей</p><p class="lead">Частные закрытые биржи-каналы. где ищут исполнителей</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>36</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>способ №2</h1><p class="lead">Биржи и доски объявлений</p><p class="lead">Биржи фриланса и доски объявлений. Низкий средний чек на услуги, но множество клиентов и заказчиков для обкатки своих навыков и получения первых кейсов</p><p class="lead">SKwork, Avito, YouDo, Яндекс.Услуги и подобные площадки</p><p class="lead">Создаёшь профиль, описываешь услугу, берёшь заказы</p><p class="lead">(новичок)</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>37</b></div>
-</section>
-<section class="slide cream">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>способ №3</h1><p class="lead">Третий источник клиентов: заявки от школы</p><p class="lead">Ученики получают живые обращения от людей, которым уже интересны ИИ-услуги. Это тёплые лиды с понятной потребностью и шансом на высокий чек.</p><p class="lead">Закрытый чат вакансий для учеников. Тем, кто вовремя смотрит уроки и хочет найти первого клиента</p><p class="lead">Закрытая система, где ученики берут лиды, которые мы привлекаем за свой счёт. Твой первый клиент может прийти не из твоих поисков, а из наших заявок.</p><p class="lead">(новичок)</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>38</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>способ №4</h1><p class="lead">Запуск контент-завода на парсинг заявок</p><p class="lead">Бонусным блоком выдаём связку: собираешь себе систему постинга роликов и сбора органического трафика на свои услуги через ИИ. Заявки будешь получать бесплатно и на постоянной основе.</p><p class="lead">(опытный)</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>39</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>способ №5</h1><p class="lead">Платный трафик на свои посадочные страницы и визы</p><p class="lead">Способ «сначала я работаю на репутацию, а потом получаю лавину клиентов».</p><p class="lead">(опытный)</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>40</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>сарафанка №1</h1><p class="lead">Чаты с отзывами по специалистам</p><p class="lead">Есть тематические чаты и каналы с отзывами по специалистам. Стоит попросить довольных клиентов написать туда про тебя.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>41</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>сарафанка №2</h1><p class="lead">Партнерка для клиентов. Рекомендация за процент</p><p class="lead">Попроси своих клиентов рассказать о тебе их же знакомым за процент от первой продажи.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>42</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>сарафанка №3</h1><p class="lead">Контакты ЛПР за процент поменьше</p><p class="lead">Попроси у своих клиентов контакты тех, кому могут быть нужны твои услуги по нейросетям. Тоже за процент, но уже поменьше. Тебе нужны контакт ЛПР (лица принимающего решения о покупке, а не мелкие сошки)</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>43</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Сначала качественно сделай работу</h1><p class="lead">Но перед этим качественно делай свою работу. Глупо просить рекомендации, когда ты запорол проект.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>44</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">способ №6 · бонус</div><h1>Секретные закрытые платные чаты</h1><p class="lead">Закрытые чаты по подписке, куда скидывают жирные заказы на нейросети только для своих.</p><p class="lead">15–40к на первых задачах</p><p class="lead">100–150к на сопровождении</p><p class="lead">150–300к при 2–3 клиентах</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>45</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>способ №7</h1><p class="lead">Поиск клиентов через свои соцсети</p><p class="lead">Часто на тебя уже подписаны твои будущие клиенты. Тебе просто нужно заявить о себе.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>46</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>Как закрыть клиента без кейсов и отзывов</h1><p class="lead">У учеников проблема кейсов решена с самого начала: внутри комьюнити есть примеры работ, наработки команды и первые заказы</p><p class="lead">Ты опираешься на реальный опыт команды и быстрее показываешь клиенту, что именно можешь сделать для его бизнеса</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>47</b></div>
-</section>
-<section class="slide cream">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>И это не будет враньём</h1><p class="lead">Потому что все задачи по нейросетям ученик делает вместе с нашей командой, а не один.</p><p class="lead">Уроки, созвоны, чат и ответы на вопросы. У ученика есть полная поддержка на каждом этапе</p><p class="lead">Это не про выдуманные кейсы. История, когда зелёный новичок придумывает себе кейсы, всеми правдами и неправдами закрывает клиента и косячит, это не про нас</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>48</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">итог урока</div><h1>Способов найти клиента у ИИ-инженера просто море</h1><p class="lead">Урок про поиск клиентов подошёл к концу. Мы разобрали, что найти клиента это понятный алгоритм действий.</p><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>49</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><div class="kick">в следующем видео</div><h1>Ученик, который заработал на ИИ больше 2 миллионов</h1><div class="imgslot photo"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>50</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>А потом главный урок тест-драйва</h1><p class="lead">После этого видео тебя ждёт главный и заключительный урок. Это дорожная карта профессии ИИ-инженер и инструкция, как выйти на доход. До встречи в этом уроке</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>51</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>шаг 2</h1><p class="lead">Упаковываем услугу по нашему чек-листу (КП и прочее)</p><p class="lead">Название, состав, результат для клиента, сроки, цена и что нужно от клиента для старта. Плюс короткое КП, которое не стыдно отправить владельцу. Всё по готовому чек-листу — изобретать ничего не надо.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>52</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>шаг 2</h1><p class="lead">Собираем УТП по каждой услуге</p><p class="lead">УТП отвечает на один вопрос владельца: почему заказать у тебя, а не у следующего в чате. Формула: конкретная задача + конкретный срок + понятная цена. «Соберу бота, который сам записывает клиентов, за 5 дней и 25 тысяч» звучит сильнее любого «качественно и недорого».</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>53</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>шаг 2</h1><p class="lead">Готовим ценообразование</p><p class="lead">На старте: бот — 20–30 тысяч, доработки — 10–15, сопровождение — 40–90 в месяц. Цены растут вместе с кейсами: тот же бот через 2–3 месяца продаётся уже за 50–150 тысяч.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>54</b></div>
-</section>
-<section class="slide cream top">
-  <div class="glyph">//</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>шаг 2</h1><p class="lead">Запускаем воронку сбора лидов на услугу</p><p class="lead">Не сидим и не ждём удачи. У каждого способа есть список площадок, скрипт первого сообщения и порядок действий — дальше в этом уроке разберём все семь.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>55</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">✦</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>шаг 3</h1><p class="lead">Переговоры с лидами</p><p class="lead">Говорим о клиенте и его выгоде: что автоматизируем, сколько времени и денег это сэкономит, когда будет готово. Скрипты переговоров и заготовки ответов дам — продавцом быть не нужно, нужно быть понятным.</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>56</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">◌</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>шаг 4</h1><p class="lead">Проблема 80% новичков — страх продать себя в новой профессии</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>57</b></div>
-</section>
-<section class="slide dark top">
-  <div class="glyph">⌁</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="kick">в этом уроке</div><h1>Я разберу</h1><p class="lead">3 реально рабочих способа для поиска клиентов для новичков — на чек услуг 30-150 тыс</p><p class="lead">2 секретных способа по настройке бесперебойного потока клиентов для опытных — на чек услуг 150–500 тыс</p><div class="imgslot"></div></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>58</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">◆</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M18 6 C20 14 24 18 32 20 C24 22 20 26 18 34 C16 26 12 22 4 20 C12 18 16 14 18 6 Z" fill="currentColor"/><path d="M35 26 C36 30 38 32 42 33 C38 34 36 36 35 40 C34 36 32 34 28 33 C32 32 34 30 35 26 Z" fill="currentColor"/></svg></div><h1>способ №5</h1><p class="lead">Платный трафик на свои посадочные страницы и квизы</p><p class="lead">С помощью ИИ и готовых промтов собираешь собственный лендинг и квизы, настраиваешь по инструкции готовые рабочие связки в рекламе — и получаешь тёплые заявки потоком.</p><p class="lead">(опытный)</p><p class="lead">Способ «сначала я работаю на репутацию, а потом получаю лавину клиентов».</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>59</b></div>
-</section>
-<section class="slide cream">
-  <div class="glyph">◳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="currentColor" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Четвёртый из пяти — ты почти у цели</h1><p class="lead">Позади теория и практика: у тебя уже есть собранный лендинг. Этот урок закрывает главный вопрос — где брать клиентов. Досмотри до конца: внутри семь способов, история Артёма и последняя цифра кода. А после пятого урока — анкета и индивидуальный разбор твоей ситуации</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>60</b></div>
-</section>
-<section class="slide dark">
-  <div class="glyph">✳</div>
-  <div class="vstrip"><span>ИИ-ИНЖЕНЕР · УРОК 4</span></div>
-  <div class="z"><div class="spark"><svg viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div><h1>Четыре из пяти позади</h1><p class="lead">У тебя из этого урока: семь способов поиска клиентов и полный код — четыре цифры. Напиши в чат код и два способа, с которых начнёшь. Код откроет бонус, а по способам дам наводки под твою ситуацию. Дальше — видео ученика, который заработал на ИИ больше 2 миллионов, и главный урок: дорожная карта профессии и анкета на разбор</p></div>
-  <div class="footer"><span>ИИ-ИНЖЕНЕР · УРОК 4</span><b>61</b></div>
-</section>
-</div>
+<div id="stage"></div>
 <button class="navbtn" id="prev" aria-label="назад"></button>
 <button class="navbtn" id="next" aria-label="вперёд"></button>
+<div id="hud"><span class="lbl">ИИ-ИНЖЕНЕР · УРОК 4</span><span class="cnt" id="cnt"></span></div>
+<div id="hint">←&nbsp;→ · клик по краям</div>
 <script>
-const slides=[...document.querySelectorAll('.slide')];
+const M={
+ burst:'<svg width="__S__" height="__S__" viewBox="0 0 46 46" fill="none"><path d="M23 4 L23 16 M23 30 L23 42 M4 23 L16 23 M30 23 L42 23 M9 9 L17 17 M29 29 L37 37 M37 9 L29 17 M17 29 L9 37" stroke="__C__" stroke-width="3.4" stroke-linecap="round"/></svg>',
+ sparkle:'<svg width="__S__" height="__S__" viewBox="0 0 46 46" fill="none"><path d="M23 3 C25.5 15 31 20.5 43 23 C31 25.5 25.5 31 23 43 C20.5 31 15 25.5 3 23 C15 20.5 20.5 15 23 3 Z" fill="__C__"/></svg>',
+ dbl:'<svg width="__S__" height="__S__" viewBox="0 0 46 46" fill="none"><path d="M18 6 C19.8 14 23.5 17.7 31.5 19.5 C23.5 21.3 19.8 25 18 33 C16.2 25 12.5 21.3 4.5 19.5 C12.5 17.7 16.2 14 18 6 Z" fill="__C__"/><path d="M35 26 C35.9 30 37.8 31.9 41.8 32.8 C37.8 33.7 35.9 35.6 35 39.6 C34.1 35.6 32.2 33.7 28.2 32.8 C32.2 31.9 34.1 30 35 26 Z" fill="__C__"/></svg>',
+ chip:'<svg width="__S__" height="__S__" viewBox="0 0 46 46" fill="none"><rect x="13" y="13" width="20" height="20" rx="3.5" stroke="__C__" stroke-width="3.4"/><path d="M18 13 V7 M28 13 V7 M18 33 V39 M28 33 V39 M13 18 H7 M13 28 H7 M33 18 H39 M33 28 H39" stroke="__C__" stroke-width="3.4" stroke-linecap="round"/></svg>',
+ node:'<svg width="__S__" height="__S__" viewBox="0 0 46 46" fill="none"><circle cx="10" cy="12" r="4.6" stroke="__C__" stroke-width="3.4"/><circle cx="34" cy="20" r="4.6" stroke="__C__" stroke-width="3.4"/><circle cx="16" cy="36" r="4.6" stroke="__C__" stroke-width="3.4"/><path d="M14 14 L29 18 M31 24 L20 33 M12 17 L15 31" stroke="__C__" stroke-width="3.4" stroke-linecap="round"/></svg>',
+ chat:'<svg width="__S__" height="__S__" viewBox="0 0 46 46" fill="none"><rect x="6" y="9" width="34" height="22" rx="7" stroke="__C__" stroke-width="3.4"/><path d="M14 31 L14 39 L22 31" stroke="__C__" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 14 C24 18 25.5 19.5 29.5 20.5 C25.5 21.5 24 23 23 27 C22 23 20.5 21.5 16.5 20.5 C20.5 19.5 22 18 23 14 Z" fill="__C__"/></svg>'};
+function mark(name,tone,pos,size){
+  const c = tone==='cream' ? '#3552B0' : (tone==='blue' ? '#FFFFFF' : '#E7E5E0');
+  return `<div class="spark">${M[name].replaceAll('__C__',c).replaceAll('__S__',size||40)}</div>`;
+}
+const UND='<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 6 Q14 2 26 6 T50 6 T74 6 T98 5" fill="none" stroke="#4460C4" stroke-width="3" stroke-linecap="round"/></svg>';
+
+const slides=[{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:12%;right:8%__",html:`<h1>урок 4</h1><p class="lead">Где искать клиентов и как их находят наши студенты</p><p class="lead">В прошлом уроке ты собрал свой первый лендинг с помощью ИИ.. Сегодня разбираем, где искать клиентов на услуги ИИ-инженера</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"",html:`<div class="kick">в этом уроке</div><h1>Что ты узнаешь</h1><div class="cards c2"><div class="card"><div class="t">Как новичку выделиться на фоне опытных ИИ-инженеров и продать себя</div></div><div class="card"><div class="t">Кто основные сегменты клиентов для ИИ-инженера сегодня</div></div><div class="card"><div class="t">Семь рабочих способов поиска клиентов, которые использую я и мои ученики</div></div><div class="card"><div class="t">Как закрыть клиента даже без отзывов и кейсов</div></div></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:11%;left:7%__",html:`<div class="kick">ключевой момент</div><h1>Перед тем как начнём</h1><p class="lead">Поговорим о том, почему одни выходят на результат даже с базовыми знаниями, а другие знают про нейросети всё, смотрят сто роликов, но как считали деньги до зарплаты, так и считают.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:18%;left:5%__",html:`<h1>Комфорт это тёплая ловушка</h1><p class="lead">Пожалуй, самое коварное состояние, в котором может застрять человек. Он не трясёт за плечи, не кричит. Он тихо шепчет: «живи как живёшь, потом разберёшься».</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:dbl:cream:bottom:13%;right:6%__",html:`<h1>Оправдания бездействия из-за страхов</h1><p class="lead">За первые годы в нейросетях я много раз слышал оправдания бездействия из-за страхов. Мои ровесники, нормальные мужики. Идут работать грузчиками, курьерами, на смену. Даже не попробовав.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:chip:dark:bottom:12%;right:8%__",html:`<h1>Технарём быть и не нужно</h1><p class="lead">Никто из моих учеников, как и я, в начале не был технарём. Никто не рождается с флешкой в голове. Фраза «у меня не технический склад ума» это удобная отговорка, а не особенность. Звучит вроде убедительно, но по факту это то же самое, что сказать: «я не умею водить, потому что не родился с рулём в руках».</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:15%;right:12%__",html:`<div class="kick">быть технарём не нужно</div><h1>Это про чёткие пошаговые действия</h1><p class="lead">Если ты когда-то собирал шкаф по инструкции или просто понимаешь, как это делается, значит, ты уже готов быть ИИ-инженером. Работа с нейросетями это не про изобретения, а про чёткие пошаговые действия.</p><p class="lead">Открыл сервис</p><p class="lead">Настроил</p><p class="lead">Проверил</p><p class="lead">Готово</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:dbl:dark:bottom:11%;left:7%__",html:`<div class="kick">инструкция есть ко всему</div><h1>Любой результат это просто алгоритм, с поиском клиентов все так же</h1><p class="lead">Мы живём во время, когда инструкция есть буквально ко всему. Раньше, чтобы разобраться, надо было годами пробовать, ошибаться, искать. Сейчас весь путь до результата уже протоптан другими. Его не надо изобретать, его надо применить.</p><p class="lead">Находишь инструкцию</p><p class="lead">Получаешь доступ</p><p class="lead">Повторяешь шаг за шагом</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:18%;left:5%__",html:`<h1>Это не волшебство, а отработанная система</h1><p class="lead">Доход на нейросетях это не везение, а предсказуемая модель, которую уже прошли десятки людей.</p><p class="lead">150–300к ₽. в месяц по отработанной системе</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:burst:cream:bottom:13%;right:6%__",html:`<h1>шаг 1</h1><p class="lead">Учим навык</p><p class="lead">Например, создание чат-ботов на нейросетях.</p><p class="lead">Смотрят записанные мной уроки</p><p class="lead">Повторяют действия</p><p class="lead">Получают поддержку наставника, если что-то непонятно</p><p class="lead">Никаких «догадайся сам». Просто повтор и закрепление</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:12%;right:8%__",html:`<h1>шаг 2</h1><p class="lead">Превращаем навык в услуги</p><p class="lead">Из одного навыка делаем 3–4 востребованных формата.</p><p class="lead">Собрать бота с нуля</p><p class="lead">Доработать существующий</p><p class="lead">Сделать автоматизацию</p><p class="lead">Настроить ИИ-аналитику или ИИ-контент</p><p class="lead">Сразу знаешь, какие услуги самые выгодные. Благодаря опыту людей, кто уже вышел на 150–300к в месяц</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"",html:`<h1>шаг 3</h1><div class="cards c3"><div class="card"><div class="t">Запускаем воронку сбора лидов на услугу</div></div><div class="card"><div class="t">Тут не нужно сидеть и ждать удачи. Всё уже разложено по шагам, задача просто делать.</div></div><div class="card"><div class="t">Списки чатов и площадок с заказами</div></div><div class="card"><div class="t">Готовые скрипты первых сообщений</div></div><div class="card"><div class="t">Понимание, как себя подать и что говорить</div></div><div class="card"><div class="t">Уроки по переговорам и закрытию сделок</div></div></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:11%;left:7%__",html:`<h1>шаг 4</h1><p class="lead">Предоплата и масштаб</p><p class="lead">Получаем предоплату, выполняем услугу и масштабируем. Клиент доволен, ты берёшь дальше.</p><p class="lead">Рекомендацию</p><p class="lead">Переход на сопровождение. Уже не разово за 10–15к, а на постоянку за 40–90к в месяц</p><p class="lead">Повторяешь модель снова. Только уже быстрее и смелее</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:18%;left:5%__",html:`<h1>Что происходит, когда живёшь в страхе</h1><p class="lead">Когда ты говоришь себе:</p><p class="lead">j«Я не технарь», «Как я могу это продавать! Это не честно!…»</p><p class="lead">Самоограничения «Это не для меня, слишком сложно». И пока ты сомневаешься, жизнь идёт. Каждый день. Каждый месяц. Каждый год</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:false,mark:"__MARK:chip:cream:bottom:13%;right:6%__",html:`<h1>Непринятое решение это тоже решение</h1><p class="lead">Сейчас важно, чтобы ты это понял.</p><p class="lead">Не сделаешь шаг вперёд, останешься там, где есть. С той же усталостью, теми же мыслями, теми же «потом»</p><p class="lead">Тот, кто сегодня сказал «ладно, попробую», через год будет на другом уровне</p><p class="lead">А тот, кто отложил, останется ровно там же, где сидит сейчас. И знаешь, что самое обидное? Разница между ними — одно решение</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:12%;right:8%__",html:`<h1>Поэтому давайте ещё раз</h1><p class="lead">Ты не обязан знать всё заранее</p><p class="lead">Ты не обязан «быть айтишником»</p><p class="lead">Ты не обязан сразу всё уметь</p><p class="lead">Но ты обязан сделать шаг. Если не хочешь застрять в жизни, которая тебя больше не радует. Как когда-то сделал это я, о чём ни разу не пожалел</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"",html:`<div class="kick">секретный код</div><h1>Цифра четвёртая — 2</h1><p class="lead">Уроки 1, 2 и 3 уже дали тебе три цифры — это последняя. Собери код из четырёх цифр и напиши его в чат: он откроет тебе бонус.</p><div class="cards c2"><div class="card"><div class="t">Урок 1</div><div class="d">Пройден</div></div><div class="card"><div class="t">Урок 2</div><div class="d">Пройден</div></div><div class="card"><div class="t">Урок 3</div><div class="d">Цифра 1</div></div><div class="card"><div class="t">Урок 4</div><div class="d">Закрыт</div></div></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:11%;left:7%__",html:`<h1>Переходим к поиску клиентов</h1><p class="lead">Зачем бизнесу заказывать у новичка, когда есть уже опытные ИИ-инженеры?</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:18%;left:5%__",html:`<h1>Рынок растёт каждый день</h1><p class="lead">Рынок ИИ только родился и растёт каждый день, бизнес массово внедряет нейросети. Опытных на всех не хватает, и они дорогие. Новичок выигрывает ценой и скоростью.</p><p class="lead">820-30к ₽. твоя цена бота на старте</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:dbl:cream:bottom:13%;right:6%__",html:`<h1>Переходим к способам поиска клиентов</h1><p class="lead">Разбираем рабочие способы поиска клиентов на услуги ИИ-инженера.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:12%;right:8%__",html:`<h1>Категории клиентов, которые хорошо платят</h1><p class="lead">Я дошёл до чеков 300–500к ₽ за проект и собрал агентство ИИ-разработки.. На этом опыте я выделил несколько категорий клиентов, которые хорошо платят за внедрение нейросетей</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:15%;right:12%__",html:`<h1>Малый бизнес</h1><p class="lead">Салоны красоты и барбершопы</p><p class="lead">Автосервисы</p><p class="lead">Магазины и доставки</p><p class="lead">Общепит</p><p class="lead">Фитнес-залы</p><p class="lead">Лучше всего покупают в чеке до 300к рублей. За услуги по автоматизации, чат-боты по обработке входящих заявок, внедрение аналитики</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:dbl:dark:bottom:11%;left:7%__",html:`<h1>Онлайн-школы</h1><p class="lead">Школы, которые обучают людей какому-то навыку.</p><p class="lead">Как печь торты</p><p class="lead">Курсы по медицине</p><p class="lead">Курсы по ведению блога</p><p class="lead">Лучше всего покупают в чеке до 500к рублей, более. платежеспособные За услуги по автоворонкам, чат-боты по обработке входящих заявок, внедрение сквозной аналитики, чат-боты внутри обучений и продуктов</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:18%;left:5%__",html:`<h1>Каждому из владельцев нужен ИИ-инженер</h1><p class="lead">Они понимают, что пора внедрять чат-ботов и нейросети и делать рассылки по своей базе, чтобы вернуть клиентов в свой бизнес.</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:burst:cream:bottom:13%;right:6%__",html:`<h1>Не нужно быть супер-уникумом</h1><p class="lead">И весь прикол в том, что тебе не нужно быть каким-то супер-уникумом. Нужно просто иметь желание.</p><div class="imgslot"></div>`},
+{tone:"dgreen",xl:false,top:false,mark:"__MARK:dbl:dgreen:bottom:12%;right:8%__",html:`<div class="kick">история ученика</div><h1>Артём, 33 года: офис, склад, курьер</h1><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:15%;right:12%__",html:`<h1>Работа выматывала</h1><p class="lead">Больше десяти лет по сменам: даже когда смена заканчивалась, оставалась усталость, выгорание и ощущение, что это тупик.</p><p class="lead">Дорога каждый день. Жёсткая привязка к месту Работа без удовольствия Деньги впритык</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:11%;left:7%__",html:`<h1>Решился, хотя были сомнения</h1><p class="lead">В 32 казалось, что поздно: за спиной больше десяти лет смен и подработок, никакого ИТ-опыта. Решился, потому что оставаться было страшнее.</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:18%;left:5%__",html:`<h1>С первых уроков понял, что зря боялся</h1><p class="lead">Всё по инструкциям: открыл, повторил, проверил. Первые задачи закрыл ещё во время обучения.</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:13%;right:6%__",html:`<h1>Артём ведёт клиентов на сопровождении</h1><p class="lead">Прошло чуть больше года. Сегодня Артём ведёт несколько бизнесов на сопровождении. Плюс берёт разовые задачи: чат-боты, автоматизации, аналитику для онлайн-школ.</p><div class="imgslot photo"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:burst:cream:bottom:12%;right:8%__",html:`<div class="kick">было / стало</div><h1>Раньше дорога, сейчас свобода</h1><p class="lead">o— 3 часа в день на дорогу. Встаёт за 10 минут до начала работы</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:15%;right:12%__",html:`<div class="kick">история артёма</div><h1>То, что раньше казалось недоступным</h1><p class="lead">Собрал компьютер за 250 000 ₽. Взял iPhone сразу после релиза Делает подарки девушке Одежда, техника, мелочи</p><div class="imgslot photo"></div>`},
+{tone:"dgreen",xl:false,top:false,mark:"__MARK:chip:dgreen:bottom:11%;left:7%__",html:`<div class="kick">история артёма</div><h1>Появилось окружение</h1><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:18%;left:5%__",html:`<h1>История Артёма — не исключение</h1><p class="lead">Таких историй у нас десятки: люди без технического опыта за год выходят на стабильные деньги. Дальше — те самые способы, откуда к таким специалистам приходят клиенты.</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:13%;right:6%__",html:`<h1>Два типа клиентов</h1><p class="lead">Мы уже знаем, что есть два типа клиентов, с которыми мы работаем.</p><p class="lead">обычно</p><p class="lead">Разовые задачи</p><p class="lead">с нами</p><p class="lead">Постоянное ведение</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:chip:dark:bottom:12%;right:8%__",html:`<h1>способ №1</h1><p class="lead">Чаты Telegram + чаты и клубы онлайн-школ</p><p class="lead">В Telegram можно не только читать новости, но и искать заказчиков.. Заказы и за 5к ₽, и полноценные проекты в диапазоне 50к-100к ₽</p><p class="lead">Чаты, где ищут исполнителей на заказы</p><p class="lead">(новичок)</p><p class="lead">Открытые биржи для владельцев и управленцев онлайн школ где ищут исполнителей</p><p class="lead">Частные закрытые биржи-каналы. где ищут исполнителей</p>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:burst:dark:bottom:15%;right:12%__",html:`<h1>способ №2</h1><p class="lead">Биржи и доски объявлений</p><p class="lead">Биржи фриланса и доски объявлений. Низкий средний чек на услуги, но множество клиентов и заказчиков для обкатки своих навыков и получения первых кейсов</p><p class="lead">SKwork, Avito, YouDo, Яндекс.Услуги и подобные площадки</p><p class="lead">Создаёшь профиль, описываешь услугу, берёшь заказы</p><p class="lead">(новичок)</p>`},
+{tone:"cream",xl:false,top:false,mark:"__MARK:dbl:cream:bottom:11%;left:7%__",html:`<h1>способ №3</h1><p class="lead">Передача заказов внутри обучения</p><p class="lead">Передача заказов внутри обучения в нашей школе по ИИ-специалистам. Максимально живые, теплые и заинтересованные лиды и потенциальные клиенты и на высокий чек.</p><p class="lead">Закрытый чат вакансий для учеников. Тем, кто вовремя смотрит уроки и хочет найти первого клиента</p><p class="lead">Закрытая система, где ученики берут лиды, которые мы привлекаем за свой счёт. Твой первый клиент может прийти не из твоих поисков, а из наших заявок.</p><p class="lead">(новичок)</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:18%;left:5%__",html:`<h1>способ №4</h1><p class="lead">Запуск контент-завода на парсинг заявок</p><p class="lead">Бонусным блоком выдаём связку: собираешь себе систему постинга роликов и сбора органического трафика на свои услуги через ИИ. Заявки будешь получать бесплатно и на постоянной основе.</p><p class="lead">(опытный)</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:13%;right:6%__",html:`<h1>способ №5</h1><p class="lead">Платный трафик на свои посадочные страницы и визы</p><p class="lead">Способ «сначала я работаю на репутацию, а потом получаю лавину клиентов».</p><p class="lead">(опытный)</p><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:12%;right:8%__",html:`<h1>сарафанка №1</h1><p class="lead">Чаты с отзывами по специалистам</p><p class="lead">Есть тематические чаты и каналы с отзывами по специалистам. Стоит попросить довольных клиентов написать туда про тебя.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:15%;right:12%__",html:`<h1>сарафанка №2</h1><p class="lead">Партнерка для клиентов. Рекомендация за процент</p><p class="lead">Попроси своих клиентов рассказать о тебе их же знакомым за процент от первой продажи.</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:burst:cream:bottom:11%;left:7%__",html:`<h1>сарафанка №3</h1><p class="lead">Контакты ЛПР за процент поменьше</p><p class="lead">Попроси у своих клиентов контакты тех, кому могут быть нужны твои услуги по нейросетям.. Тоже за процент, но уже поменьше. Тебе нужны контакт ЛПР (лица принимающего решения о покупке, а не мелкие сошки)</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:18%;left:5%__",html:`<h1>Сначала качественно сделай работу</h1><p class="lead">Но перед этим качественно делай свою работу. Глупо просить рекомендации, когда ты запорол проект.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:13%;right:6%__",html:`<div class="kick">способ №6 · бонус</div><h1>Секретные закрытые платные чаты</h1><p class="lead">Закрытые чаты по подписке, куда скидывают жирные заказы на нейросети только для своих.</p><p class="lead">15–40к на первых задачах</p><p class="lead">100–150к на сопровождении</p><p class="lead">150–300к при 2–3 клиентах</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:12%;right:8%__",html:`<h1>способ №7</h1><p class="lead">Поиск клиентов через свои соцсети</p><p class="lead">Часто на тебя уже подписаны твои будущие клиенты. Тебе просто нужно заявить о себе.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:dbl:dark:bottom:15%;right:12%__",html:`<h1>Как закрыть клиента без кейсов и отзывов</h1><p class="lead">Как закрыть клиента, если нет кейсов и отзывов?</p><p class="lead">Внутри комьюнити этот вопрос отпадает сразу. У тех, кто внутри нашего комьюнити, проблема кейсов решена с самого начала</p><p class="lead">Все кейсы и наработки команды доступны ученикам. Ты опираешься на реальный опыт команды, а не на пустоту</p>`},
+{tone:"cream",xl:false,top:false,mark:"__MARK:chip:cream:bottom:11%;left:7%__",html:`<h1>И это не будет враньём</h1><p class="lead">Потому что все задачи по нейросетям ученик делает вместе с нашей командой, а не один.</p><p class="lead">Уроки, созвоны, чат и ответы на вопросы. У ученика есть полная поддержка на каждом этапе</p><p class="lead">Это не про выдуманные кейсы. История, когда зелёный новичок придумывает себе кейсы, всеми правдами и неправдами закрывает клиента и косячит, это не про нас</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:18%;left:5%__",html:`<div class="kick">итог урока</div><h1>Способов найти клиента у ИИ-инженера просто море</h1><p class="lead">Урок про поиск клиентов подошёл к концу. Мы разобрали, что найти клиента это понятный алгоритм действий.</p><div class="imgslot photo"></div>`},
+{tone:"dgreen",xl:false,top:false,mark:"__MARK:dbl:dgreen:bottom:13%;right:6%__",html:`<div class="kick">в следующем видео</div><h1>Ученик, который заработал на ИИ больше 2 миллионов</h1><div class="imgslot photo"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:12%;right:8%__",html:`<h1>А потом главный урок тест-драйва</h1><p class="lead">После этого видео тебя ждёт главный и заключительный урок. Это дорожная карта профессии ИИ-инженер и инструкция, как выйти на доход.. До встречи в этом уроке</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:15%;right:12%__",html:`<h1>шаг 2</h1><p class="lead">Упаковываем услугу по нашему чек-листу (КП и прочее)</p><p class="lead">Название, состав, результат для клиента, сроки, цена и что нужно от клиента для старта. Плюс короткое КП, которое не стыдно отправить владельцу. Всё по готовому чек-листу — изобретать ничего не надо.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:dbl:dark:bottom:11%;left:7%__",html:`<h1>шаг 2</h1><p class="lead">Собираем УТП по каждой услуге</p><p class="lead">УТП отвечает на один вопрос владельца: почему заказать у тебя, а не у следующего в чате. Формула: конкретная задача + конкретный срок + понятная цена. «Соберу бота, который сам записывает клиентов, за 5 дней и 25 тысяч» звучит сильнее любого «качественно и недорого».</p>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:18%;left:5%__",html:`<h1>шаг 2</h1><p class="lead">Готовим ценообразование</p><p class="lead">На старте: бот — 20–30 тысяч, доработки — 10–15, сопровождение — 40–90 в месяц. Цены растут вместе с кейсами: тот же бот через 2–3 месяца продаётся уже за 50–150 тысяч.</p><div class="imgslot"></div>`},
+{tone:"cream",xl:false,top:true,mark:"__MARK:burst:cream:bottom:13%;right:6%__",html:`<h1>шаг 2</h1><p class="lead">Запускаем воронку сбора лидов на услугу</p><p class="lead">Не сидим и не ждём удачи. У каждого способа есть список площадок, скрипт первого сообщения и порядок действий — дальше в этом уроке разберём все семь.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:12%;right:8%__",html:`<h1>шаг 3</h1><p class="lead">Переговоры с лидами</p><p class="lead">Говорим о клиенте и его выгоде: что автоматизируем, сколько времени и денег это сэкономит, когда будет готово. Скрипты переговоров и заготовки ответов дам — продавцом быть не нужно, нужно быть понятным.</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:chip:dark:bottom:15%;right:12%__",html:`<h1>шаг 4</h1><p class="lead">Проблема 80% новичков — страх продать себя в новой профессии</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:true,mark:"__MARK:burst:dark:bottom:11%;left:7%__",html:`<div class="kick">в этом уроке</div><h1>Я разберу</h1><p class="lead">3 реально рабочих способа для поиска клиентов для новичков — на чек услуг 30-150 тыс</p><p class="lead">2 секретных способа по настройке бесперебойного потока клиентов для опытных — на чек услуг 150–500 тыс</p><div class="imgslot"></div>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:dbl:dark:bottom:18%;left:5%__",html:`<h1>способ №5</h1><p class="lead">Платный трафик на свои посадочные страницы и квизы</p><p class="lead">С помощью ИИ и готовых промтов собираешь собственный лендинг и квизы, настраиваешь по инструкции готовые рабочие связки в рекламе — и получаешь тёплые заявки потоком.</p><p class="lead">(опытный)</p><p class="lead">Способ «сначала я работаю на репутацию, а потом получаю лавину клиентов».</p>`},
+{tone:"cream",xl:false,top:false,mark:"__MARK:chip:cream:bottom:13%;right:6%__",html:`<h1>Четвёртый из пяти — ты почти у цели</h1><p class="lead">Позади теория и практика: у тебя уже есть собранный лендинг. Этот урок закрывает главный вопрос — где брать клиентов.. Досмотри до конца: внутри семь способов, история Артёма и последняя цифра кода. А после пятого урока — анкета и индивидуальный разбор твоей ситуации</p>`},
+{tone:"dark",xl:false,top:false,mark:"__MARK:burst:dark:bottom:12%;right:8%__",html:`<h1>Четыре из пяти позади</h1><p class="lead">У тебя из этого урока: семь способов поиска клиентов и полный код — четыре цифры.. Напиши в чат код и два способа, с которых начнёшь. Код откроет бонус, а по способам дам наводки под твою ситуацию. Дальше — видео ученика, который заработал на ИИ больше 2 миллионов, и главный урок: дорожная карта профессии и анкета на разбор</p>`}];
+
+const stage=document.getElementById('stage');
+slides.forEach((s,i)=>{
+  const d=document.createElement('section');
+  d.className='slide '+s.tone+(s.xl?' xl':'')+(s.top?' top':'');
+  let marks='';
+  if(s.mark){const m=s.mark.match(/__MARK:(\w+):(\w+):(.+?)__/); if(m) marks=mark(m[1],m[2],m[3]);}
+  d.innerHTML=`<div class="z">${marks}${s.kick?`<div class="kick">${s.kick}</div>`:''}${s.html}</div>`;
+  stage.appendChild(d);
+});
+const els=[...document.querySelectorAll('.slide')];
 let cur=0;
 function fit(el){
-  el.classList.remove('dense1','dense2');
+  el.classList.remove('fit1','fit2','fit3','fit4');
   const z=el.querySelector('.z'); if(!z) return;
-  if(z.getBoundingClientRect().bottom > innerHeight-78) el.classList.add('dense1');
-  if(z.getBoundingClientRect().bottom > innerHeight-60) el.classList.add('dense2');
+  for(const c of ['fit1','fit2','fit3','fit4']){
+    if(z.getBoundingClientRect().bottom > innerHeight-52) el.classList.add(c); else break;
+  }
 }
 function go(n,push=true){
-  cur=Math.max(0,Math.min(slides.length-1,n));
-  slides.forEach((s,i)=>s.classList.toggle('on',i===cur));
-  fit(slides[cur]);
-  document.getElementById('bar').style.width=((cur+1)/slides.length*100)+'%';
+  cur=Math.max(0,Math.min(els.length-1,n));
+  els.forEach((e,i)=>e.classList.toggle('on',i===cur));
+  fit(els[cur]);
+  document.getElementById('cnt').textContent=(cur+1)+' / '+els.length;
+  document.getElementById('bar').style.width=((cur+1)/els.length*100)+'%';
   if(push) history.replaceState(null,'','#'+(cur+1));
 }
-addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1)});
-document.getElementById('next').onclick=()=>go(cur+1);document.getElementById('prev').onclick=()=>go(cur-1);
-let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1));tx=null},{passive:true});
-go(parseInt(location.hash.slice(1)||'1',10)-1,false);addEventListener('resize',()=>fit(slides[cur]));
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp') go(cur-1);
+});
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('prev').onclick=()=>go(cur-1);
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1));tx=null;},{passive:true});
+go(parseInt(location.hash.slice(1)||'1',10)-1,false);
+addEventListener('resize',()=>fit(els[cur]));
 </script>
 </body>
 </html>
