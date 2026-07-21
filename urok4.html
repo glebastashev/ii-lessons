@@ -136,6 +136,9 @@ h1 .acc{font-style:normal}
 .slide.fit1 .lwp img,.slide.fit1 .lw img,.slide.fit1 .figpic img{max-height:33vh!important}
 .slide.fit2 .lwp img,.slide.fit2 .lw img,.slide.fit2 .figpic img{max-height:28vh!important}
 .slide.fit3 .lwp img,.slide.fit3 .lw img,.slide.fit3 .figpic img{max-height:24vh!important}
+b.num{color:var(--blue-soft);font-weight:800}
+.cream b.num{color:var(--blue-deep)}
+.blue b.num{color:#fff}
 /* HUD */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px min(3vw,30px);pointer-events:none;font-family:var(--mono)}
 #hud .lbl{font-size:11px;letter-spacing:.1em;color:rgba(150,155,170,.85);text-transform:uppercase}
@@ -253,6 +256,27 @@ function typograf(root){
   });
 }
 typograf(stage);
+function accentText(root){
+  var rx=/(\d[\d  .,]*(?:[–-]\d[\d  .,]*)?\s?(?:₽|\$|%|тыс\.?|тысяч?[а-яё]*|млн|к(?=[\s.,!?)»]|$)|иксов|шаг[а-яё]*|минут[а-яё]*|недел[а-яё]*|мес[а-яё]*|час[а-яё]*|раз(?=[\s.,!?)»]|$)))|(беспл[а-яё]+|даром|гарант[а-яё]+|бесценн[а-яё]+)/gi;
+  var walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
+  var nodes=[],n; while(n=walk.nextNode())nodes.push(n);
+  nodes.forEach(function(t){
+    var p=t.parentElement; if(!p)return;
+    if(!p.closest('.lead,.od,.tcd,.vs,.figtext,.d'))return;
+    if(p.closest('b,.acc,.kick,.bignum,.mono,.mono-sub'))return;
+    rx.lastIndex=0; if(!rx.test(t.nodeValue))return; rx.lastIndex=0;
+    var frag=document.createDocumentFragment(),last=0,m;
+    while(m=rx.exec(t.nodeValue)){
+      if(m.index>last)frag.appendChild(document.createTextNode(t.nodeValue.slice(last,m.index)));
+      var b=document.createElement('b'); b.className='num'; b.textContent=m[0];
+      frag.appendChild(b); last=m.index+m[0].length;
+    }
+    if(last<t.nodeValue.length)frag.appendChild(document.createTextNode(t.nodeValue.slice(last)));
+    t.parentNode.replaceChild(frag,t);
+  });
+}
+accentText(stage);
+
 const els=[...document.querySelectorAll('.slide')];
 let cur=0;
 function fit(el){
