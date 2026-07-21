@@ -45,19 +45,21 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.6vw,46px);}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.3vw,56px);line-height:1.13;letter-spacing:-.01em;margin-bottom:26px}
 h1 .acc{font-style:normal}
 .dark h1 .acc{color:var(--blue-soft)} .cream h1 .acc{color:var(--blue-deep)} .blue h1 .acc{color:var(--ink)}
-.lead{font-size:clamp(15.5px,1.75vw,21px);line-height:1.55;max-width:700px;font-weight:600}
+.lead{font-size:clamp(17.5px,2.05vw,25px);line-height:1.5;max-width:760px;font-weight:600}
 .dark .lead{color:#C3C7D1} .cream .lead{color:#4A4C51} .blue .lead{color:rgba(255,255,255,.92)}
 .cards{display:grid;gap:14px;margin-top:34px}
 .cards.c2{grid-template-columns:1fr 1fr}.cards.c3{grid-template-columns:1fr 1fr 1fr}.cards.c4{grid-template-columns:1fr 1fr}
 @media(max-width:760px){.cards.c2,.cards.c3,.cards.c4{grid-template-columns:1fr}}
-.card{border-radius:18px;padding:22px 24px}
-.dark .card{background:rgba(249,248,243,.055);border:1px solid rgba(249,248,243,.13)}
+.card{border-radius:14px;padding:22px 24px}
+.dark .card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
 .cream .card{background:#fff;border:1px solid rgba(17,24,39,.12)}
 .blue .card{background:#5570CF;border:1px solid rgba(255,255,255,.2)}
 .card .n{font-family:var(--mono);font-size:12px;color:var(--blue-soft);margin-bottom:8px}
 .cream .card .n{color:var(--blue-deep)}
-.card .t{font-weight:800;font-size:clamp(15px,1.8vw,20px);line-height:1.3;margin-bottom:6px}
-.card .d{font-size:clamp(13.5px,1.5vw,16.5px);line-height:1.5;opacity:.75}
+.card .t{font-family:var(--body);font-weight:800;font-size:clamp(15px,1.6vw,18px);line-height:1.35;letter-spacing:-.01em;margin-bottom:5px;text-wrap:balance}
+.dark .card .t{color:#fff}
+.card .d{font-family:var(--body);font-weight:500;font-size:clamp(15px,1.6vw,18px);line-height:1.45;text-wrap:pretty}
+.dark .card .d{color:#C3C7D1} .cream .card .d{color:#4A4C51} .blue .card .d{color:rgba(255,255,255,.92)}
 .split{display:flex;flex-direction:column;gap:20px;max-width:62vw}
 .split .pic{align-self:flex-start}
 @media(max-width:860px){.split,.z{max-width:92vw}.pic img{max-width:86vw}}
@@ -195,6 +197,18 @@ slides.forEach((s,i)=>{
   d.innerHTML=`<div class="z">${marks}${s.kick?`<div class="kick">${s.kick}</div>`:''}${s.html}</div>`;
   stage.appendChild(d);
 });
+function typograf(root){
+  const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
+  const nodes=[];let n;while(n=walk.nextNode())nodes.push(n);
+  nodes.forEach(t=>{
+    if(t.parentElement&&t.parentElement.closest('.kick,.mono,.mono-sub,code'))return;
+    let v=t.nodeValue;
+    for(let k=0;k<2;k++){v=v.replace(/(^|[\s(«„\u00A0—])([а-яёА-ЯЁ]{1,2})[ \t]+/g,'$1$2\u00A0');}
+    v=v.replace(/[ \t]+—/g,'\u00A0—');
+    t.nodeValue=v;
+  });
+}
+typograf(stage);
 const els=[...document.querySelectorAll('.slide')];
 let cur=0;
 function fit(el){
