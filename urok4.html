@@ -58,7 +58,7 @@ h1 .acc{font-style:normal}
 .cream .card .n{color:var(--blue-deep)}
 .card .t{font-family:var(--body);font-weight:800;font-size:clamp(15px,1.6vw,18px);line-height:1.35;letter-spacing:-.01em;margin-bottom:5px;text-wrap:balance}
 .dark .card .t{color:#fff}
-.card .d{font-family:var(--body);font-weight:500;font-size:clamp(15px,1.6vw,18px);line-height:1.45;text-wrap:pretty}
+.card .d{font-family:var(--body);font-weight:500;font-size:clamp(15px,1.6vw,18px);line-height:1.45;text-wrap:balance}
 .dark .card .d{color:#C3C7D1} .cream .card .d{color:#4A4C51} .blue .card .d{color:rgba(255,255,255,.92)}
 .split{display:flex;flex-direction:column;gap:20px;max-width:62vw}
 .split .pic{align-self:flex-start}
@@ -139,6 +139,10 @@ h1 .acc{font-style:normal}
 b.num{color:var(--blue-soft);font-weight:800}
 .cream b.num{color:var(--blue-deep)}
 .blue b.num{color:#fff}
+/* TYPO-BALANCE */
+h1{text-wrap:balance}
+.lead,.sd,.st,.od,.ot,.tcd,.tct,.vs,.vt,.td,.tt,.quote,.d,.imgcap,.pencil,.figtext p{text-wrap:balance}
+h1.fit1line{font-size:clamp(26px,3.6vw,48px)}
 /* HUD */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px min(3vw,30px);pointer-events:none;font-family:var(--mono)}
 #hud .lbl{font-size:11px;letter-spacing:.1em;color:rgba(150,155,170,.85);text-transform:uppercase}
