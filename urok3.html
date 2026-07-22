@@ -155,6 +155,9 @@ h1.fit1line{font-size:clamp(26px,3.6vw,48px)}
 .slide.cover1 .hud,.slide.cover1 .foot,.slide.cover1 .pageno{display:none}
 .cards.c3col{display:flex!important;flex-direction:column;gap:12px;max-width:62vw}
 .cards.c3col .card{width:100%}
+/* интерактив: фрагменты */
+.frag{opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease}
+.frag.show{opacity:1;transform:none}
 /* HUD */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px min(3vw,30px);pointer-events:none;font-family:var(--mono)}
 #hud .lbl{font-size:11px;letter-spacing:.1em;color:rgba(150,155,170,.85);text-transform:uppercase}
@@ -318,8 +321,24 @@ function fit(el){
     if(z.getBoundingClientRect().bottom > innerHeight-52) el.classList.add(c); else break;
   }
 }
+function fr(el){return [...el.querySelectorAll('.frag')]}
+function syncFrag(el){
+  const f=fr(el);
+  const n=f.filter(x=>x.classList.contains('show')).length;
+  const host=el.querySelector('[data-shown]'); if(host)host.dataset.shown=n;
+  const p=el.querySelector('path.draw'); if(p)p.style.strokeDashoffset=100-(n>1?Math.round((n-1)/(f.length-1)*100):0);
+  const sw=el.querySelector('.swap');
+  if(sw){const sf=[...sw.querySelectorAll('.frag')];let last=-1;sf.forEach((x,i)=>{if(x.classList.contains('show'))last=i});sf.forEach((x,i)=>x.classList.toggle('cur',i===last));}
+  const fl=el.querySelector('.srail .fill'); if(fl)fl.style.height=(f.length?n/f.length*100:0)+'%';
+  el.querySelectorAll('.tlab').forEach((x,i)=>x.classList.toggle('done',i<n));
+}
+function stepNext(){const f=fr(els[cur]);const n=f.filter(x=>x.classList.contains('show')).length;if(n<f.length){f[n].classList.add('show');syncFrag(els[cur]);}else go(cur+1);}
+function stepPrev(){const f=fr(els[cur]);const sh=f.filter(x=>x.classList.contains('show'));if(sh.length){sh[sh.length-1].classList.remove('show');syncFrag(els[cur]);}else go(cur-1);}
 function go(n,push=true){
+  const back=n<cur;
   cur=Math.max(0,Math.min(els.length-1,n));
+  const ff=fr(els[cur]);
+  if(ff.length){ff.forEach(x=>x.classList.toggle('show',back));syncFrag(els[cur]);}
   els.forEach((e,i)=>e.classList.toggle('on',i===cur));
   fit(els[cur]);
   document.getElementById('cnt').textContent=(cur+1)+' / '+els.length;
@@ -329,11 +348,11 @@ function go(n,push=true){
 let navLock=false;
 function nav(fn){if(navLock)return;navLock=true;fn();setTimeout(function(){navLock=false},260)}
 addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') nav(()=>go(cur+1));
-  if(e.key==='ArrowLeft'||e.key==='PageUp') nav(()=>go(cur-1));
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') nav(stepNext);
+  if(e.key==='ArrowLeft'||e.key==='PageUp') nav(stepPrev);
 });
-document.getElementById('next').onclick=()=>nav(()=>go(cur+1));
-document.getElementById('prev').onclick=()=>nav(()=>go(cur-1));
+document.getElementById('next').onclick=()=>nav(stepNext);
+document.getElementById('prev').onclick=()=>nav(stepPrev);
 let tx=null;
 addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
 addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){e.preventDefault();nav(()=>go(cur+(dx<0?1:-1)));}tx=null;},{passive:false});
