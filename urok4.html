@@ -280,6 +280,16 @@ function accentText(root){
   });
 }
 accentText(stage);
+function widowFix(root){
+  root.querySelectorAll('h1,.lead,.card .t,.card .d,.sd,.st,.vs,.vt,.od,.ot,.tcd,.tct,.td,.tt,.quote,.figtext p').forEach(function(el){
+    var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
+    while(n=walker.nextNode()){ if(n.nodeValue && n.nodeValue.trim()) last=n; }
+    if(!last) return;
+    last.nodeValue=last.nodeValue.replace(/\s+(\S+)\s*$/, ' $1');
+  });
+}
+widowFix(stage);
+
 
 const els=[...document.querySelectorAll('.slide')];
 let cur=0;
