@@ -282,6 +282,7 @@ function accentText(root){
 accentText(stage);
 function widowFix(root){
   root.querySelectorAll('h1,.lead,.card .t,.card .d,.sd,.st,.vs,.vt,.od,.ot,.tcd,.tct,.td,.tt,.quote,.figtext p').forEach(function(el){
+    if(el.closest('.cards.photo')) return;
     var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), nodes=[], n;
     while(n=walker.nextNode()){ if(n.nodeValue && n.nodeValue.trim()) nodes.push(n); }
     if(!nodes.length) return;
