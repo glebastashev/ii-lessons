@@ -282,17 +282,10 @@ function accentText(root){
 accentText(stage);
 function widowFix(root){
   root.querySelectorAll('h1,.lead,.card .t,.card .d,.sd,.st,.vs,.vt,.od,.ot,.tcd,.tct,.td,.tt,.quote,.figtext p').forEach(function(el){
-    var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), nodes=[], n;
-    while(n=walker.nextNode()){ if(n.nodeValue && n.nodeValue.trim()) nodes.push(n); }
-    if(!nodes.length) return;
-    var last=nodes[nodes.length-1];
-    if(/\s\S+\s*$/.test(last.nodeValue)){
-      last.nodeValue=last.nodeValue.replace(/\s+(\S+)\s*$/, ' $1');
-    } else if(nodes.length>=2){
-      var prev=nodes[nodes.length-2];
-      if(/\s$/.test(prev.nodeValue)) prev.nodeValue=prev.nodeValue.replace(/\s+$/, ' ');
-      else prev.nodeValue=prev.nodeValue.replace(/(\S)$/, '$1 ');
-    }
+    var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
+    while(n=walker.nextNode()){ if(n.nodeValue && n.nodeValue.trim()) last=n; }
+    if(!last) return;
+    last.nodeValue=last.nodeValue.replace(/\s+(\S+\s*)$/, ' $1');
   });
 }
 widowFix(stage);
