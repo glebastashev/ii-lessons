@@ -215,10 +215,10 @@ h1 .acc{font-style:normal}
 .slide.fit2 .pic.s18pic img{max-height:27vh!important}
 .slide.fit3 .pic.s18pic img{max-height:23vh!important}
 /* слайд 13: схема-хаб */
-.hub{position:relative;width:min(58vw,820px);height:34vh;margin-top:3vh}
+.hub{position:relative;width:min(58vw,820px);height:40vh;margin-top:3vh}
 .hub .hl{position:absolute;overflow:visible;pointer-events:none}
-.hub .hl path{fill:none;stroke:var(--blue-soft);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s ease}
-.hub .hl.on path{stroke-dashoffset:0}
+.hub .hl path{fill:none;stroke:var(--blue-soft);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s ease,opacity .12s ease}
+.hub .hl.on path{stroke-dashoffset:0;opacity:.85}
 .hub .ltop{left:calc(50% - 12px);top:0;width:24px;height:50%}
 .hub .lleft{left:0;top:calc(50% - 12px);width:50%;height:24px}
 .hub .lright{right:0;top:calc(50% - 12px);width:50%;height:24px}
@@ -240,7 +240,7 @@ h1 .acc{font-style:normal}
 .dark .hubbar .t{color:#fff} .dark .hubbar .d{color:#C3C7D1}
 .cream .hubbar{background:#fff;border:1px solid rgba(17,24,39,.12)}
 .hubbar .d{font-family:var(--body);font-weight:500;font-size:clamp(16px,1.72vw,20px);line-height:1.38;margin-top:7px}
-.slide.fit1 .hub{height:31vh} .slide.fit2 .hub{height:28vh} .slide.fit3 .hub{height:25vh}
+.slide.fit1 .hub{height:36vh} .slide.fit2 .hub{height:32vh} .slide.fit3 .hub{height:28vh}
 /* плашка-цитата */
 .qbox{margin:26px 0 8px;padding:20px 26px;border-left:5px solid var(--blue);border-radius:12px;max-width:56vw}
 .cream .qbox{background:rgba(68,96,196,.07)} .dark .qbox{background:rgba(125,149,230,.10);border-left-color:var(--blue-soft)}
