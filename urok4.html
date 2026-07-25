@@ -22,6 +22,7 @@ body{font-family:var(--body);background:var(--ink);overflow:hidden}
   padding:min(7vw,88px);overflow:hidden;
 }
 .slide.top{justify-content:flex-start;padding-top:min(11vh,92px)}
+.slide.vctr{justify-content:center!important;padding-top:0!important}
 .imgslot{
   margin-top:28px;height:24vh;min-height:100px;max-width:52vw;border:2px dashed;border-radius:16px;
   display:flex;align-items:center;justify-content:center;
@@ -243,8 +244,8 @@ h1 .acc{font-style:normal}
 .s13 h1{font-size:clamp(26px,3.35vw,43px)!important;margin-bottom:20px;max-width:56vw}
 .s13 .lead{font-size:clamp(15px,1.56vw,19px)!important;margin-bottom:0;max-width:56vw}
 .s13 .kick{margin-bottom:10px}
-.s13 .hub{margin-top:1vh}
-.s13 .hubbar{margin-top:1.2vh;padding:14px 22px}
+.s13 .hub{margin-top:4.5vh}
+.s13 .hubbar{margin-top:1.6vh;padding:14px 22px}
 /* плашка-цитата */
 .qbox{margin:26px 0 8px;padding:20px 26px;border-left:5px solid var(--blue);border-radius:12px;max-width:56vw}
 .cream .qbox{background:rgba(68,96,196,.07)} .dark .qbox{background:rgba(125,149,230,.10);border-left-color:var(--blue-soft)}
@@ -345,7 +346,7 @@ const slides=[{tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">
 {tone:"dark v2",xl:false,top:false,mark:"",html:`<div class="kick">// поэтому давайте ещё раз</div><h1 class="oneline">Но ты обязан сделать <span class="under">шаг<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 6 Q14 2 26 6 T50 6 T74 6 T98 5" fill="none" stroke="#4460C4" stroke-width="3" stroke-linecap="round"/></svg></span></h1><div class="cards c3 c3col"><div class="card"><div class="t">Ты не обязан знать всё заранее</div></div><div class="card frag"><div class="t">Ты не обязан «быть айтишником»</div></div><div class="card frag"><div class="t">Ты не обязан сразу всё уметь</div></div></div><p class="lead">Если не хочешь застрять в жизни, которая тебя больше не радует. Как когда-то сделал это я, о чём ни разу не пожалел.</p>`},
 {tone:"blue",xl:false,top:false,mark:"__MARK:chip:blue:bottom:12%;right:8%__",html:`<div class="kick">// поиск клиентов</div><h1>Переходим к поиску клиентов</h1><p class="lead">Зачем бизнесу заказывать у новичка, когда есть уже опытные ИИ-инженеры?</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:burst:dark:bottom:15%;right:12%__",html:`<h1>Рынок растёт <span class="acc">каждый день</span></h1><p class="lead">Рынок ИИ только родился и растёт каждый день, бизнес массово внедряет нейросети. Опытных на всех не хватает, и они дорогие. Новичок выигрывает ценой и скоростью.</p><div class="bignum">20–30к</div><p class="lead mono-sub">// твоя цена бота на старте</p>`},
-{tone:"dark v2",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:11%;left:7%__",html:`<h1>Переходим к способам <span class="acc">поиска клиентов</span></h1><p class="lead">Разбираем рабочие способы поиска клиентов на услуги ИИ-инженера.</p>`},
+{tone:"dark v2 vctr",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:11%;left:7%__",html:`<h1>Переходим к способам <span class="acc">поиска клиентов</span></h1><p class="lead">Разбираем рабочие способы поиска клиентов на услуги ИИ-инженера.</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">// кому продавать</div><h1>Категории клиентов, которые <span class="acc">хорошо платят</span></h1><p class="lead">Я дошёл до чеков 300–500к ₽ за проект и собрал агентство ИИ-разработки. На этом опыте я выделил несколько категорий клиентов, которые хорошо платят за внедрение нейросетей.</p>`},
 {tone:"cream v2",xl:false,top:false,mark:"",html:`<div class="kick">// категория 1</div><h1><span class="acc">Малый бизнес</span></h1><div class="chips"><div class="chip">Салоны красоты и барбершопы</div><div class="chip">Автосервисы</div><div class="chip">Магазины и доставки</div><div class="chip">Общепит</div><div class="chip">Фитнес-залы</div></div><div class="note frag"><div class="nt">Лучше всего покупают в чеке до <b class="num">300к рублей</b></div><div class="nd">За услуги по автоматизации, чат-боты по обработке входящих заявок, внедрение аналитики</div></div>`},
 {tone:"dark v2",xl:false,top:false,mark:"",html:`<div class="kick">// категория 2</div><h1><span class="acc">Онлайн-школы</span></h1><p class="lead">Школы, которые обучают людей какому-то навыку.</p><div class="cards c3 c3col"><div class="card"><div class="t">Как печь торты</div></div><div class="card frag"><div class="t">Курсы по медицине</div></div><div class="card frag"><div class="t">Курсы по ведению блога</div></div><div class="card frag"><div class="t">Лучше всего покупают в чеке до 500к рублей, более платежеспособные</div><div class="d">За услуги по автоворонкам, чат-боты по обработке входящих заявок, внедрение сквозной аналитики, чат-боты внутри обучений и продуктов</div></div></div>`},
