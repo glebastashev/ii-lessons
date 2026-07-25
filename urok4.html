@@ -215,7 +215,7 @@ h1 .acc{font-style:normal}
 .slide.fit2 .pic.s18pic img{max-height:27vh!important}
 .slide.fit3 .pic.s18pic img{max-height:23vh!important}
 /* слайд 13: схема-хаб */
-.hub{position:relative;width:min(58vw,820px);height:40vh;margin-top:3vh}
+.hub{position:relative;width:min(63vw,880px);height:44vh;margin-top:3vh}
 .hub .hl{position:absolute;overflow:visible;pointer-events:none}
 .hub .hl path{fill:none;stroke:var(--blue-soft);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s ease,opacity .12s ease}
 .hub .hl.on path{stroke-dashoffset:0;opacity:.85}
@@ -223,8 +223,8 @@ h1 .acc{font-style:normal}
 .hub .lleft,.hub .lright{top:calc(50% - 12px);height:24px;left:0;width:0}
 .hubc,.hubn{position:absolute;border-radius:14px;padding:16px 18px;display:flex;align-items:center;justify-content:center;text-align:center}
 .hubc .t,.hubn .t,.hubbar .t{font-family:var(--body);font-weight:800;font-size:clamp(14px,1.42vw,17px);line-height:1.28}
-.hubc{left:50%;top:50%;transform:translate(-50%,-50%);width:30%;min-height:17%}
-.hubn{width:27%;min-height:15%}
+.hubc{left:50%;top:50%;transform:translate(-50%,-50%);width:28%;min-height:16%}
+.hubn{width:26%;min-height:14%}
 .hubn.ntop{left:0;right:0;top:0;margin-left:auto;margin-right:auto}
 .hubn.nleft{left:0;top:0;bottom:0;height:fit-content;margin-top:auto;margin-bottom:auto}
 .hubn.nright{right:0;top:0;bottom:0;height:fit-content;margin-top:auto;margin-bottom:auto}
@@ -234,12 +234,12 @@ h1 .acc{font-style:normal}
 .dark .hubn .t{color:#fff}
 .cream .hubc{background:var(--blue)} .cream .hubc .t{color:#fff}
 .cream .hubn{background:#fff;border:1px solid rgba(17,24,39,.12)} .cream .hubn .t{color:var(--ink)}
-.hubbar{margin-top:2.4vh;width:min(58vw,820px);border-radius:14px;padding:18px 24px}
+.hubbar{margin-top:2.4vh;width:min(63vw,880px);border-radius:14px;padding:18px 24px}
 .dark .hubbar{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
 .dark .hubbar .t{color:#fff} .dark .hubbar .d{color:#C3C7D1}
 .cream .hubbar{background:#fff;border:1px solid rgba(17,24,39,.12)}
 .hubbar .d{font-family:var(--body);font-weight:500;font-size:clamp(16px,1.72vw,20px);line-height:1.38;margin-top:7px}
-.slide.fit1 .hub{height:36vh} .slide.fit2 .hub{height:32vh} .slide.fit3 .hub{height:28vh}
+.slide.fit1 .hub{height:40vh} .slide.fit2 .hub{height:35vh} .slide.fit3 .hub{height:30vh}
 /* плашка-цитата */
 .qbox{margin:26px 0 8px;padding:20px 26px;border-left:5px solid var(--blue);border-radius:12px;max-width:56vw}
 .cream .qbox{background:rgba(68,96,196,.07)} .dark .qbox{background:rgba(125,149,230,.10);border-left-color:var(--blue-soft)}
@@ -468,7 +468,7 @@ function hubGeom(el){
       var t=r.bottom-hb.top, H=Math.max(0,(cb.top-hb.top)-t);
       sv.style.top=t+'px'; sv.style.height=H+'px'; sv.style.left='calc(50% - 12px)'; sv.style.width='24px';
       sv.setAttribute('viewBox','0 0 24 '+Math.max(H,1));
-      if(pth)pth.setAttribute('d','M12.4 '+(H-1.5)+' C 10.4 '+(.74*H).toFixed(1)+', 14.2 '+(.55*H).toFixed(1)+', 11.6 '+(.38*H).toFixed(1)+' S 12.2 '+(.16*H).toFixed(1)+', 12.3 1.5');
+      if(pth)pth.setAttribute('d','M12.4 '+(H-1.5).toFixed(1)+' C 11.2 '+(.66*H).toFixed(1)+', 13.2 '+(.34*H).toFixed(1)+', 12.1 1.5');
     }else{
       var L,x0;
       if(k==='nleft'){ x0=r.right-hb.left; L=Math.max(0,(cb.left-hb.left)-x0); }
@@ -476,8 +476,8 @@ function hubGeom(el){
       sv.style.left=x0+'px'; sv.style.right='auto'; sv.style.width=L+'px';
       sv.setAttribute('viewBox','0 0 '+Math.max(L,1)+' 24');
       if(pth){
-        if(k==='nleft') pth.setAttribute('d','M'+(L-1.5)+' 12.4 C '+(.74*L).toFixed(1)+' 10.4, '+(.55*L).toFixed(1)+' 14.2, '+(.38*L).toFixed(1)+' 11.6 S '+(.16*L).toFixed(1)+' 12.2, 1.5 12.3');
-        else pth.setAttribute('d','M1.5 12.4 C '+(.26*L).toFixed(1)+' 10.4, '+(.45*L).toFixed(1)+' 14.2, '+(.62*L).toFixed(1)+' 11.6 S '+(.84*L).toFixed(1)+' 12.2, '+(L-1.5)+' 12.3');
+        if(k==='nleft') pth.setAttribute('d','M'+(L-1.5).toFixed(1)+' 12.4 C '+(.66*L).toFixed(1)+' 11.2, '+(.34*L).toFixed(1)+' 13.2, 1.5 12.1');
+        else pth.setAttribute('d','M1.5 12.4 C '+(.34*L).toFixed(1)+' 11.2, '+(.66*L).toFixed(1)+' 13.2, '+(L-1.5).toFixed(1)+' 12.1');
       }
     }
   });
