@@ -75,6 +75,21 @@ h1 .acc{font-style:normal}
 .cream .note .nt{color:var(--ink)} .dark .note .nt{color:#fff} .blue .note .nt{color:#fff}
 .note .nd{font-family:var(--body);font-weight:500;font-size:clamp(16px,1.7vw,19px);line-height:1.5}
 .cream .note .nd{color:#4A4C51} .dark .note .nd{color:#C3C7D1} .blue .note .nd{color:rgba(255,255,255,.92)}
+/* было → стало — контраст-панели */
+.wasnow{display:flex;align-items:stretch;gap:16px;margin-top:38px;max-width:62vw}
+.wasnow .wn{flex:1;padding:24px 26px;border-radius:16px;display:flex;flex-direction:column;justify-content:center}
+.wasnow .lbl{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.wasnow .wtxt{font-family:var(--body);font-weight:700;font-size:clamp(18px,2vw,24px);line-height:1.3}
+.wasnow .arr{flex:0 0 auto;align-self:center;font-size:30px;font-weight:800;line-height:1;color:var(--blue-soft)}
+.dark .wasnow .was{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+.dark .wasnow .was .lbl{color:#8B90A0} .dark .wasnow .was .wtxt{color:#9AA0AE}
+.dark .wasnow .now{background:rgba(68,96,196,.16);border:1px solid rgba(125,149,230,.42)}
+.dark .wasnow .now .lbl{color:var(--blue-soft)} .dark .wasnow .now .wtxt{color:#fff}
+.cream .wasnow .was{background:rgba(17,24,39,.04);border:1px solid rgba(17,24,39,.10)}
+.cream .wasnow .was .lbl{color:#8B8877} .cream .wasnow .was .wtxt{color:#8A8778}
+.cream .wasnow .now{background:rgba(68,96,196,.10);border:1px solid rgba(68,96,196,.30)}
+.cream .wasnow .now .lbl{color:var(--blue-deep)} .cream .wasnow .now .wtxt{color:var(--ink)}
+.cream .wasnow .arr{color:var(--blue-deep)}
 .split{display:flex;flex-direction:column;gap:20px;max-width:62vw}
 .split .pic{align-self:flex-start}
 @media(max-width:860px){.split,.z{max-width:92vw}.pic img{max-width:86vw}}
@@ -234,7 +249,7 @@ const slides=[{tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">
 {tone:"cream v2",xl:false,top:true,mark:"__MARK:dbl:cream:bottom:15%;right:12%__",html:`<h1>Решился, <span class="under">хотя были сомнения<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 6 Q14 2 26 6 T50 6 T74 6 T98 5" fill="none" stroke="#4460C4" stroke-width="3" stroke-linecap="round"/></svg></span></h1><p class="lead">В 32 казалось, что поздно: за спиной больше десяти лет смен и подработок, никакого ИТ-опыта. Решился, потому что оставаться было страшнее.</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:chip:dark:bottom:11%;left:7%__",html:`<h1>С первых уроков понял, что <span class="acc">зря боялся</span></h1><p class="lead">Всё по инструкциям: открыл, повторил, проверил. Первые задачи закрыл ещё во время обучения.</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:burst:dark:bottom:18%;left:5%__",html:`<div class="kick">// прошло чуть больше года</div><h1>Артём ведёт клиентов <span class="under">на сопровождении<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 6 Q14 2 26 6 T50 6 T74 6 T98 5" fill="none" stroke="#4460C4" stroke-width="3" stroke-linecap="round"/></svg></span></h1><p class="lead">Прошло чуть больше года. Сегодня Артём ведёт несколько бизнесов на сопровождении. Плюс берёт разовые задачи: чат-боты, автоматизации, аналитику для онлайн-школ.</p>`},
-{tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">// было / стало</div><h1>Раньше дорога, <span class="acc">сейчас свобода</span></h1><div class="cards c2"><div class="card"><div class="t">3 часа в день на дорогу</div></div><div class="card frag"><div class="t">Встаёт за 10 минут до начала работы</div></div></div>`},
+{tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">// было / стало</div><h1>Раньше дорога, <span class="acc">сейчас свобода</span></h1><div class="wasnow"><div class="wn was"><span class="lbl">Было</span><div class="wtxt">3 часа в день на дорогу</div></div><div class="arr frag">→</div><div class="wn now frag"><span class="lbl">Стало</span><div class="wtxt">Встаёт за 10 минут до начала работы</div></div></div>`},
 {tone:"dark v2",xl:false,top:false,mark:"",html:`<div class="kick">// история артёма</div><h1>То, что раньше казалось <span class="under">недоступным<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 6 Q14 2 26 6 T50 6 T74 6 T98 5" fill="none" stroke="#4460C4" stroke-width="3" stroke-linecap="round"/></svg></span></h1><div class="cards c2"><div class="card"><div class="t">Собрал компьютер за 250 000 ₽</div></div><div class="card frag"><div class="t">Взял iPhone сразу после релиза</div></div><div class="card frag"><div class="t">Делает подарки девушке</div></div><div class="card frag"><div class="t">Одежда, техника, мелочи</div></div></div>`},
 {tone:"dark v2",xl:false,top:false,mark:"",html:`<div class="kick">// история артёма</div><h1>Появилось окружение</h1>`},
 {tone:"cream v2",xl:false,top:true,mark:"__MARK:burst:cream:bottom:15%;right:12%__",html:`<h1>История Артёма — <span class="acc">не исключение</span></h1><p class="lead">Таких историй у нас десятки: люди без технического опыта за год выходят на стабильные деньги. Дальше — те самые способы, откуда к таким специалистам приходят клиенты.</p>`},
