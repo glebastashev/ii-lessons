@@ -60,6 +60,21 @@ h1 .acc{font-style:normal}
 .dark .card .t{color:#fff}
 .card .d{font-family:var(--body);font-weight:500;font-size:clamp(16px,1.75vw,20px);line-height:1.45;text-wrap:balance}
 .dark .card .d{color:#C3C7D1} .cream .card .d{color:#4A4C51} .blue .card .d{color:rgba(255,255,255,.92)}
+/* chips — компактный список категорий */
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;max-width:62vw}
+.chip{font-family:var(--body);font-weight:700;font-size:clamp(16px,1.65vw,20px);line-height:1;padding:15px 24px;border-radius:999px}
+.cream .chip{background:#fff;border:1px solid rgba(17,24,39,.14);color:var(--ink)}
+.dark .chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff}
+.blue .chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff}
+/* note — выделенный блок-вывод */
+.note{margin-top:40px;padding:24px 28px;border-radius:14px;border-left:5px solid var(--blue);max-width:60vw}
+.cream .note{background:rgba(68,96,196,.08)}
+.dark .note{background:rgba(125,149,230,.10);border-left-color:var(--blue-soft)}
+.blue .note{background:rgba(255,255,255,.12);border-left-color:#fff}
+.note .nt{font-family:var(--body);font-weight:800;font-size:clamp(19px,2.05vw,25px);line-height:1.3;margin-bottom:8px}
+.cream .note .nt{color:var(--ink)} .dark .note .nt{color:#fff} .blue .note .nt{color:#fff}
+.note .nd{font-family:var(--body);font-weight:500;font-size:clamp(16px,1.7vw,19px);line-height:1.5}
+.cream .note .nd{color:#4A4C51} .dark .note .nd{color:#C3C7D1} .blue .note .nd{color:rgba(255,255,255,.92)}
 .split{display:flex;flex-direction:column;gap:20px;max-width:62vw}
 .split .pic{align-self:flex-start}
 @media(max-width:860px){.split,.z{max-width:92vw}.pic img{max-width:86vw}}
@@ -209,7 +224,7 @@ const slides=[{tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:burst:dark:bottom:15%;right:12%__",html:`<h1>Рынок растёт <span class="acc">каждый день</span></h1><p class="lead">Рынок ИИ только родился и растёт каждый день, бизнес массово внедряет нейросети. Опытных на всех не хватает, и они дорогие. Новичок выигрывает ценой и скоростью.</p><div class="bignum">20–30к</div><p class="lead mono-sub">// твоя цена бота на старте</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:dbl:dark:bottom:11%;left:7%__",html:`<h1>Переходим к способам <span class="acc">поиска клиентов</span></h1><p class="lead">Разбираем рабочие способы поиска клиентов на услуги ИИ-инженера.</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"",html:`<div class="kick">// кому продавать</div><h1>Категории клиентов, которые <span class="acc">хорошо платят</span></h1><p class="lead">Я дошёл до чеков 300–500к ₽ за проект и собрал агентство ИИ-разработки. На этом опыте я выделил несколько категорий клиентов, которые хорошо платят за внедрение нейросетей.</p>`},
-{tone:"cream v2",xl:false,top:false,mark:"",html:`<div class="kick">// категория 1</div><h1><span class="acc">Малый бизнес</span></h1><div class="cards c2"><div class="card"><div class="t">Салоны красоты и барбершопы</div></div><div class="card frag"><div class="t">Автосервисы</div></div><div class="card frag"><div class="t">Магазины и доставки</div></div><div class="card frag"><div class="t">Общепит</div></div><div class="card frag"><div class="t">Фитнес-залы</div></div><div class="card frag"><div class="t">Лучше всего покупают в чеке до 300к рублей</div><div class="d">За услуги по автоматизации, чат-боты по обработке входящих заявок, внедрение аналитики</div></div></div>`},
+{tone:"cream v2",xl:false,top:false,mark:"",html:`<div class="kick">// категория 1</div><h1><span class="acc">Малый бизнес</span></h1><div class="chips"><div class="chip">Салоны красоты и барбершопы</div><div class="chip">Автосервисы</div><div class="chip">Магазины и доставки</div><div class="chip">Общепит</div><div class="chip">Фитнес-залы</div></div><div class="note frag"><div class="nt">Лучше всего покупают в чеке до <b class="num">300к рублей</b></div><div class="nd">За услуги по автоматизации, чат-боты по обработке входящих заявок, внедрение аналитики</div></div>`},
 {tone:"dark v2",xl:false,top:false,mark:"",html:`<div class="kick">// категория 2</div><h1><span class="acc">Онлайн-школы</span></h1><p class="lead">Школы, которые обучают людей какому-то навыку.</p><div class="cards c3 c3col"><div class="card"><div class="t">Как печь торты</div></div><div class="card frag"><div class="t">Курсы по медицине</div></div><div class="card frag"><div class="t">Курсы по ведению блога</div></div><div class="card frag"><div class="t">Лучше всего покупают в чеке до 500к рублей, более платежеспособные</div><div class="d">За услуги по автоворонкам, чат-боты по обработке входящих заявок, внедрение сквозной аналитики, чат-боты внутри обучений и продуктов</div></div></div>`},
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:chip:dark:bottom:15%;right:12%__",html:`<h1>Каждому из владельцев <span class="under">нужен ИИ-инженер<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 6 Q14 2 26 6 T50 6 T74 6 T98 5" fill="none" stroke="#4460C4" stroke-width="3" stroke-linecap="round"/></svg></span></h1><p class="lead">Они понимают, что пора внедрять чат-ботов и нейросети и делать рассылки по своей базе, чтобы вернуть клиентов в свой бизнес.</p>`},
 {tone:"dark v2",xl:false,top:true,mark:"__MARK:burst:dark:bottom:11%;left:7%__",html:`<h1>Не нужно быть <span class="acc">супер-уникумом</span></h1><p class="lead">И весь прикол в том, что тебе не нужно быть каким-то супер-уникумом. Нужно просто иметь желание.</p>`},
