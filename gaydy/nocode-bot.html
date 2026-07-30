@@ -1,0 +1,178 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Как собрать чат-бота бизнесу за вечер без кода — Люшер</title>
+<meta name="description" content="Пошаговый гайд: как за вечер собрать чат-бота для бизнеса на бесплатном российском сервисе и брать за это 15-30к. Без кода.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gaydy.css">
+</head><body>
+
+<header class="top"><div class="in">
+  <a class="brand" href="index.html">ЛЮШЕР <b>· ГАЙДЫ</b></a>
+  <a class="cta" href="#cta">Забрать тест-драйв →</a>
+</div></header>
+
+<section class="hero blue grain">
+  <div class="circ"></div>
+  <div class="kick">Гайд · Чат-боты</div>
+  <h1>Как собрать чат-бота бизнесу <span class="hl lime">за вечер</span> и брать за это 20-30к</h1>
+  <p class="lead">Без кода и без «я не технарь». Разбираю по шагам то, что в роликах вырезают, и что реально приносит первые деньги.</p>
+  <div class="hero-media"><img src="img/gen-bot.jpg" alt="Девушка с чат-ботом для кофейни"></div>
+</section>
+
+<div class="wrap"><div class="crumbs"><a href="index.html">← Все гайды</a></div>
+
+<div class="narrow">
+<section style="padding-top:30px">
+  <p class="lead-in">Ты наверняка видел эти ролики: чувак за 15 минут на камеру щёлкает бота из кубиков и говорит, что бизнес платит за такое 20-40к. Звучит как очередная инфоцыганщина, согласен.</p>
+  <p>Но давай честно: сама схема рабочая, просто в роликах вырезали половину. Сейчас разложу как есть, без сказок, и ты за вечер соберёшь своего первого бота, даже если ты не технарь и видел нейросеть один раз.</p>
+
+  <div class="note pink">
+    <div class="nt">Сразу про главное враньё этих роликов</div>
+    <p>За 15 минут бота собирает уже опытный человек, и то на камеру. Твой первый бот займёт весь вечер: регистрация, токен, разбор логики блоков и, главное, отладка всех веток. И деньги идут за решённую задачу: чтобы салон не терял заявки в директе, чтобы автосервису не звонили по сто раз с вопросом «сколько стоит». Вот за это и платят.</p>
+  </div>
+</section>
+</div>
+</div>
+
+<div class="wrap">
+<section style="padding-top:6px">
+  <div class="slabel">Результат</div>
+  <h2>Вот что ты соберёшь</h2>
+  <div class="fig">
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">Telegram · бот салона</span></div>
+      <div class="chat">
+        <div class="b in">Здравствуйте! Я помогу записаться и отвечу на вопросы 💇 Что интересует?
+          <div class="btns"><span>Услуги и цены</span><span>Записаться</span><span>Контакты</span></div></div>
+        <div class="b out">Записаться</div>
+        <div class="b in">Отлично! Как вас зовут?</div>
+        <div class="b out">Ирина</div>
+        <div class="b in">Оставьте телефон, мастер перезвонит и подтвердит время 📞</div>
+        <div class="b out">+7 900 123-45-67</div>
+        <div class="b in">Спасибо, Ирина! Заявка уже у мастера, скоро свяжемся ✅</div>
+      </div></div>
+    <div class="cap">Простой бот: отвечает на частые вопросы и собирает заявку. За такое бизнес и платит</div>
+  </div>
+</section>
+
+<section style="padding-top:6px">
+  <div class="slabel">Пошагово</div>
+  <h2>Погнали по шагам</h2>
+  <div class="rail">
+    <div class="step"><div class="n">1</div><div class="body">
+      <div class="st">Выбери простую нишу с повторяющимися вопросами</div>
+      <div class="sd">Салон красоты, барбершоп, автосервис, доставка, репетитор, стоматология. Везде одно и то же: «сколько стоит», «где вы», «как записаться». Бот закрывает эти ответы и собирает заявку: имя, телефон, услуга. Больше от него на старте ничего не нужно.</div></div></div>
+    <div class="step"><div class="n">2</div><div class="body">
+      <div class="st">Создай бота в Telegram через @BotFather</div>
+      <div class="sd">Открой <a href="https://t.me/BotFather">@BotFather</a>, команда /newbot, придумываешь имя и @username, копируешь токен, длинную строку вида 123456:ABC. Это бесплатно и без лимитов. Токен нужен, чтобы связать Telegram с конструктором.</div></div></div>
+    <div class="step"><div class="n">3</div><div class="body">
+      <div class="st">Иди на Salebot и вставь токен</div>
+      <div class="sd">Открой <a href="https://salebot.pro/">salebot.pro</a>. Российский конструктор, открывается без VPN, оплата рублями. Регистрируешься, создаёшь проект, на бесплатном тарифе подключаешь Telegram и вставляешь тот самый токен. Salebot берём потому, что он свой, в реестре отечественного ПО, и один бот работает в Telegram, ВК, WhatsApp и на сайте.</div></div></div>
+    <div class="step"><div class="n">4</div><div class="body">
+      <div class="st">Собери минимальный сценарий из 4-5 блоков</div>
+      <div class="sd">Приветствие с кнопками «Услуги и цены», «Записаться», «Контакты». Под каждой кнопкой блок с текстом-ответом. В ветке «Записаться» по очереди спрашиваешь имя, потом телефон, потом выдаёшь «Спасибо, скоро свяжемся». Ответы сохраняешь в переменные.</div></div></div>
+    <div class="step"><div class="n">5</div><div class="body">
+      <div class="st">Настрой, куда падают заявки</div>
+      <div class="sd">Самое простое: уведомление тебе или клиенту в личку Telegram, либо строка в Google-таблицу через встроенную интеграцию. Клиенту важно одно: заявка пришла менеджеру и не потерялась.</div></div></div>
+    <div class="step"><div class="n">6</div><div class="body">
+      <div class="st">Протестируй бота как обычный человек</div>
+      <div class="sd">Пройди каждую кнопку, пройди всю ветку записи, проверь, что заявка реально дошла. Вот на это и уходит основное время первого вечера. Сборка быстрая, а отладка веток, где что-то зависает или ведёт не туда, съедает часы.</div></div></div>
+    <div class="step"><div class="n">7</div><div class="body">
+      <div class="st">Сделай демо под конкретную нишу и покажи вживую</div>
+      <div class="sd">Заходишь к знакомому бизнесу или пишешь в 5-10 местных пабликов и показываешь готового бота с их логикой прямо в телефоне. Это продаёт в разы лучше любых слов.</div></div></div>
+  </div>
+
+  <div class="fig two">
+    <div>
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">Telegram · @BotFather</span></div>
+        <div class="chat">
+          <div class="b out">/newbot</div>
+          <div class="b in">Alright, a new bot. How are we going to call it?</div>
+          <div class="b out">Салон Ирина бот</div>
+          <div class="b in">Done! Use this token to access the HTTP API:<br>1234567:AAE••••••••••••</div>
+        </div></div>
+      <div class="cap">Шаг 2: токен из @BotFather за минуту</div>
+    </div>
+    <div>
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">salebot.pro</span></div>
+        <img src="img/shot-salebot.jpg" alt="Конструктор Salebot"></div>
+      <div class="cap">Шаг 3: Salebot, российский конструктор без VPN</div>
+    </div>
+  </div>
+
+  <div class="proof">
+    <div class="ph"><img src="img/proof-payment.jpg" alt="Скрин оплаты за бота"></div>
+    <div>
+      <div class="pn">История ученика</div>
+      <div class="pt">Именно так зашёл <b>Никита</b> из наших. Собрал бота онлайн-школе, чтобы тот обрабатывал заявки после вебинара, и получил <b>30к за сборку плюс процент с продаж</b>. Стартовал он ровно с того, что ты читаешь сейчас.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="wrap"><div class="narrow">
+<section>
+  <div class="slabel">Деньги и оговорки</div>
+  <h2>Теперь честно, без них ты обожжёшься</h2>
+  <div class="note blue">
+    <div class="nt">Про бесплатный тариф</div>
+    <p>На бесплатном тарифе Salebot даёт 50 сообщений в сутки навсегда. Хватает на обучение и демо, где-то 5-10 тестовых диалогов. У живого клиента бот съест лимит за час. Поэтому для боевого запуска нужна платная подписка, и её надо проговорить с заказчиком заранее.</p>
+  </div>
+  <table class="price">
+    <tr><th>Тариф Salebot</th><th>Цена</th></tr>
+    <tr><td>Бесплатный (обучение и демо)</td><td>0 ₽</td></tr>
+    <tr><td>Стандарт, до 5000 подписчиков</td><td>~1299 ₽/мес</td></tr>
+    <tr><td>Бизнес, 10000 сообщений/день + ИИ</td><td>~2999 ₽/мес</td></tr>
+  </table>
+  <p>Цену за работу назначай пакетом. Сборка и настройка 15-30к разово. Подписку конструктора выноси отдельной строкой, её оплачивает клиент или закладываешь в счёт. Сразу оговори: доработки после сдачи платно. И не обещай, что бот заменит менеджера. Он отвечает на типовые вопросы и собирает заявки, а сложные диалоги и возражения всё равно уходят живому человеку.</p>
+  <p><strong>Про сумму без розовых очков.</strong> 20-40к берут за ботов с интеграциями: CRM, оплата, запись. За кнопочного бота из 5 блоков реалистичный старт 10-20к, дальше поднимаешь чек по мере усложнения.</p>
+</section>
+
+<section style="padding-top:6px">
+  <h3>Запасные конструкторы, коротко</h3>
+</section>
+</div>
+
+<section style="padding-top:0">
+  <div class="cards">
+    <div class="card">
+      <div class="ct">Puzzlebot</div>
+      <a class="url" href="https://puzzlebot.top/">puzzlebot.top</a>
+      <div class="cd">Бесплатная альтернатива под Telegram, регистрация не нужна. Оплату платного тарифа из РФ проверяй отдельно.</div>
+    </div>
+    <div class="card">
+      <div class="ct">Aimylogic</div>
+      <a class="url" href="https://aimylogic.com/">aimylogic.com</a>
+      <div class="cd">Российский, но заточен под голос и обзвоны, а бесплатный лимит крошечный. Новичку под текстового бота слабее Salebot.</div>
+    </div>
+    <div class="card">
+      <div class="ct">BotHelp</div>
+      <a class="url" href="https://bothelp.io/">bothelp.io</a>
+      <div class="cd">Новичку из РФ не советую: бесплатно только 14 дней, тарифы в долларах и нужна зарубежная карта.</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="narrow">
+<section style="padding-top:0">
+  <div class="note lime">
+    <div class="nt">Вывод простой</div>
+    <p>Первый бот у тебя займёт вечер, и это нормально, забудь про 15 минут из ролика. Зато на выходе у тебя навык, за который местный бизнес реально платит 15-30к, и всё это на бесплатном тарифе, без вложений и без диплома программиста.</p>
+  </div>
+</section>
+</div></div>
+</div>
+
+<section class="ctaband grain" id="cta">
+  <h2>Соберём бота с нюансами каждого экрана вместе</h2>
+  <p>На бесплатном тест-драйве проходим сборку шаг за шагом. А сегодня вечером собери одного демо-бота под одну нишу, этого хватит, чтобы начать.</p>
+  <a class="btn" href="https://t.me/">Забрать бесплатный тест-драйв</a>
+  <div class="fine">5 уроков · первая работа своими руками · без вложений</div>
+</section>
+
+<footer><div class="in">
+  <span>© 2026 Люшер · Гайды по заработку на нейросетях</span>
+  <span><a href="index.html">← Все гайды</a></span>
+</div></footer>
+
+</body></html>
