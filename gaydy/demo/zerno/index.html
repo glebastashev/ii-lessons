@@ -4,6 +4,7 @@
 <meta name="description" content="Кофейня «Зерно»: собственная обжарка каждую пятницу, завтраки с 8:00, кофе с собой за две минуты. Ижевск, Ленина 12.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js")</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -18,9 +19,9 @@ a{color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
 /* появление на скролле */
-.rise{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
-.rise.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}}
+.js .rise{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.js .rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rise{opacity:1!important;transform:none!important;transition:none}}
 
 /* НАВИГАЦИЯ */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s,padding .3s;padding:20px 0}
@@ -283,7 +284,13 @@ footer .in{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;justify-co
 const nav=document.getElementById('nav');
 const onScroll=()=>nav.classList.toggle('solid',window.scrollY>window.innerHeight*.7);
 onScroll();addEventListener('scroll',onScroll,{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+const items=[...document.querySelectorAll('.rise')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),
+  {threshold:0,rootMargin:'0px 0px -8% 0px'});
+items.forEach(el=>io.observe(el));
+// страховка: если что-то не показалось, открываем принудительно
+addEventListener('load',()=>setTimeout(()=>items.forEach(el=>{
+  if(el.getBoundingClientRect().top < innerHeight*1.2) el.classList.add('in');
+}),400));
 </script>
 </body></html>
