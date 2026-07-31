@@ -185,6 +185,51 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
 .tmpl{background:#eaf0ff;border-left:5px solid var(--blue);border-radius:12px;padding:20px 22px;
   font-size:17px;line-height:1.6;color:#22314f}
 
+
+/* ===== БЛОК ПРОДАЖИ ТЕСТ-ДРАЙВА: чек → персонаж → CTA ===== */
+.sell{background:var(--blue);color:#fff;border-radius:26px;padding:46px 44px;position:relative;overflow:hidden}
+.sell::before{content:"";position:absolute;top:-90px;right:-70px;width:300px;height:300px;border-radius:50%;
+  background:rgba(255,255,255,.09);pointer-events:none}
+.sell > *{position:relative;z-index:1}
+.sell .slabel{color:var(--lime)}
+.sell h2{color:#fff;margin-top:12px}
+.sell .intro{color:var(--blue-ink);font-size:18px;line-height:1.6;margin-top:14px;max-width:62ch}
+
+/* 1. чек */
+.sell .check{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:20px;margin-top:28px}
+.sell .check img{width:190px;border-radius:12px;display:block}
+.sell .check .t{font-family:var(--disp);font-weight:700;font-size:21px;line-height:1.25}
+.sell .check .d{color:var(--blue-ink);font-size:16px;line-height:1.6;margin-top:8px}
+
+/* 2. персонаж */
+.sell .case{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start;
+  background:#fff;color:var(--ink);border-radius:18px;padding:26px;margin-top:18px}
+.sell .case .face{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--lime)}
+.sell .case .nm{font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.2}
+.sell .case .was{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-top:6px}
+.sell .case .story{font-size:17px;line-height:1.62;color:var(--soft);margin-top:12px}
+.sell .case .story b{color:var(--ink)}
+.sell .case .nums{display:flex;gap:26px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.sell .case .nums div b{display:block;font-family:var(--disp);font-weight:700;font-size:22px;color:var(--blue);line-height:1}
+.sell .case .nums div span{font-size:13px;color:var(--mut);display:block;margin-top:5px}
+.sell .case .shot{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+
+/* 3. CTA */
+.sell .go{margin-top:26px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.sell .go .btn{margin:0}
+.sell .go .what{color:var(--blue-ink);font-size:15px;line-height:1.55;max-width:44ch}
+.sell .go .what b{color:#fff}
+
+@media(max-width:860px){
+  .sell{padding:32px 22px;border-radius:20px}
+  .sell .check,.sell .case{grid-template-columns:1fr;gap:18px;padding:18px}
+  .sell .check img{width:min(190px,64%)}
+  .sell .case .face{width:104px;height:104px}
+  .sell .go{gap:16px}
+  .sell .go .btn{width:100%;text-align:center}
+}
+
 /* CTA */
 .ctaband{background:var(--blue);color:#fff;border-radius:24px;padding:52px 44px;margin:56px auto 0;max-width:var(--wide);
   text-align:center;overflow:hidden;position:relative;width:calc(100% - 44px)}
