@@ -10,8 +10,8 @@
   --s1:12px;   /* лейбл → заголовок */
   --s2:26px;   /* между блоками внутри секции */
   --s3:64px;   /* между секциями */
-  --col:760px; /* колонка текста */
-  --wide:1120px;
+  --col:880px;  /* единая колонка: текст И картинки */
+  --wide:1120px; /* только для героя */
 }
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:500;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -49,7 +49,7 @@ h1{font-family:var(--disp);font-weight:900;line-height:1.08;letter-spacing:-.01e
 .hero .lead.soft{font-weight:500;opacity:.9}
 .hero-media{margin-top:34px;border-radius:18px;overflow:hidden;border:3px solid rgba(0,0,0,.12);box-shadow:0 20px 50px rgba(20,20,10,.22)}
 .hero.blue .hero-media{border-color:rgba(255,255,255,.25)}
-.hero-media img{width:100%;height:clamp(220px,40vw,420px);object-fit:cover}
+.hero-media img{width:100%;height:auto;display:block}
 .hero .byline{display:flex;align-items:center;gap:12px;margin-top:26px}
 .hero .byline img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,.15)}
 .hero.blue .byline img{border-color:rgba(255,255,255,.35)}
@@ -66,7 +66,7 @@ h1{font-family:var(--disp);font-weight:900;line-height:1.08;letter-spacing:-.01e
    .wide вылезает на всю ширину. Ритм задаётся ОДНИМ правилом. */
 .doc{display:grid;grid-template-columns:1fr min(var(--col),calc(100% - 44px)) 1fr;padding:0 0 40px}
 .doc > *{grid-column:2;min-width:0}
-.doc > .wide{grid-column:1/-1;width:min(var(--wide),calc(100% - 44px));margin-left:auto;margin-right:auto}
+.doc > .wide{grid-column:2}   /* картинки и блоки той же ширины, что текст */
 
 /* РИТМ: одинаковые отступы везде */
 .doc > * + *{margin-top:var(--s2)}
@@ -99,7 +99,8 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
 .step .sd a{color:var(--blue);font-weight:700;text-decoration:none;border-bottom:2px solid var(--lime)}
 
 /* КАРТОЧКИ */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cards.c2{grid-template-columns:repeat(2,1fr)}
 .cards.c2{grid-template-columns:repeat(2,1fr)}
 .card{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:16px;padding:24px 22px}
 .card .ct{font-family:var(--disp);font-weight:700;font-size:20px;line-height:1.2}
@@ -231,7 +232,7 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
 }
 
 /* CTA */
-.ctaband{background:var(--blue);color:#fff;border-radius:24px;padding:52px 44px;margin:56px auto 0;max-width:var(--wide);
+.ctaband{background:var(--blue);color:#fff;border-radius:24px;padding:52px 44px;margin:56px auto 0;max-width:var(--col);
   text-align:center;overflow:hidden;position:relative;width:calc(100% - 44px)}
 .ctaband h2{color:#fff}
 .ctaband p{color:var(--blue-ink);margin:14px auto 0;max-width:52ch}
@@ -271,7 +272,6 @@ footer a{color:var(--blue);text-decoration:none}
   .hero{padding:40px 24px;border-radius:20px;margin-top:16px;width:calc(100% - 32px)}
   .hero .circ{width:200px;height:200px;top:-50px;right:-40px}
   .doc{grid-template-columns:1fr min(var(--col),calc(100% - 32px)) 1fr}
-  .doc > .wide{width:calc(100% - 32px)}
   .cards,.cards.c2,.posts,.who,.fig.two{grid-template-columns:1fr}
   .proof{grid-template-columns:1fr}
   .proof .ph{width:min(240px,72%)}
@@ -280,7 +280,7 @@ footer a{color:var(--blue);text-decoration:none}
   .step .n{width:46px;height:46px;font-size:18px}
   .rail::before{left:22px}
   .win .bar .u{display:none}
-  .ctaband{padding:40px 24px;width:calc(100% - 32px)}
+  .ctaband{padding:40px 24px;width:calc(100% - 32px);max-width:none}
   .prompt{font-size:13.5px}
   .price{font-size:14px}
   .price th,.price td{padding:11px 8px}
