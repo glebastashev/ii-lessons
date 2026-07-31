@@ -122,6 +122,26 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
 .cap{font-family:var(--mono);font-size:13px;color:var(--mut);margin-top:10px;text-align:center;line-height:1.5}
 .fig.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 
+
+/* составной мокап: компьютер + телефон в одном блоке */
+.mock{position:relative;padding:0 0 4.5%}
+.mock .lap{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;
+  box-shadow:0 26px 60px rgba(20,20,10,.20)}
+.mock .lap .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#e9e6dc;border-bottom:1px solid var(--line)}
+.mock .lap .bar i{width:11px;height:11px;border-radius:50%;display:block}
+.mock .lap .bar i:nth-child(1){background:#ec6a5e}.mock .lap .bar i:nth-child(2){background:#f4c04e}.mock .lap .bar i:nth-child(3){background:#61c454}
+.mock .lap .bar .u{margin-left:10px;font-family:var(--mono);font-size:12px;color:#7c766a;background:#fff;border-radius:6px;padding:4px 10px;flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mock .lap img{width:100%;display:block}
+.mock .ph{position:absolute;right:3%;bottom:0;width:17.5%;min-width:120px;border-radius:20px;overflow:hidden;
+  border:7px solid #16181d;background:#16181d;box-shadow:0 22px 44px rgba(20,20,10,.32)}
+.mock .ph img{width:100%;display:block;border-radius:13px}
+@media(max-width:860px){
+  .mock{padding-bottom:10%}
+  .mock .ph{width:26%;right:2%}
+  .mock .lap .bar .u{display:none}
+}
+
 /* чат-мокап */
 .chat{background:#f3f4f8;padding:18px}
 .chat .b{max-width:78%;padding:11px 15px;border-radius:16px;font-size:15px;line-height:1.45;box-shadow:0 1px 2px rgba(0,0,0,.06)}

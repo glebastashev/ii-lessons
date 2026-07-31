@@ -1,145 +1,289 @@
 <!doctype html><html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Кофейня «Зерно» — свежая обжарка на Ленина, 12</title>
-<meta name="description" content="Кофейня «Зерно»: своя обжарка, завтраки с 8:00, вынос за 2 минуты. Ленина 12, Ижевск.">
+<title>Кофейня «Зерно» — своя обжарка на Ленина, 12</title>
+<meta name="description" content="Кофейня «Зерно»: собственная обжарка каждую пятницу, завтраки с 8:00, кофе с собой за две минуты. Ижевск, Ленина 12.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#faf7f2;--ink:#20180f;--soft:#6b5d4d;--line:#e8dfd2;--brand:#8a5a2b;--brand2:#6d4520;--card:#fff}
-body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+:root{
+  --bg:#F7F3EC; --ink:#1A1310; --soft:#6A5B4D; --line:#E4D9C9;
+  --brand:#A45C2A; --brand-d:#7E4319; --dark:#1E1512; --gold:#D9A25F;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Manrope',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .in{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.logo{font-weight:800;font-size:20px;letter-spacing:.02em}
-.logo span{color:var(--brand)}
-nav .links{display:flex;gap:22px;font-weight:600;font-size:15px}
-nav .links a{color:var(--soft);text-decoration:none}
-nav .links a:hover{color:var(--ink)}
-.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px;font-size:15px}
-.btn:hover{background:var(--brand2)}
-.btn.ghost{background:transparent;color:var(--brand);border:2px solid var(--brand)}
-header.hero{padding:70px 0 60px}
-.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.tagline{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);
-  background:#f2e7d9;border-radius:999px;padding:7px 14px;margin-bottom:20px}
-h1{font-size:clamp(34px,5.2vw,56px);line-height:1.08;font-weight:800;letter-spacing:-.02em}
-.hero p.lead{font-size:19px;color:var(--soft);margin-top:18px;max-width:44ch}
-.hero .cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
-.hero .facts{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
-.hero .facts div b{display:block;font-size:26px;font-weight:800}
-.hero .facts div span{font-size:14px;color:var(--soft)}
-.shot{border-radius:22px;overflow:hidden;box-shadow:0 26px 60px rgba(60,40,20,.18);aspect-ratio:4/5;background:#e9ded0}
-.shot img{width:100%;height:100%;object-fit:cover}
-section{padding:60px 0}
-h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.01em;line-height:1.15}
-.sub{color:var(--soft);margin-top:12px;font-size:17px;max-width:56ch}
-.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
-.item{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
-.item .n{font-weight:800;font-size:19px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.item .n i{font-style:normal;color:var(--brand);white-space:nowrap}
-.item .d{color:var(--soft);font-size:15px;margin-top:8px}
-.why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
-.why div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
-.why b{display:block;font-size:18px;margin-bottom:8px}
-.why p{color:var(--soft);font-size:15px}
-.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
-.rev blockquote{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;font-size:16px;color:var(--soft)}
-.rev .who{margin-top:14px;font-weight:700;color:var(--ink);font-size:15px}
-.stars{color:#e0a63c;font-size:15px;letter-spacing:2px}
-.contact{background:#2a1d12;color:#f7f0e6;border-radius:26px;padding:52px 44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* появление на скролле */
+.rise{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}}
+
+/* НАВИГАЦИЯ */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s,padding .3s;padding:20px 0}
+nav .in{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+nav .lg{font-family:var(--serif);font-size:27px;letter-spacing:.06em;color:#fff;transition:color .3s}
+nav .lg i{font-style:italic;color:var(--gold)}
+nav .links{display:flex;gap:26px;font-size:15px;font-weight:600}
+nav .links a{color:rgba(255,255,255,.82);text-decoration:none;transition:color .25s}
+nav .links a:hover{color:#fff}
+nav .bk{font-size:14px;font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;
+  border:1.5px solid rgba(255,255,255,.5);color:#fff;transition:all .25s;white-space:nowrap}
+nav .bk:hover{background:#fff;color:var(--dark);border-color:#fff}
+nav.solid{background:rgba(247,243,236,.95);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:12px 0}
+nav.solid .lg{color:var(--ink)}
+nav.solid .links a{color:var(--soft)}nav.solid .links a:hover{color:var(--ink)}
+nav.solid .bk{border-color:var(--brand);color:#fff;background:var(--brand)}
+nav.solid .bk:hover{background:var(--brand-d);border-color:var(--brand-d)}
+
+/* ПЕРВЫЙ ЭКРАН */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,14,11,.62) 0%,rgba(20,14,11,.25) 34%,rgba(20,14,11,.86) 100%)}
+.hero .in{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:120px 24px 64px;color:#fff}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,82px);line-height:1.02;letter-spacing:-.02em;max-width:15ch}
+.hero h1 i{font-style:italic;color:var(--gold)}
+.hero p{font-size:clamp(16px,1.5vw,19px);color:rgba(255,255,255,.86);max-width:46ch;margin-top:20px;font-weight:500}
+.hero .acts{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:16px;padding:16px 30px;border-radius:999px;transition:all .25s}
+.btn.p{background:var(--brand);color:#fff}
+.btn.p:hover{background:var(--brand-d);transform:translateY(-2px)}
+.btn.g{border:1.5px solid rgba(255,255,255,.55);color:#fff}
+.btn.g:hover{background:#fff;color:var(--dark)}
+.hero .strip{display:flex;gap:40px;margin-top:38px;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);flex-wrap:wrap}
+.hero .strip b{display:block;font-family:var(--serif);font-size:29px;line-height:1;font-weight:400}
+.hero .strip span{font-size:13px;color:rgba(255,255,255,.68);letter-spacing:.04em;margin-top:6px;display:block}
+
+/* СЕКЦИИ */
+section{padding:110px 0}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-bottom:16px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,62px);line-height:1.04;letter-spacing:-.02em}
+h2 i{font-style:italic;color:var(--brand)}
+.sub{color:var(--soft);font-size:18px;margin-top:18px;max-width:52ch}
+
+/* ОБЖАРКА: текст + фото */
+.split{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.split .ph{border-radius:20px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 30px 70px rgba(60,35,15,.2)}
+.split .ph img{width:100%;height:100%;object-fit:cover}
+.split ul{list-style:none;margin-top:30px;display:flex;flex-direction:column;gap:18px}
+.split li{display:flex;gap:16px;align-items:flex-start;font-size:17px}
+.split li b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+.split li span{color:var(--soft)}
+.split li strong{color:var(--ink);display:block;font-weight:700;margin-bottom:2px}
+
+/* МЕНЮ */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 70px;margin-top:46px}
+.mi{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;padding:22px 0;border-bottom:1px solid var(--line)}
+.mi .nm{font-weight:700;font-size:19px}
+.mi .dots{flex:1;min-width:24px;border-bottom:1.5px dotted #cbbca6;transform:translateY(-5px)}
+.mi .pr{font-family:var(--serif);font-size:24px;color:var(--brand);white-space:nowrap}
+.mi .ds{flex:1 0 100%;font-size:15px;color:var(--soft);margin-top:2px}
+.menu-note{margin-top:34px;font-size:15px;color:var(--soft);display:flex;align-items:center;gap:10px}
+.menu-note::before{content:"";width:26px;height:1px;background:var(--brand)}
+
+/* ГАЛЕРЕЯ */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:16px;margin-top:46px}
+.bento div{border-radius:18px;overflow:hidden;position:relative}
+.bento img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.3,1)}
+.bento div:hover img{transform:scale(1.06)}
+.bento .a{grid-column:span 2;grid-row:span 2}
+.bento .b{grid-column:span 2}
+.bento .c{grid-column:span 1}
+.bento .d{grid-column:span 1}
+
+/* ОТЗЫВЫ */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column}
+.rev .st{color:var(--gold);letter-spacing:3px;font-size:15px}
+.rev q{font-family:var(--serif);font-size:21px;line-height:1.4;margin:16px 0 auto;display:block;quotes:none}
+.rev .who{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--soft)}
+.rev .who b{display:block;color:var(--ink);font-size:15px}
+
+/* КОНТАКТЫ */
+.contact{background:var(--dark);color:#F4EBE1;border-radius:28px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+.contact .txt{padding:70px 56px}
 .contact h2{color:#fff}
-.contact p{color:#d9cbb8;margin-top:14px}
-.contact .rows{margin-top:24px;display:flex;flex-direction:column;gap:12px;font-size:17px}
-.contact .rows i{font-style:normal;opacity:.65;width:96px;display:inline-block}
-.contact .btn{margin-top:26px;background:#e9b16a;color:#2a1d12}
-.map{border-radius:18px;overflow:hidden;min-height:260px;background:#3a2a1b;display:flex;align-items:center;justify-content:center;
-  color:#c9b394;font-weight:700;text-align:center;padding:20px;border:1px solid #4a3927}
-footer{padding:34px 0 60px;color:var(--soft);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.contact h2 i{color:var(--gold)}
+.contact p{color:rgba(244,235,225,.72);margin-top:18px;font-size:17px}
+.contact .rows{margin-top:36px;display:flex;flex-direction:column;gap:20px}
+.contact .row{display:flex;gap:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12)}
+.contact .row:last-child{border:none;padding-bottom:0}
+.contact .row i{font-style:normal;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);width:92px;flex:none;padding-top:4px}
+.contact .row b{font-weight:700;font-size:18px}
+.contact .btn.p{margin-top:34px;background:var(--gold);color:var(--dark)}
+.contact .btn.p:hover{background:#e8b478}
+.contact .side{position:relative;min-height:420px}
+.contact .side img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+
+footer{padding:44px 0 60px}
+footer .in{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:14px;color:var(--soft)}
+
+/* липкая кнопка на телефоне */
+.sticky{display:none}
 @media(max-width:860px){
-  .hero .grid,.contact{grid-template-columns:1fr;gap:30px}
-  .menu,.why,.rev{grid-template-columns:1fr}
+  section{padding:66px 0}
   nav .links{display:none}
-  header.hero{padding:40px 0}
-  section{padding:44px 0}
-  .contact{padding:34px 24px}
-  .shot{aspect-ratio:4/3}
+  nav{padding:14px 0}
+  .hero{min-height:92svh}
+  .hero .in{padding:96px 24px 44px}
+  .hero .strip{gap:26px;margin-top:34px}
+  .hero .strip b{font-size:26px}
+  .split{grid-template-columns:1fr;gap:34px}
+  .split .ph{aspect-ratio:4/3}
+  .menu-grid{grid-template-columns:1fr;gap:0}
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .bento .a{grid-column:span 2;grid-row:span 2}
+  .bento .b{grid-column:span 2}
+  .revs{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}
+  .contact .txt{padding:40px 26px}
+  .contact .side{min-height:240px}
+  body{padding-bottom:76px}
+  .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px;
+    background:rgba(247,243,236,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .sticky a{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;
+    font-weight:700;padding:15px;border-radius:999px}
 }
 </style></head><body>
 
-<nav><div class="in">
-  <div class="logo">ЗЕРНО<span>.</span></div>
-  <div class="links"><a href="#menu">Меню</a><a href="#why">О нас</a><a href="#rev">Отзывы</a><a href="#contact">Контакты</a></div>
-  <a class="btn" href="#contact">Забронировать столик</a>
+<nav id="nav"><div class="in">
+  <div class="lg">ЗЕРНО<i>.</i></div>
+  <div class="links">
+    <a href="#roast">Обжарка</a><a href="#menu">Меню</a><a href="#gallery">Атмосфера</a><a href="#revs">Отзывы</a>
+  </div>
+  <a class="bk" href="#contact">Забронировать столик</a>
 </div></nav>
 
-<header class="hero"><div class="wrap"><div class="grid">
-  <div>
-    <span class="tagline">Своя обжарка · Ленина 12</span>
-    <h1>Кофе, ради которого просыпаются на 15 минут раньше</h1>
-    <p class="lead">Обжариваем зерно сами, каждую пятницу. Завтраки с 8:00, кофе с собой готовим за две минуты, чтобы вы успели на работу.</p>
-    <div class="cta">
-      <a class="btn" href="#contact">Забронировать столик</a>
-      <a class="btn ghost" href="#menu">Смотреть меню</a>
+<header class="hero">
+  <div class="bg"><img src="hero.jpg" alt="Интерьер кофейни Зерно"></div>
+  <div class="in">
+    <span class="eyebrow">Своя обжарка · Ижевск, Ленина 12</span>
+    <h1>Кофе, ради которого встают <i>на 15 минут раньше</i></h1>
+    <p>Жарим зерно сами каждую пятницу. Завтраки с восьми утра, кофе с собой отдаём за две минуты, чтобы вы успели на работу.</p>
+    <div class="acts">
+      <a class="btn p" href="#contact">Забронировать столик</a>
+      <a class="btn g" href="#menu">Посмотреть меню</a>
     </div>
-    <div class="facts">
-      <div><b>8:00</b><span>открываемся</span></div>
+    <div class="strip">
+      <div><b>8:00</b><span>открываемся каждый день</span></div>
       <div><b>2 мин</b><span>кофе с собой</span></div>
       <div><b>4,9</b><span>рейтинг на картах</span></div>
+      <div><b>7 лет</b><span>жарим сами</span></div>
     </div>
   </div>
-  <div class="shot"><img src="hero.jpg" alt="Интерьер кофейни Зерно"></div>
-</div></div></header>
+</header>
 
-<section id="menu"><div class="wrap">
-  <h2>Меню</h2>
-  <p class="sub">Полное меню в зале, здесь то, что берут чаще всего.</p>
-  <div class="menu">
-    <div class="item"><div class="n">Капучино <i>250 ₽</i></div><div class="d">На своём зерне, есть овсяное и безлактозное молоко.</div></div>
-    <div class="item"><div class="n">Фильтр дня <i>190 ₽</i></div><div class="d">Каждый день новая обжарка, бариста расскажет про вкус.</div></div>
-    <div class="item"><div class="n">Раф на солёной карамели <i>320 ₽</i></div><div class="d">Тот самый, за которым возвращаются.</div></div>
-    <div class="item"><div class="n">Сырники со сметаной <i>340 ₽</i></div><div class="d">Готовим утром, пока не закончатся.</div></div>
-    <div class="item"><div class="n">Круассан с миндалём <i>220 ₽</i></div><div class="d">Печём на месте, к 8:00 уже тёплые.</div></div>
-    <div class="item"><div class="n">Завтрак дня <i>450 ₽</i></div><div class="d">Кофе, тост с авокадо и яйцо пашот. До 12:00.</div></div>
-  </div>
-</div></section>
-
-<section id="why"><div class="wrap">
-  <h2>Почему к нам возвращаются</h2>
-  <div class="why">
-    <div><b>Своя обжарка</b><p>Жарим раз в неделю небольшими партиями, поэтому зерно в чашке всегда свежее.</p></div>
-    <div><b>Успеваете на работу</b><p>Кофе с собой отдаём за две минуты. Можно написать заказ заранее, заберёте на ходу.</p></div>
-    <div><b>Знаем вас по имени</b><p>Постоянным гостям каждый шестой кофе за счёт заведения, без карт и приложений.</p></div>
-  </div>
-</div></section>
-
-<section id="rev"><div class="wrap">
-  <h2>Отзывы гостей</h2>
-  <div class="rev">
-    <blockquote><div class="stars">★★★★★</div>Беру фильтр каждое утро по дороге в офис. Ни разу не ждала дольше трёх минут.<div class="who">Ирина, заходит каждый день</div></blockquote>
-    <blockquote><div class="stars">★★★★★</div>Наконец-то в районе кофейня, где спрашивают, какой вкус любишь, а не просто наливают.<div class="who">Дмитрий</div></blockquote>
-    <blockquote><div class="stars">★★★★★</div>Сырники как у бабушки, а раф лучший в городе. Работаю тут по выходным с ноутбуком.<div class="who">Алина</div></blockquote>
-  </div>
-</div></section>
-
-<section id="contact"><div class="wrap"><div class="contact">
-  <div>
-    <h2>Заходите</h2>
-    <p>Забронировать столик можно в один клик, ответим в течение 10 минут.</p>
-    <div class="rows">
-      <div><i>Адрес</i> Ижевск, Ленина 12</div>
-      <div><i>Часы</i> Ежедневно 8:00 — 22:00</div>
-      <div><i>Телефон</i> +7 900 000-00-00</div>
+<section id="roast"><div class="wrap">
+  <div class="split">
+    <div class="rise">
+      <div class="lbl">Как мы работаем</div>
+      <h2>Зерно, обжаренное <i>в пятницу</i>, в чашке в понедельник</h2>
+      <p class="sub">Большие сети жарят раз в квартал и везут через полстраны. Мы жарим маленькими партиями у себя, поэтому вкус в чашке не успевает состариться.</p>
+      <ul>
+        <li><b>1</b><span><strong>Выбираем зелёное зерно</strong>Три фермы: Эфиопия, Колумбия, Бразилия. Пробуем каждую партию до закупки.</span></li>
+        <li><b>2</b><span><strong>Жарим по пятницам</strong>Партия 12 килограммов, ровно на неделю продаж. Остатки не храним.</span></li>
+        <li><b>3</b><span><strong>Отдаём с датой на пачке</strong>На каждой пачке стоит день обжарки. Всегда можно посмотреть, насколько зерно свежее.</span></li>
+      </ul>
     </div>
-    <a class="btn" href="https://t.me/">Написать и забронировать</a>
+    <div class="ph rise"><img src="roast.jpg" alt="Свежая обжарка кофе"></div>
   </div>
-  <div class="map"><div>Карта проезда<br><span style="font-weight:500;opacity:.7">Ленина 12, вход со двора</span></div></div>
-</div></div></section>
+</div></section>
 
-<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
-  <span>© 2026 Кофейня «Зерно»</span>
+<section id="menu" style="background:#F2ECE2"><div class="wrap">
+  <div class="rise">
+    <div class="lbl">Меню</div>
+    <h2>Берут <i>чаще всего</i></h2>
+    <p class="sub">Полное меню в зале и на доске у стойки. Молоко на выбор: обычное, овсяное, безлактозное, без доплаты.</p>
+  </div>
+  <div class="menu-grid rise">
+    <div class="mi"><span class="nm">Капучино</span><span class="dots"></span><span class="pr">250 ₽</span>
+      <span class="ds">На своём зерне, плотная бархатная пенка</span></div>
+    <div class="mi"><span class="nm">Фильтр дня</span><span class="dots"></span><span class="pr">190 ₽</span>
+      <span class="ds">Каждый день новая обжарка, бариста расскажет про вкус</span></div>
+    <div class="mi"><span class="nm">Раф на солёной карамели</span><span class="dots"></span><span class="pr">320 ₽</span>
+      <span class="ds">Тот самый, за которым возвращаются через весь город</span></div>
+    <div class="mi"><span class="nm">Сырники со сметаной</span><span class="dots"></span><span class="pr">340 ₽</span>
+      <span class="ds">Жарим утром, пока не закончатся</span></div>
+    <div class="mi"><span class="nm">Круассан с миндалём</span><span class="dots"></span><span class="pr">220 ₽</span>
+      <span class="ds">Печём на месте, к восьми утра уже тёплые</span></div>
+    <div class="mi"><span class="nm">Завтрак дня</span><span class="dots"></span><span class="pr">450 ₽</span>
+      <span class="ds">Кофе, тост с авокадо и яйцо пашот. До 12:00</span></div>
+  </div>
+  <div class="menu-note rise">Каждый шестой кофе постоянным гостям за счёт заведения. Без карт и приложений, мы просто вас помним</div>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+  <div class="rise">
+    <div class="lbl">Атмосфера</div>
+    <h2>Место, где хочется <i>задержаться</i></h2>
+    <p class="sub">Большие окна, розетки у каждого стола и тихая музыка. Работать можно хоть весь день, никто не подойдёт с вопросом «вы ещё долго».</p>
+  </div>
+  <div class="bento rise">
+    <div class="a"><img src="guests.jpg" alt="Гости кофейни"></div>
+    <div class="b"><img src="cup.jpg" alt="Капучино"></div>
+    <div class="c"><img src="barista.jpg" alt="Бариста готовит кофе"></div>
+    <div class="d"><img src="food.jpg" alt="Завтраки"></div>
+  </div>
+</div></section>
+
+<section id="revs" style="background:#F2ECE2"><div class="wrap">
+  <div class="rise">
+    <div class="lbl">Отзывы</div>
+    <h2>Что говорят <i>гости</i></h2>
+  </div>
+  <div class="revs rise">
+    <div class="rev"><div class="st">★★★★★</div>
+      <q>Беру фильтр каждое утро по дороге в офис. Ни разу не ждала дольше трёх минут, даже в час пик.</q>
+      <div class="who"><b>Ирина</b>заходит каждое утро</div></div>
+    <div class="rev"><div class="st">★★★★★</div>
+      <q>Наконец-то в районе место, где спрашивают, какой вкус любишь, а не просто наливают из автомата.</q>
+      <div class="who"><b>Дмитрий</b>живёт в соседнем доме</div></div>
+    <div class="rev"><div class="st">★★★★★</div>
+      <q>Сырники как у бабушки, а раф лучший в городе. Работаю тут по выходным с ноутбуком.</q>
+      <div class="who"><b>Алина</b>дизайнер, приходит с ноутбуком</div></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="contact rise">
+    <div class="txt">
+      <div class="lbl" style="color:var(--gold)">Контакты</div>
+      <h2>Заходите <i>на чашку</i></h2>
+      <p>Столик бронируем в одно сообщение, отвечаем в течение десяти минут. Без предоплаты.</p>
+      <div class="rows">
+        <div class="row"><i>Адрес</i><b>Ижевск, Ленина 12<br><span style="font-weight:500;font-size:15px;opacity:.7">вход со двора, есть пандус</span></b></div>
+        <div class="row"><i>Часы</i><b>Ежедневно 8:00 — 22:00</b></div>
+        <div class="row"><i>Телефон</i><b>+7 900 000-00-00</b></div>
+      </div>
+      <a class="btn p" href="https://t.me/">Написать и забронировать</a>
+    </div>
+    <div class="side"><img src="cup.jpg" alt="Кофе"></div>
+  </div>
+</div></section>
+
+<footer><div class="in">
+  <span>© 2026 Кофейня «Зерно», Ижевск</span>
   <span>Учебный демо-проект для гайда AI Factory</span>
 </div></footer>
 
+<div class="sticky"><a href="#contact">Забронировать столик</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('solid',window.scrollY>window.innerHeight*.7);
+onScroll();addEventListener('scroll',onScroll,{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+</script>
 </body></html>
