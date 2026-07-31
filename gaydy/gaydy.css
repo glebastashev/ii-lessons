@@ -26,8 +26,9 @@ a{color:inherit}
 /* топбар */
 .top{position:sticky;top:0;z-index:40;background:rgba(244,241,232,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .in{max-width:var(--wide);margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none}
-.brand b{color:var(--blue)}
+.brand{display:flex;align-items:center;text-decoration:none;flex:none}
+.brand .logo{height:30px;width:auto;display:block}
+@media(max-width:860px){.brand .logo{height:25px}}
 .top .cta{font-family:var(--mono);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;
   background:var(--lime);color:var(--ink);text-decoration:none;padding:9px 15px;border-radius:999px;border:1.5px solid var(--ink);white-space:nowrap}
 .top .cta:hover{background:var(--lime2)}
