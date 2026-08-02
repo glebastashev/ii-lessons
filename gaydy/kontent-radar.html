@@ -1,0 +1,217 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Система, которая каждое утро приносит готовые темы — AI Factory</title>
+<meta name="description" content="Пошаговый мануал: собрать систему, которая сама просматривает YouTube, Telegram и блоги и оставляет только темы с пользой. Чек 60-120к.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gaydy.css">
+</head><body>
+
+<header class="top"><div class="in">
+  <a class="brand" href="index.html" aria-label="AI Factory">
+    <svg class="logo" viewBox="0 0 330 74" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Factory">
+      <text x="0" y="56" font-family="Manrope, Inter, Arial, sans-serif" font-weight="800" font-size="58" letter-spacing="-1.4"><tspan fill="#4A7DF0">AI</tspan><tspan fill="#0F1B3D"> Factory</tspan></text>
+    </svg>
+  </a>
+  <a class="cta" href="#cta">Забрать тест-драйв →</a>
+</div></header>
+
+<section class="hero blue grain">
+  <div class="circ"></div>
+  <div class="kick">Мануал · Контент-система</div>
+  <h1>Готовые темы каждое утро и <span class="hl lime">60-120к</span> за систему</h1>
+  <p class="lead">Система сама просматривает выбранные каналы и блоги и оставляет только темы, которые можно повторить руками. Вместо часов поиска короткий список с ссылками.</p>
+  <div class="byline"><img src="img/max-avatar.jpg" alt="Макс Люшер"><span>Макс Люшер · агентство ИИ-разработки</span></div>
+  <div class="hero-media"><img src="img/cover-radar.jpg" alt="Система поиска тем"></div>
+</section>
+
+<main class="doc">
+
+  <div class="crumbs"><a href="index.html">← Все гайды</a></div>
+
+  <p class="lead-in">Эксперты и онлайн-школы платят 60-120 тысяч за то, чтобы темы приходили сами. Собрать такую систему можно по готовому проекту за вечер.</p>
+  <p>Ниже весь путь: от запуска на своём компьютере до ежедневного расписания, которое работает даже с выключенным ноутбуком.</p>
+
+  <div class="note lime">
+    <div class="nt">Почему за это платят</div>
+    <p>Обычно редактор открывает десятки каналов, сохраняет ролики и к вечеру всё равно не понимает, о чём писать. Громкий заголовок легко принять за полезную тему, а внутри оказывается личная история. Система отбирает материалы, где есть конкретное действие и результат, и прикладывает ссылку на исходник.</p>
+  </div>
+
+  <div class="slabel">Результат</div>
+  <h2>Что выдаёт система</h2>
+
+  <div class="fig wide">
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">отчёт за один запуск</span></div>
+      <img src="img/rd-radar-report.jpg" alt="Отчёт системы с темами"></div>
+    <div class="cap">Один запуск: 102 материала прочитано, 8 тем прошли отбор. Редактор проверяет восемь исходников вместо сотни публикаций</div>
+  </div>
+
+  <div class="cards wide">
+    <div class="card">
+      <div class="ct">Тема с исходником</div>
+      <div class="cd">Каждая идея привязана к ссылке на материал, из которого она взята.</div>
+    </div>
+    <div class="card">
+      <div class="ct">Без дублей</div>
+      <div class="cd">Одна новость из десяти каналов остаётся одной темой, а не десятью строчками.</div>
+    </div>
+    <div class="card">
+      <div class="ct">Только повторяемое</div>
+      <div class="cd">Личные истории и разговоры без конкретных действий опускаются вниз списка.</div>
+    </div>
+  </div>
+
+  <div class="slabel">Подготовка</div>
+  <h2>Что понадобится</h2>
+
+  <div class="cards wide">
+    <div class="card">
+      <div class="ct">ChatGPT с Codex</div>
+      <a class="url" href="https://chatgpt.com/codex">chatgpt.com/codex</a>
+      <div class="cd">Скачает проект, установит части, запустит проверки и сбор.</div>
+    </div>
+    <div class="card">
+      <div class="ct">Node.js</div>
+      <a class="url" href="https://nodejs.org/">nodejs.org</a>
+      <div class="cd">Версия 22 или новее. Ставится кнопкой LTS.</div>
+    </div>
+    <div class="card">
+      <div class="ct">yt-dlp</div>
+      <a class="url" href="https://github.com/yt-dlp/yt-dlp/wiki/Installation">github.com/yt-dlp</a>
+      <div class="cd">Нужен, чтобы система читала текст роликов. Codex поставит его сам.</div>
+    </div>
+  </div>
+
+  <div class="slabel">Сборка</div>
+  <h2>Шесть шагов</h2>
+
+  <div class="rail wide">
+    <div class="step"><div class="n">1</div><div class="body">
+      <div class="st">Скачай проект и проверь запуск</div>
+      <div class="sd">Создай пустую папку, открой её в Codex и отправь задание ниже. После выполнения увидишь семь успешных проверок. Если что-то сломается, Codex уже видит файлы и текст ошибки, поэтому найдёт причину сам.</div></div></div>
+    <div class="step"><div class="n">2</div><div class="body">
+      <div class="st">Замени источники на свою нишу</div>
+      <div class="sd">Открой automation/config/sources.json. Для первого запуска хватит пяти источников. Бери авторов, которые показывают процесс на экране и разбирают кейсы. Новостные каналы оставь, но не весь список.</div></div></div>
+    <div class="step"><div class="n">3</div><div class="body">
+      <div class="st">Запусти сбор</div>
+      <div class="sd">Система прочитает источники, скачает доступные субтитры и соберёт отчёт в automation/data/RADAR.md. Внутри лучшие темы, ссылки и объяснение, почему каждая прошла отбор.</div></div></div>
+    <div class="step"><div class="n">4</div><div class="body">
+      <div class="st">Разберись, почему тема прошла</div>
+      <div class="sd">Баллы даются за конкретное действие, задачу бизнеса, применимость новичком и наличие доказательства. Личная история без повторяемого процесса получает штраф. Таблица ниже.</div></div></div>
+    <div class="step"><div class="n">5</div><div class="body">
+      <div class="st">Преврати тему в статью</div>
+      <div class="sd">Открой исходник и повтори процесс сам. Сохрани только те экраны, которые доказывают важный шаг. Лицо автора и кадры из его ролика в статью не идут.</div></div></div>
+    <div class="step"><div class="n">6</div><div class="body">
+      <div class="st">Включи ежедневный запуск</div>
+      <div class="sd">Открой вкладку Actions в своём проекте на GitHub, выбери Content radar, нажми Enable workflow и Run workflow. Дальше GitHub собирает темы по расписанию, даже когда компьютер выключен.</div></div></div>
+  </div>
+
+  <h3>Задание для Codex: скачать и проверить</h3>
+  <div class="prompt wide"><span class="pl">Шаг 1 · можно копировать</span>Скачай проект командой git clone https://github.com/glebastashev/max-ai-guides.git. Перейди в папку max-ai-guides, выполни npm install и npm run content:test. Если проверка падает, найди причину и объясни её простыми словами. Файлы системы пока не меняй.</div>
+
+  <h3>Задание: свои источники</h3>
+  <div class="prompt wide"><span class="pl">Шаг 2 · можно копировать</span>Открой automation/config/sources.json. Добавь мои источники и сохрани текущую структуру файла. Проверь, что у YouTube указан channelId, у Telegram указан username без ссылки, у блога указан адрес RSS. После правки запусти npm run content:test и покажи результат.</div>
+
+  <h3>Задание: запустить сбор</h3>
+  <div class="prompt wide"><span class="pl">Шаг 3 · можно копировать</span>Проверь, установлен ли yt-dlp. Если программы нет, установи её способом, который подходит моей операционной системе. Затем выполни node automation/run.mjs --transcripts. Открой automation/data/RADAR.md и кратко объясни, сколько материалов собрано, сколько тем прошло отбор и где лежат исходные ссылки.</div>
+
+  <div class="fig two wide">
+    <div>
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">исходные файлы</span></div>
+        <img src="img/rd-source-files.jpg" alt="Файлы источников"></div>
+      <div class="cap">Настройки источников лежат в одном файле</div>
+    </div>
+    <div>
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">расшифровки</span></div>
+        <img src="img/rd-transcript-frames.jpg" alt="Расшифровки роликов"></div>
+      <div class="cap">Система читает текст роликов, а не только заголовки</div>
+    </div>
+  </div>
+
+  <div class="slabel">Отбор</div>
+  <h2>По каким правилам тема проходит</h2>
+
+  <table class="price wide">
+    <tr><th>Что найдено</th><th>Почему полезно</th></tr>
+    <tr><td>Конкретное действие: собрать, подключить, проверить</td><td>Можно превратить в инструкцию</td></tr>
+    <tr><td>Задача бизнеса: заявки, контент, продажи</td><td>Понятна ценность для клиента</td></tr>
+    <tr><td>Подходит новичку: с нуля, шаблон, готовая команда</td><td>Читатель сможет повторить</td></tr>
+    <tr><td>Есть доказательство: скрин, тест, результат</td><td>Материал вызывает доверие</td></tr>
+    <tr><td>Только мнение: история и мотивация</td><td>Опускается ниже</td></tr>
+  </table>
+
+  <h3>Задание редактору на статью</h3>
+  <div class="prompt wide"><span class="pl">Шаг 5 · можно копировать</span>Изучи исходный материал и выпиши результат для новичка. Затем повтори процесс сам. Статья должна содержать: 1) что человек соберёт; 2) зачем это бизнесу; 3) за что здесь платят; 4) пошаговые действия со ссылками; 5) готовые команды и тексты; 6) собственные скриншоты ключевых этапов; 7) проверку результата; 8) пример предложения клиенту. Удали термины, которые не помогают выполнить действие.</div>
+
+  <div class="fig wide">
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span class="u">план будущей статьи</span></div>
+      <img src="img/rd-editorial-brief.jpg" alt="Редакционный план"></div>
+    <div class="cap">В плане сохранены исходник, шаги, факты для проверки и обязательные доказательства</div>
+  </div>
+
+  <div class="note pink">
+    <div class="nt">Публикацию оставь ручной</div>
+    <p>Система экономит время на поиске. За факты, собственную демонстрацию и подачу отвечает редактор. Автопостинг здесь только испортит репутацию.</p>
+  </div>
+
+  <div class="slabel">Продажа</div>
+  <h2>Продавай регулярный выпуск, а не программу на GitHub</h2>
+
+  <p>На встрече покажи отчёт за один день: сколько материалов система просмотрела, сколько тем оставила и почему. Затем открой один готовый план статьи с исходной ссылкой и списком действий.</p>
+  <p>Предложи пилот на две недели. Согласуйте источники, число тем, количество готовых статей и день выдачи отчёта. После пилота клиент посчитает время редактора и оценит качество по фактам.</p>
+
+  <table class="price wide">
+    <tr><th>Что входит в услугу</th><th>Как считать</th></tr>
+    <tr><td>Разовая настройка источников и правил отбора</td><td>60-120к</td></tr>
+    <tr><td>Ежедневный или еженедельный отчёт с темами</td><td>в абонентку</td></tr>
+    <tr><td>Согласованное число статей со своими демонстрациями</td><td>в абонентку</td></tr>
+    <tr><td>Ежемесячное обновление источников и правил</td><td>отдельной строкой</td></tr>
+  </table>
+
+  <div class="sell wide">
+    <div class="slabel">Куда это приводит</div>
+    <h2>Регулярный результат оплачивают регулярно</h2>
+    <p class="intro">Эксперту и компании нужен стабильный поток материалов, которые приводят внимание и заявки. Такие услуги закрываются не одним платежом.</p>
+
+    <div class="check">
+      <img src="img/proof-93-45k.jpg" alt="Два платежа за систему">
+      <div>
+        <div class="t">93 312 и 45 000 рублей</div>
+        <div class="d">Два платежа за одну систему: запуск и регулярный выпуск. Так выглядит переход от разовой работы к сопровождению.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <img class="face" src="img/face-sasha.jpg" alt="Александр">
+      <div>
+        <div class="nm">Александр, 24 года</div>
+        <div class="was">Фриланс: карточки для маркетплейсов, съёмка, SMM</div>
+        <div class="story">Три года на фрилансе с нестабильным доходом: то 40 тысяч, то сто, то пусто. Сейчас <b>собирает контент и автоматизации для онлайн-школы на сопровождении</b>.</div>
+        <div class="nums"><div><b>3 года</b><span>фриланса до старта</span></div><div><b>40-100к</b><span>было нестабильно</span></div><div><b>200к</b><span>бывает сейчас</span></div></div>
+      </div>
+    </div>
+
+    <div class="go">
+      <a class="btn" href="https://t.me/">Забрать бесплатный тест-драйв</a>
+      <div class="what">5 уроков: разбираем рынок, собираем первую работу руками, проходим 7 способов найти клиента. <b>Дошедшим до конца разбор и гайд по закрытию первого клиента.</b></div>
+    </div>
+  </div>
+
+  <h3>Что делать дальше</h3>
+  <p>Запусти систему на своей нише и собери первый отчёт. Дальше тому же клиенту предлагаешь <a href="ii-assistent.html">ИИ-ассистента</a> и <a href="lending-sait.html">сайт</a>, а где искать заказчиков, разобрано в гайде <a href="pervye-zakazy.html">про первые заказы</a>.</p>
+
+</main>
+
+<section class="ctaband grain" id="cta">
+  <h2>Научиться собирать такие решения</h2>
+  <p>В бесплатном тест-драйве ты сделаешь первую ИИ-работу и разберёшь, как найти клиента на новую услугу.</p>
+  <a class="btn" href="https://t.me/">Забрать бесплатный тест-драйв</a>
+  <div class="fine">5 уроков · первая работа своими руками · без вложений</div>
+</section>
+
+<footer><div class="in">
+  <span>© 2026 AI Factory · Гайды по заработку на нейросетях</span>
+  <span><a href="index.html">← Все гайды</a></span>
+</div></footer>
+
+</body></html>
