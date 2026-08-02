@@ -231,6 +231,37 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
   .sell .go .btn{width:100%;text-align:center}
 }
 
+
+/* ===== ЧЕК-ЛИСТ ===== */
+.checklist{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 28px}
+.checklist .clt{font-family:var(--disp);font-weight:700;font-size:20px;margin-bottom:16px}
+.checklist ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.checklist li{display:flex;gap:14px;align-items:flex-start;font-size:17px;line-height:1.55;color:var(--soft)}
+.checklist li::before{content:"";flex:none;width:24px;height:24px;border-radius:7px;margin-top:2px;
+  background:var(--lime);border:1.5px solid var(--ink);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23151B26' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size:18px 18px;background-position:center;background-repeat:no-repeat}
+.checklist li b{color:var(--ink)}
+
+/* ===== ВОПРОС-ОТВЕТ ===== */
+.faq{display:flex;flex-direction:column;gap:12px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:800;font-size:17.5px;color:var(--ink);
+  display:flex;gap:14px;align-items:flex-start}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";flex:none;font-family:var(--mono);font-weight:700;color:var(--blue);font-size:20px;line-height:1.2}
+.faq details[open] summary::before{content:"–"}
+.faq details[open] summary{padding-bottom:8px}
+.faq .a{padding:0 22px 20px 50px;font-size:17px;line-height:1.62;color:var(--soft)}
+.faq .a b{color:var(--ink)}
+.faq .a + .a{padding-top:10px}
+
+/* ===== ПРОСТЫМИ СЛОВАМИ ===== */
+.term{background:#eef1fb;border-left:5px solid var(--blue);border-radius:12px;padding:16px 20px;
+  font-size:16.5px;line-height:1.6;color:#22314f}
+.term b{color:var(--ink)}
+.term + .term{margin-top:10px}
+
 /* CTA */
 .ctaband{background:var(--blue);color:#fff;border-radius:24px;padding:52px 44px;margin:56px auto 0;max-width:var(--col);
   text-align:center;overflow:hidden;position:relative;width:calc(100% - 44px)}
