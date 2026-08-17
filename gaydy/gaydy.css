@@ -202,7 +202,7 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
 .cover-metrics b{display:block;font-family:var(--disp);font-size:20px;line-height:1.05;color:var(--blue)}
 .cover-metrics span{display:block;font-size:12px;color:var(--mut);margin-top:7px;line-height:1.35}
 
-.practice-head{position:relative;overflow:hidden;margin-top:var(--s3);padding:34px 36px;background:var(--ink);
+.practice-head{position:relative;overflow:hidden;margin-top:var(--s3);padding:34px 36px;background:var(--blue);
   border-left:8px solid var(--lime);border-radius:20px}
 .practice-head::after{content:"";position:absolute;right:-58px;top:-70px;width:210px;height:210px;
   border-radius:50%;background:rgba(74,125,240,.24)}
@@ -370,6 +370,7 @@ p strong,li strong,.sd strong{color:var(--ink);font-weight:800}
 /* CTA */
 .ctaband{background:var(--blue);color:#fff;border-radius:24px;padding:52px 44px;margin:56px auto 0;max-width:var(--col);
   text-align:center;overflow:hidden;position:relative;width:calc(100% - 44px)}
+.ctaband .cta-visual{position:relative;z-index:1;display:block;width:100%;height:auto;margin:0 auto 30px;border-radius:16px}
 .ctaband h2{color:#fff}
 .ctaband p{color:var(--blue-ink);margin:14px auto 0;max-width:52ch}
 .btn{display:inline-block;margin-top:26px;background:var(--lime);color:var(--ink);text-decoration:none;
@@ -417,6 +418,7 @@ footer a{color:var(--blue);text-decoration:none}
   .rail::before{left:22px}
   .win .bar .u{display:none}
   .ctaband{padding:40px 24px;width:calc(100% - 32px);max-width:none}
+  .ctaband .cta-visual{margin-bottom:24px;border-radius:12px}
   .prompt{font-size:13.5px}
   .price{font-size:14px}
   .price th,.price td{padding:11px 8px}
