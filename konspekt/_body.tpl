@@ -212,8 +212,9 @@ document.querySelectorAll('.tc').forEach(a=>{
 // ролики играют, только пока видны на экране
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   const v=e.target;
-  if(e.isIntersecting && !v.dataset.off){ v.play().catch(()=>{}); } else { v.pause(); }
-}),{threshold:.35});
+  if(e.isIntersecting && !v.dataset.off){ if(v.paused) v.play().catch(()=>{}); }
+  else if(!v.paused){ v.pause(); }
+}),{threshold:.01});
 document.querySelectorAll('video').forEach(v=>io.observe(v));
 
 document.querySelectorAll('.car').forEach(car=>{

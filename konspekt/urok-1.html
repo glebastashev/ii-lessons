@@ -67,8 +67,8 @@ blockquote::before{content:'«'}blockquote::after{content:'»'}
 .shot{margin:16px 0 4px;border-radius:14px;overflow:hidden;background:#EFEDE6;
   border:1.5px dashed rgba(33,51,90,.32);position:relative;aspect-ratio:16/9;
   display:flex;align-items:center;justify-content:center;text-align:center}
-.shot img{width:100%;height:100%;object-fit:cover;display:none}
-.shot.has img{display:block}
+.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:none}
+.shot.has img,.shot.has video{display:block}
 .shot.has{border-style:solid;border-color:var(--line);background:none}
 .shot .ph{padding:18px}
 .shot.has .ph{display:none}
@@ -426,8 +426,9 @@ document.querySelectorAll('.tc').forEach(a=>{
 // ролики играют, только пока видны на экране
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   const v=e.target;
-  if(e.isIntersecting && !v.dataset.off){ v.play().catch(()=>{}); } else { v.pause(); }
-}),{threshold:.35});
+  if(e.isIntersecting && !v.dataset.off){ if(v.paused) v.play().catch(()=>{}); }
+  else if(!v.paused){ v.pause(); }
+}),{threshold:.01});
 document.querySelectorAll('video').forEach(v=>io.observe(v));
 
 document.querySelectorAll('.car').forEach(car=>{
