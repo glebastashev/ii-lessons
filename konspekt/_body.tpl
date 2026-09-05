@@ -181,11 +181,7 @@
       {{SHOT:teplye|Слайд «Передаём тёплые заявки»}}
   </section>
 
-  <section class="block" id="b14">
-    <div class="bhead"><span class="bnum">14</span><a class="tc" href="#" data-t="2319">38:39</a><h2>Итог урока</h2></div>
-    <blockquote>Есть уже проверенный рабочий алгоритм, тебе остаётся его только повторить. Ни в одном из этих шагов нет ничего сложного, и для этого не нужно уметь программировать.</blockquote>
-  </section>
-
+  
   
   <div class="nextlesson">
     <div class="kicker">что будет дальше</div>
