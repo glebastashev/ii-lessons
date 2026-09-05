@@ -1,6 +1,7 @@
 import json
 car=json.load(open('_car.json'))
-def shot(src,cap): return f'<div class="shot has"><img src="img/{src}.jpg" alt="{cap}" loading="lazy"></div>\n      <div class="cap">{cap}</div>'
+def shot(src,cap): return ('<div class="shot has"><video src="clip/'+src+'.mp4" poster="img/'+src
+    +'.jpg" muted loop playsinline preload="none" aria-label="'+cap+'"></video></div>\n      <div class="cap">'+cap+'</div>')
 HEAD=open('_head.html',encoding='utf-8').read()
 BODY=open('_body.tpl',encoding='utf-8').read()
 for k,v in car.items(): BODY=BODY.replace('{{CAR_'+k+'}}', v)

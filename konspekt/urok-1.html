@@ -92,7 +92,7 @@ blockquote::before{content:'«'}blockquote::after{content:'»'}
 .car-view{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EFEDE6}
 .car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
 .car-track::-webkit-scrollbar{display:none}
-.car-track img{flex:0 0 100%;width:100%;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block}
+.car-track img,.car-track video{flex:0 0 100%;width:100%;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block;background:#EFEDE6}
 .car-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
   border:none;background:rgba(16,22,36,.72);color:#fff;font-size:17px;line-height:1;cursor:pointer;
   display:flex;align-items:center;justify-content:center;transition:.15s;backdrop-filter:blur(3px)}
@@ -178,7 +178,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <h3>Почему это не тот же фриланс</h3>
     <p>Классический фриланс и AI-услуги — два разных рынка с разной экономикой. В первом нейросети обрушили цены, во втором они же создали спрос.</p>
     <blockquote>Классический фриланс это отдельный рынок со своим кровавым океаном, где люди бьются, просто демпингуя цены между собой, потому что сейчас нейросети могут делать всё то же самое за 120 рублей: сайты, лендинги, дизайн любой.</blockquote>
-      <div class="shot has"><img src="img/uslugi.jpg" alt="Кадр из урока: «Что такое ИИ-услуги»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/uslugi.mp4" poster="img/uslugi.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Что такое ИИ-услуги»"></video></div>
       <div class="cap">Кадр из урока: «Что такое ИИ-услуги»</div>
   </section>
 
@@ -199,7 +199,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <p>Пять уроков. Первый — шаги для старта. Второй — модели заработка, за что именно платят. Третий — практика, ядро тест-драйва: собираешь первую услугу руками на платформе. Четвёртый и пятый — поиск клиентов и продажи.</p>
     <blockquote>Каждый из вас, кто даже просто умеет пользоваться интернетом, разберётся на этом уроке, как сделать свою первую услугу. Прямо по инструкции, по скринкасту, вместе со мной, по шагам.</blockquote>
     <p>В конце заполняешь <b>паспорт профессии</b>: алгоритм разбирает ответы и выдаёт персональные рекомендации, какие навыки осваивать и в какой модели заработка развиваться. Для дошедших до конца бесплатно.</p>
-      <div class="shot has"><img src="img/plan.jpg" alt="Кадр из урока: «Что тебя ждёт внутри»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/plan.mp4" poster="img/plan.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Что тебя ждёт внутри»"></video></div>
       <div class="cap">Кадр из урока: «Что тебя ждёт внутри»</div>
   </section>
 
@@ -211,9 +211,9 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
       <div class="num"><b>2–3</b><span>качели</span></div>
       <div class="num"><b>0–1</b><span>смотреть всё до конца</span></div>
     </div>
-      <div class="shot has"><img src="img/test0.jpg" alt="Кадр из урока: «Небольшой тест»: пять утверждений" loading="lazy"></div>
+      <div class="shot has"><video src="clip/test0.mp4" poster="img/test0.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Небольшой тест»: пять утверждений"></video></div>
       <div class="cap">Кадр из урока: «Небольшой тест»: пять утверждений</div>
-      <div class="shot has"><img src="img/test.jpg" alt="Кадр из урока: «Теперь посчитай пальцы»: что означает результат" loading="lazy"></div>
+      <div class="shot has"><video src="clip/test.mp4" poster="img/test.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Теперь посчитай пальцы»: что означает результат"></video></div>
       <div class="cap">Кадр из урока: «Теперь посчитай пальцы»: что означает результат</div>
   </section>
 
@@ -224,7 +224,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <blockquote>Я увидел эти деньги, я увидел, как можно мозгами зарабатывать, как можно делать это не потея на какого-то дядю. И для меня жизнь перевернулась.</blockquote>
     <div class="car" id="car-h">
       <div class="car-view">
-        <div class="car-track"><img src="img/h1.jpg" alt="Знакомство: пришёл во фриланс и в нейросети, собрал агентство" data-cap="Знакомство: пришёл во фриланс и в нейросети, собрал агентство"><img src="img/h2.jpg" alt="Обычная семья: мама юрист, папа на заводе" data-cap="Обычная семья: мама юрист, папа на заводе"><img src="img/h3.jpg" alt="Ижевск: все шли по одному маршруту" data-cap="Ижевск: все шли по одному маршруту"><img src="img/h4.jpg" alt="Пик эмоционального дна: стройка, ни денег, ни поддержки" data-cap="Пик эмоционального дна: стройка, ни денег, ни поддержки"><img src="img/h5.jpg" alt="Случайное видео про фриланс: и тут я увидел другую жизнь" data-cap="Случайное видео про фриланс: и тут я увидел другую жизнь"><img src="img/h6.jpg" alt="Поездка в Москву на 12 тысяч, которая всё решила" data-cap="Поездка в Москву на 12 тысяч, которая всё решила"><img src="img/h7.jpg" alt="Сценарий, который был предрешён на 30 лет вперёд" data-cap="Сценарий, который был предрешён на 30 лет вперёд"><img src="img/h8.jpg" alt="Через месяц пришли первые деньги" data-cap="Через месяц пришли первые деньги"><img src="img/h9.jpg" alt="120 тысяч в чеке: понимание денег перевернулось" data-cap="120 тысяч в чеке: понимание денег перевернулось"><img src="img/h10.jpg" alt="Из работяги во владельца агентства" data-cap="Из работяги во владельца агентства"><img src="img/h11.jpg" alt="Сейчас живу как хочу: график, поездки, дом" data-cap="Сейчас живу как хочу: график, поездки, дом"><img src="img/h12.jpg" alt="Живу так, как увидел и захотел в ту первую поездку в Москву" data-cap="Живу так, как увидел и захотел в ту первую поездку в Москву"></div>
+        <div class="car-track"><video src="clip/h1.mp4" poster="img/h1.jpg" muted loop playsinline preload="none" data-cap="Знакомство: пришёл во фриланс и в нейросети, собрал агентство" aria-label="Знакомство: пришёл во фриланс и в нейросети, собрал агентство"></video><video src="clip/h2.mp4" poster="img/h2.jpg" muted loop playsinline preload="none" data-cap="Обычная семья: мама юрист, папа на заводе" aria-label="Обычная семья: мама юрист, папа на заводе"></video><video src="clip/h3.mp4" poster="img/h3.jpg" muted loop playsinline preload="none" data-cap="Ижевск: все шли по одному маршруту" aria-label="Ижевск: все шли по одному маршруту"></video><video src="clip/h4.mp4" poster="img/h4.jpg" muted loop playsinline preload="none" data-cap="Пик эмоционального дна: стройка, ни денег, ни поддержки" aria-label="Пик эмоционального дна: стройка, ни денег, ни поддержки"></video><video src="clip/h5.mp4" poster="img/h5.jpg" muted loop playsinline preload="none" data-cap="Случайное видео про фриланс: и тут я увидел другую жизнь" aria-label="Случайное видео про фриланс: и тут я увидел другую жизнь"></video><video src="clip/h6.mp4" poster="img/h6.jpg" muted loop playsinline preload="none" data-cap="Поездка в Москву на 12 тысяч, которая всё решила" aria-label="Поездка в Москву на 12 тысяч, которая всё решила"></video><video src="clip/h7.mp4" poster="img/h7.jpg" muted loop playsinline preload="none" data-cap="Сценарий, который был предрешён на 30 лет вперёд" aria-label="Сценарий, который был предрешён на 30 лет вперёд"></video><video src="clip/h8.mp4" poster="img/h8.jpg" muted loop playsinline preload="none" data-cap="Через месяц пришли первые деньги" aria-label="Через месяц пришли первые деньги"></video><video src="clip/h9.mp4" poster="img/h9.jpg" muted loop playsinline preload="none" data-cap="120 тысяч в чеке: понимание денег перевернулось" aria-label="120 тысяч в чеке: понимание денег перевернулось"></video><video src="clip/h10.mp4" poster="img/h10.jpg" muted loop playsinline preload="none" data-cap="Из работяги во владельца агентства" aria-label="Из работяги во владельца агентства"></video><video src="clip/h11.mp4" poster="img/h11.jpg" muted loop playsinline preload="none" data-cap="Сейчас живу как хочу: график, поездки, дом" aria-label="Сейчас живу как хочу: график, поездки, дом"></video><video src="clip/h12.mp4" poster="img/h12.jpg" muted loop playsinline preload="none" data-cap="Живу так, как увидел и захотел в ту первую поездку в Москву" aria-label="Живу так, как увидел и захотел в ту первую поездку в Москву"></video></div>
         <button class="car-nav prev" aria-label="назад">‹</button>
         <button class="car-nav next" aria-label="вперёд">›</button>
       </div>
@@ -243,7 +243,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
       <div class="num"><b>50%+</b><span>рентабельность агентства</span></div>
     </div>
     <blockquote>Рекорд ученика: на седьмой месяц после обучения, заходя с нуля, человек заработал 870 тысяч за 31 день.</blockquote>
-      <div class="shot has"><img src="img/cifry.jpg" alt="Кадр из урока: «Цифры, за которые я отвечаю»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/cifry.mp4" poster="img/cifry.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Цифры, за которые я отвечаю»"></video></div>
       <div class="cap">Кадр из урока: «Цифры, за которые я отвечаю»</div>
   </section>
 
@@ -261,7 +261,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     </table>
     <p>Почему платят охотно: своими силами это не закрыть. У среднего бизнеса нет компетенций, у малого нет ни времени, ни денег на штат.</p>
     <blockquote>Ниша AI-инжиниринга пустая. Спрос у клиентов больше, потому что бизнес знает, что можно делать такие автоматизации, ему это нужно, но специалистов мало. Чеки дерут огромные, и люди готовы платить, потому что выбора нет.</blockquote>
-      <div class="shot has"><img src="img/zovut.jpg" alt="Кадр из урока: «За чем бизнес зовёт ИИ-инженера»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/zovut.mp4" poster="img/zovut.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «За чем бизнес зовёт ИИ-инженера»"></video></div>
       <div class="cap">Кадр из урока: «За чем бизнес зовёт ИИ-инженера»</div>
     <h3>Почему инженер со стороны дешевле штатного</h3>
     <p>Сотрудник в штате стоит компании не только зарплату: сверху на каждую белую выплату ложится почти 30 процентов взносов — пенсионные, медстрахование, соцстрах, НДФЛ.</p>
@@ -269,7 +269,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
       <div class="num"><b>100 тыс ₽</b><span>зарплата сотрудника</span></div>
       <div class="num"><b>130–140 тыс ₽</b><span>стоимость для компании</span></div>
     </div>
-      <div class="shot has"><img src="img/deshevle.jpg" alt="Кадр из урока: «Почему ИИ-инженер дешевле штата»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/deshevle.mp4" poster="img/deshevle.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Почему ИИ-инженер дешевле штата»"></video></div>
       <div class="cap">Кадр из урока: «Почему ИИ-инженер дешевле штата»</div>
   </section>
 
@@ -286,10 +286,10 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
         <tr><td>Рассылки по базе внутри бота</td><td><b>5–10 тыс ₽</b></td></tr>
       </tbody>
     </table>
-      <div class="shot has"><img src="img/navyk5.jpg" alt="Кадр из урока: «Один навык — 5 услуг и больше»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/navyk5.mp4" poster="img/navyk5.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Один навык — 5 услуг и больше»"></video></div>
       <div class="cap">Кадр из урока: «Один навык — 5 услуг и больше»</div>
     <p>Дальше навык надо упаковать: что входит, сколько стоит, сколько занимает по времени. Клиент платит не за то, что вы умеете, а за то, что вы решаете его задачу.</p>
-      <div class="shot has"><img src="img/navyknedengi.jpg" alt="Кадр из урока: «Навык сам по себе не равно деньги»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/navyknedengi.mp4" poster="img/navyknedengi.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Навык сам по себе не равно деньги»"></video></div>
       <div class="cap">Кадр из урока: «Навык сам по себе не равно деньги»</div>
   </section>
 
@@ -304,7 +304,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <p>Самая большая группа клиентов на AI-услуги. Без инженера у них не работает ни аналитика, ни своя платформа, ни автоматизация для учеников. Потребность в таких услугах только растёт.</p>
     <div class="car" id="car-komu">
       <div class="car-view">
-        <div class="car-track"><img src="img/komu1.jpg" alt="Оффлайн-бизнес: салоны, автосервисы, магазины, барбершопы, кафе" data-cap="Оффлайн-бизнес: салоны, автосервисы, магазины, барбершопы, кафе"><img src="img/komu2.jpg" alt="Онлайн-магазины и сервисы: Золотое Яблоко, Wildberries, Ozon" data-cap="Онлайн-магазины и сервисы: Золотое Яблоко, Wildberries, Ozon"><img src="img/komu3.jpg" alt="Онлайн-школы и эксперты: без инженера это не сделать вручную" data-cap="Онлайн-школы и эксперты: без инженера это не сделать вручную"></div>
+        <div class="car-track"><video src="clip/komu1.mp4" poster="img/komu1.jpg" muted loop playsinline preload="none" data-cap="Оффлайн-бизнес: салоны, автосервисы, магазины, барбершопы, кафе" aria-label="Оффлайн-бизнес: салоны, автосервисы, магазины, барбершопы, кафе"></video><video src="clip/komu2.mp4" poster="img/komu2.jpg" muted loop playsinline preload="none" data-cap="Онлайн-магазины и сервисы: Золотое Яблоко, Wildberries, Ozon" aria-label="Онлайн-магазины и сервисы: Золотое Яблоко, Wildberries, Ozon"></video><video src="clip/komu3.mp4" poster="img/komu3.jpg" muted loop playsinline preload="none" data-cap="Онлайн-школы и эксперты: без инженера это не сделать вручную" aria-label="Онлайн-школы и эксперты: без инженера это не сделать вручную"></video></div>
         <button class="car-nav prev" aria-label="назад">‹</button>
         <button class="car-nav next" aria-label="вперёд">›</button>
       </div>
@@ -325,7 +325,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
         <tr><td>Сопровождение: бот работает, ты за ним следишь</td><td><b>+10–20 тыс ₽/мес с клиента</b></td></tr>
       </tbody>
     </table>
-      <div class="shot has"><img src="img/matematika.jpg" alt="Кадр из урока: «Математика одного проекта»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/matematika.mp4" poster="img/matematika.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Математика одного проекта»"></video></div>
       <div class="cap">Кадр из урока: «Математика одного проекта»</div>
     <p>Следующая ступень: если брать больше ответственности и вести проект целиком, чек выходит на <b>300–700 тысяч в месяц</b>. Там уже нужны помощники или инженеры в штат.</p>
     <p>Сравнение со своим бизнесом: малый бизнес требует вложений, запаса сил и финансовой подушки, 80 процентов закрываются в первые три года, и рискуешь всем имуществом. В услугах ты рискуешь только своим временем.</p>
@@ -337,7 +337,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <p><b>Выбор клиента.</b> Если клиент неадекват, можно отказаться и взять другого. В найме за такое увольняют.</p>
     <p><b>График.</b> Ночью, днём, утром — как удобно. Простой бот занимает максимум четыре часа: собрал, заработал 30 тысяч, пошёл дальше.</p>
     <p><b>Страна.</b> Профессия открывает визу цифрового кочевника: <b>55 стран</b>, среди них Испания, Португалия, ОАЭ, Аргентина, Южная Корея, Таиланд, Италия.</p>
-      <div class="shot has"><img src="img/gdezhit.jpg" alt="Кадр из урока: «Сам выбираешь, где жить»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/gdezhit.mp4" poster="img/gdezhit.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Сам выбираешь, где жить»"></video></div>
       <div class="cap">Кадр из урока: «Сам выбираешь, где жить»</div>
   </section>
 
@@ -353,7 +353,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     </div>
     <div class="car" id="car-sa">
       <div class="car-view">
-        <div class="car-track"><img src="img/sa1.jpg" alt="Именно за этим пришёл Александр" data-cap="Именно за этим пришёл Александр"><img src="img/sa2.jpg" alt="Что у него было до: полная занятость, низкая зарплата" data-cap="Что у него было до: полная занятость, низкая зарплата"><img src="img/sa3.jpg" alt="Контент-завод для онлайн-школы за 150 000 ₽" data-cap="Контент-завод для онлайн-школы за 150 000 ₽"><img src="img/sa4.jpg" alt="Проект, в котором он организовал контент-завод" data-cap="Проект, в котором он организовал контент-завод"><img src="img/sa5.jpg" alt="2 100 000 ₽ за год личных доходов" data-cap="2 100 000 ₽ за год личных доходов"><img src="img/sa6.jpg" alt="Доход вырос с 25–40 до 150–200 тысяч, рекорд 220" data-cap="Доход вырос с 25–40 до 150–200 тысяч, рекорд 220"><img src="img/sa7.jpg" alt="Начинал с нуля: не программист, без технического опыта" data-cap="Начинал с нуля: не программист, без технического опыта"></div>
+        <div class="car-track"><video src="clip/sa1.mp4" poster="img/sa1.jpg" muted loop playsinline preload="none" data-cap="Именно за этим пришёл Александр" aria-label="Именно за этим пришёл Александр"></video><video src="clip/sa2.mp4" poster="img/sa2.jpg" muted loop playsinline preload="none" data-cap="Что у него было до: полная занятость, низкая зарплата" aria-label="Что у него было до: полная занятость, низкая зарплата"></video><video src="clip/sa3.mp4" poster="img/sa3.jpg" muted loop playsinline preload="none" data-cap="Контент-завод для онлайн-школы за 150 000 ₽" aria-label="Контент-завод для онлайн-школы за 150 000 ₽"></video><video src="clip/sa4.mp4" poster="img/sa4.jpg" muted loop playsinline preload="none" data-cap="Проект, в котором он организовал контент-завод" aria-label="Проект, в котором он организовал контент-завод"></video><video src="clip/sa5.mp4" poster="img/sa5.jpg" muted loop playsinline preload="none" data-cap="2 100 000 ₽ за год личных доходов" aria-label="2 100 000 ₽ за год личных доходов"></video><video src="clip/sa6.mp4" poster="img/sa6.jpg" muted loop playsinline preload="none" data-cap="Доход вырос с 25–40 до 150–200 тысяч, рекорд 220" aria-label="Доход вырос с 25–40 до 150–200 тысяч, рекорд 220"></video><video src="clip/sa7.mp4" poster="img/sa7.jpg" muted loop playsinline preload="none" data-cap="Начинал с нуля: не программист, без технического опыта" aria-label="Начинал с нуля: не программист, без технического опыта"></video></div>
         <button class="car-nav prev" aria-label="назад">‹</button>
         <button class="car-nav next" aria-label="вперёд">›</button>
       </div>
@@ -370,7 +370,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     </div>
     <div class="car" id="car-el">
       <div class="car-view">
-        <div class="car-track"><img src="img/el1.jpg" alt="Елена, 46 лет: 22 года в найме, четверть века по будильнику" data-cap="Елена, 46 лет: 22 года в найме, четверть века по будильнику"><img src="img/el2.jpg" alt="Страх техники не подтвердился: сборка бота это работа по инструкции" data-cap="Страх техники не подтвердился: сборка бота это работа по инструкции"><img src="img/el3.jpg" alt="Первый заказ через 4 недели, школа приняла с первого раза" data-cap="Первый заказ через 4 недели, школа приняла с первого раза"><img src="img/el4.jpg" alt="Сейчас от 140 000 ₽ в месяц, работает с дачи" data-cap="Сейчас от 140 000 ₽ в месяц, работает с дачи"></div>
+        <div class="car-track"><video src="clip/el1.mp4" poster="img/el1.jpg" muted loop playsinline preload="none" data-cap="Елена, 46 лет: 22 года в найме, четверть века по будильнику" aria-label="Елена, 46 лет: 22 года в найме, четверть века по будильнику"></video><video src="clip/el2.mp4" poster="img/el2.jpg" muted loop playsinline preload="none" data-cap="Страх техники не подтвердился: сборка бота это работа по инструкции" aria-label="Страх техники не подтвердился: сборка бота это работа по инструкции"></video><video src="clip/el3.mp4" poster="img/el3.jpg" muted loop playsinline preload="none" data-cap="Первый заказ через 4 недели, школа приняла с первого раза" aria-label="Первый заказ через 4 недели, школа приняла с первого раза"></video><video src="clip/el4.mp4" poster="img/el4.jpg" muted loop playsinline preload="none" data-cap="Сейчас от 140 000 ₽ в месяц, работает с дачи" aria-label="Сейчас от 140 000 ₽ в месяц, работает с дачи"></video></div>
         <button class="car-nav prev" aria-label="назад">‹</button>
         <button class="car-nav next" aria-label="вперёд">›</button>
       </div>
@@ -386,12 +386,12 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <p><b>Шаг 3. Определяешь, кому эти услуги нужны.</b> Три сегмента из блока выше.</p>
     <p><b>Шаг 4. Находишь первого клиента.</b> Этому посвящён отдельный урок тест-драйва.</p>
     <p><b>Шаг 5. Получаешь деньги за первую услугу.</b> Никого не нужно уговаривать: услуга нужна клиенту больше, чем вам.</p>
-      <div class="shot has"><img src="img/shema.jpg" alt="Кадр из урока: «Как заходят в профессию»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/shema.mp4" poster="img/shema.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Как заходят в профессию»"></video></div>
       <div class="cap">Кадр из урока: «Как заходят в профессию»</div>
     <h3>Как продавать, если ты не продавец</h3>
     <p>Механику продаж здесь не разбираем, ей посвящены отдельные уроки. На практическом уроке ты собираешь первую услугу руками, а четвёртый урок целиком про поиск клиентов и продажи: готовые техники, шаблоны первого сообщения, отработка возражений и разбор реальных переписок.</p>
     <blockquote>Мы сами ищем клиентов для своих первых учеников. Платим деньги в Яндекс Директ, в телеграм-посевы. Заявки передаём ученикам как готовых горячих клиентов.</blockquote>
-      <div class="shot has"><img src="img/teplye.jpg" alt="Кадр из урока: «Передаём тёплые заявки»" loading="lazy"></div>
+      <div class="shot has"><video src="clip/teplye.mp4" poster="img/teplye.jpg" muted loop playsinline preload="none" aria-label="Кадр из урока: «Передаём тёплые заявки»"></video></div>
       <div class="cap">Кадр из урока: «Передаём тёплые заявки»</div>
   </section>
 
@@ -423,6 +423,13 @@ document.querySelectorAll('.tc').forEach(a=>{
     window.open(VIDEO + (VIDEO.includes('?')?'&':'?') + 't=' + (a.dataset.t||0), '_blank');
   });
 });
+// ролики играют, только пока видны на экране
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target;
+  if(e.isIntersecting && !v.dataset.off){ v.play().catch(()=>{}); } else { v.pause(); }
+}),{threshold:.35});
+document.querySelectorAll('video').forEach(v=>io.observe(v));
+
 document.querySelectorAll('.car').forEach(car=>{
   const tr=car.querySelector('.car-track'), sl=[...tr.children];
   const prev=car.querySelector('.prev'), next=car.querySelector('.next');
@@ -433,6 +440,8 @@ document.querySelectorAll('.car').forEach(car=>{
     cnt.textContent=(cur+1)+' / '+sl.length;
     cap.textContent=sl[cur].dataset.cap||'';
     prev.disabled=cur===0; next.disabled=cur===sl.length-1;
+    sl.forEach((v,i)=>{ if(i===cur){ delete v.dataset.off; v.play().catch(()=>{}); }
+                        else { v.dataset.off='1'; v.pause(); } });
   };
   const go=i=>{ cur=Math.max(0,Math.min(sl.length-1,i)); tr.scrollTo({left:cur*tr.clientWidth,behavior:'smooth'}); sync(); };
   prev.addEventListener('click',()=>go(cur-1));

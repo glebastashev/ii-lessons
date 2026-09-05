@@ -209,6 +209,13 @@ document.querySelectorAll('.tc').forEach(a=>{
     window.open(VIDEO + (VIDEO.includes('?')?'&':'?') + 't=' + (a.dataset.t||0), '_blank');
   });
 });
+// ролики играют, только пока видны на экране
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target;
+  if(e.isIntersecting && !v.dataset.off){ v.play().catch(()=>{}); } else { v.pause(); }
+}),{threshold:.35});
+document.querySelectorAll('video').forEach(v=>io.observe(v));
+
 document.querySelectorAll('.car').forEach(car=>{
   const tr=car.querySelector('.car-track'), sl=[...tr.children];
   const prev=car.querySelector('.prev'), next=car.querySelector('.next');
@@ -219,6 +226,8 @@ document.querySelectorAll('.car').forEach(car=>{
     cnt.textContent=(cur+1)+' / '+sl.length;
     cap.textContent=sl[cur].dataset.cap||'';
     prev.disabled=cur===0; next.disabled=cur===sl.length-1;
+    sl.forEach((v,i)=>{ if(i===cur){ delete v.dataset.off; v.play().catch(()=>{}); }
+                        else { v.dataset.off='1'; v.pause(); } });
   };
   const go=i=>{ cur=Math.max(0,Math.min(sl.length-1,i)); tr.scrollTo({left:cur*tr.clientWidth,behavior:'smooth'}); sync(); };
   prev.addEventListener('click',()=>go(cur-1));
