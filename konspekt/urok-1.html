@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Урок 1 — конспект · Тест-драйв AI-Инженер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
+  --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+/* ---------- шапка ---------- */
+header{background:var(--ink);color:var(--cream);padding:44px 0 38px;position:relative;overflow:hidden}
+header::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E97A9;margin-bottom:14px}
+header h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,40px);line-height:1.14;letter-spacing:-.01em;margin-bottom:16px}
+header h1 em{font-style:normal;color:var(--lime)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{font-family:var(--mono);font-size:11.5px;border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:6px 12px;color:#C9CEDA}
+.pill.on{background:var(--lime);color:var(--ink);border-color:transparent;font-weight:500}
+
+/* ---------- оглавление ---------- */
+.toc{background:var(--paper);border-bottom:1px solid var(--line);padding:16px 0}
+.toc-in{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+.toc-in::-webkit-scrollbar{display:none}
+.toc a{flex:none;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--navy);
+  border:1px solid var(--line);border-radius:99px;padding:6px 12px;white-space:nowrap;transition:.15s}
+.toc a:hover{background:var(--navy);color:#fff;border-color:transparent}
+
+/* ---------- блоки ---------- */
+main{padding:34px 0 10px}
+.lead{font-size:16px;color:#3A3C45;margin-bottom:30px;max-width:640px}
+.lead b{font-weight:700;color:var(--ink)}
+
+.block{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 24px 22px;margin-bottom:16px;scroll-margin-top:16px}
+.bhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.bnum{font-family:var(--display);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:50%;
+  background:var(--ink);color:var(--cream);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tc{font-family:var(--mono);font-size:12px;font-weight:500;text-decoration:none;color:var(--navy);
+  background:var(--lime);border-radius:99px;padding:5px 11px;transition:.15s}
+.tc:hover{background:var(--navy);color:var(--lime)}
+.block h2{font-family:var(--display);font-weight:700;font-size:clamp(17px,3.2vw,21px);line-height:1.25;flex:1 1 240px}
+.block p{font-size:15px;color:#3A3C45;margin-bottom:12px}
+.block p:last-child{margin-bottom:0}
+.block b{color:var(--ink);font-weight:700}
+
+blockquote{border-left:3px solid var(--lime);background:#FAFAF7;border-radius:0 12px 12px 0;
+  padding:14px 16px;margin:14px 0;font-size:15px;color:var(--navy-deep);font-style:italic}
+blockquote::before{content:'«'}blockquote::after{content:'»'}
+
+.nums{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.num{border:1px solid var(--line);border-radius:12px;padding:9px 13px;background:#FAFAF7}
+.num b{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2}
+.num span{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- место под скрин ---------- */
+.shot{margin:16px 0 4px;border-radius:14px;overflow:hidden;background:#EFEDE6;
+  border:1.5px dashed rgba(33,51,90,.32);position:relative;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;text-align:center}
+.shot img{width:100%;height:100%;object-fit:cover;display:none}
+.shot.has img{display:block}
+.shot.has{border-style:solid;border-color:var(--line);background:none}
+.shot .ph{padding:18px}
+.shot.has .ph{display:none}
+.shot .ph b{display:block;font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:5px}
+.shot .ph span{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5}
+.cap{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:7px}
+
+/* ---------- задание ---------- */
+.task{background:var(--navy);color:#E7EAF1;border-radius:18px;padding:26px 24px;margin:26px 0 10px;position:relative;overflow:hidden}
+.task::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.task .kicker{color:#8E97A9;position:relative}
+.task h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);margin-bottom:14px;color:#fff;position:relative}
+.task ul{list-style:none;position:relative}
+.task li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
+.task li:last-child{border-bottom:none}
+.task .mark{width:19px;height:19px;border:1.5px solid var(--lime);border-radius:5px;flex:none;margin-top:2px}
+
+footer{padding:26px 0 40px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:600px){
+  .block{padding:20px 18px}
+  header{padding:34px 0 30px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Тест-драйв AI-Инженер · конспект</div>
+    <h1>Урок 1. Профессия <em>AI-инженера</em>: с чего начать</h1>
+    <div class="meta">
+      <span class="pill on">хронометраж 39:43</span>
+      <span class="pill">10 блоков</span>
+      <span class="pill">чтение 4 минуты</span>
+      <span class="pill">таймкоды кликаются</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap toc-in">
+  <a href="#b1">0:00 профессия</a><a href="#b2">1:30 тест-драйв</a><a href="#b3">7:53 тест на пальцах</a>
+  <a href="#b4">9:59 история</a><a href="#b5">16:59 цифры</a><a href="#b6">19:46 почему сейчас</a>
+  <a href="#b7">21:58 сколько платят</a><a href="#b8">24:55 кейсы</a><a href="#b9">33:51 схема</a>
+  <a href="#b10">38:39 итог</a>
+</div></nav>
+
+<main class="wrap">
+  <p class="lead">Что даёт урок: кто такой AI-инженер и за что ему платят, сколько стоят первые услуги и сколько их нужно в месяц, почему в эту нишу сейчас проще войти, чем в классический фриланс, и <b>с какого конкретно навыка начинать</b>.</p>
+
+  <section class="block" id="b1">
+    <div class="bhead"><span class="bnum">1</span><a class="tc" href="#" data-t="0">0:00</a><h2>Что за профессия</h2></div>
+    <p>AI-инженер собирает бизнесу готовые решения на нейросетях и продаёт их как услугу. Разница с обычным пользователем ChatGPT принципиальная: тот переписывается, этот проектирует, внедряет и обслуживает.</p>
+    <blockquote>Классический фриланс это отдельный рынок со своим кровавым океаном, где люди бьются, просто демпингуя цены между собой, потому что сейчас нейросети могут делать всё то же самое за 120 рублей: сайты, лендинги, дизайн любой.</blockquote>
+    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 7:08 · «Чем этот рынок отличается от фриланса»</span></div><img alt=""></div>
+    <div class="cap">Как вставить: положить файл рядом со страницей и прописать его в src этой картинки.</div>
+  </section>
+
+  <section class="block" id="b2">
+    <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="90">1:30</a><h2>Как устроен тест-драйв</h2></div>
+    <p>Пять уроков: шаги для старта, модели заработка, практика, поиск клиентов, продажи. Третий урок — ядро, там собираешь первую услугу руками на нашей платформе. В конце заполняешь паспорт профессии и получаешь персональные рекомендации, для дошедших до конца бесплатно.</p>
+    <blockquote>Каждый из вас, кто даже просто умеет пользоваться интернетом, разберётся на этом уроке, как сделать свою первую услугу. Прямо по инструкции, по скринкасту, вместе со мной, по шагам.</blockquote>
+    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 1:30 · план пяти уроков</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b3">
+    <div class="bhead"><span class="bnum">3</span><a class="tc" href="#" data-t="473">7:53</a><h2>Проверь свою опору</h2></div>
+    <p>Пять утверждений, загибаешь палец на каждое, которое про тебя. Знаешь, сколько заработаешь в следующем месяце. Можешь уехать на месяц-два, и доход не просядет. После работы остаётся время на семью и себя. Сам выбираешь, с кем работать. Денег хватает на жизнь и хотелки без подработок и кредитов.</p>
+    <div class="nums">
+      <div class="num"><b>4–5</b><span>фундамент есть</span></div>
+      <div class="num"><b>2–3</b><span>качели</span></div>
+      <div class="num"><b>0–1</b><span>смотреть всё до конца</span></div>
+    </div>
+    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 7:53 · пять утверждений</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b4">
+    <div class="bhead"><span class="bnum">4</span><a class="tc" href="#" data-t="599">9:59</a><h2>История Макса</h2></div>
+    <p>Ижевск, обычная семья, отец 25 лет на заводе за одну и ту же зарплату. Забрал документы из колледжа, увидев, к чему это ведёт, и пошёл разнорабочим на стройку. Накопил 12 тысяч, поехал в Москву посмотреть, как живут другие.</p>
+    <p>Познакомился с ребятами из онлайн-школы, начал делать им ботов и автоматизации. Первый миллион, через полгода 120 тысяч в чеке при трёх-четырёх часах работы в день.</p>
+    <blockquote>Я увидел эти деньги, я увидел, как можно мозгами зарабатывать, как можно делать это не потея на какого-то дядю. И для меня жизнь перевернулась.</blockquote>
+    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 12:24 · фото стройки и первого кабинета</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b5">
+    <div class="bhead"><span class="bnum">5</span><a class="tc" href="#" data-t="1019">16:59</a><h2>Цифры, которые стоит запомнить</h2></div>
+    <div class="nums">
+      <div class="num"><b>400+</b><span>учеников</span></div>
+      <div class="num"><b>78 тыс ₽</b><span>средний чек проекта</span></div>
+      <div class="num"><b>3–4 недели</b><span>до первых денег</span></div>
+      <div class="num"><b>870 тыс ₽</b><span>рекорд за 31 день</span></div>
+    </div>
+    <blockquote>Рекорд ученика: на седьмой месяц после обучения, заходя с нуля, человек заработал 870 тысяч за 31 день.</blockquote>
+    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 16:59 · выписка по счёту агентства</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b6">
+    <div class="bhead"><span class="bnum">6</span><a class="tc" href="#" data-t="1186">19:46</a><h2>Почему заходить сейчас</h2></div>
+    <blockquote>Ниша AI-инжиниринга пустая. Спрос у клиентов больше, потому что бизнес знает, что можно делать такие автоматизации, ему это нужно, но специалистов мало. Чеки дерут огромные, и люди готовы платить, потому что выбора нет.</blockquote>
+    <p>Через год-два в нишу придут те, кто выжимал классический фриланс, и конкуренция вырастет. Сейчас входить дешевле и по деньгам, и по времени.</p>
+    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 19:46 · окно возможности</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b7">
+    <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="1318">21:58</a><h2>Сколько платят</h2></div>
+    <p>Базовый бот для салона красоты собирается за два-три часа и продаётся за 30–40 тысяч. Пять проектов в месяц дают 150 тысяч. Сверху идёт сопровождение: правки, акции, смена телефонов, это ещё 10–20 тысяч в месяц с каждого клиента.</p>
+    <div class="nums">
+      <div class="num"><b>30–40 тыс ₽</b><span>базовый бот</span></div>
+      <div class="num"><b>×5 в месяц</b><span>= 150 тыс ₽</span></div>
+      <div class="num"><b>10–20 тыс ₽</b><span>сопровождение с клиента</span></div>
+      <div class="num"><b>55 стран</b><span>виза цифрового кочевника</span></div>
+    </div>
+    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 21:58 · математика дохода</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b8">
+    <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="1495">24:55</a><h2>Два кейса</h2></div>
+    <p><b>Саша.</b> Заходил из найма с зарплатой 40 тысяч. Специализировался на контент-заводах, продаёт их под ключ за 150 тысяч. За прошлый год 2,1 миллиона чистыми, рекордный месяц 220 тысяч. Не программист, технического опыта не было.</p>
+    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 25:42 · проекты Саши и его цифры</span></div><img alt=""></div>
+    <p style="margin-top:16px"><b>Елена, 46 лет.</b> 22 года в найме, пять дней в неделю по будильнику.</p>
+    <blockquote>Оказалось, что сборка бота это работа на пять минут. У неё получилось заработать первые 300 тысяч через четыре недели, и школа приняла работу с первого раза.</blockquote>
+    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 32:00 · блок-схема бота Елены</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b9">
+    <div class="bhead"><span class="bnum">9</span><a class="tc" href="#" data-t="2031">33:51</a><h2>Схема захода в профессию</h2></div>
+    <p>Осваиваешь один навык, для начала сборку чат-ботов. Упаковываешь его в услугу с понятной ценой и сроком. Определяешь, кому она нужна: офлайн-бизнес, онлайн-школы, магазины. Находишь первого клиента. Получаешь деньги.</p>
+    <p>Один навык закрывает сразу пять услуг: сборка ботов, правки в готовых, мини-воронки, ассистенты, рассылки по базе.</p>
+    <blockquote>Мы сами ищем клиентов для своих первых учеников. Платим деньги в Яндекс Директ, в телеграм-посевы. Заявки передаём ученикам как готовых горячих клиентов.</blockquote>
+    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 33:51 · пять шагов захода</span></div><img alt=""></div>
+  </section>
+
+  <section class="block" id="b10">
+    <div class="bhead"><span class="bnum">10</span><a class="tc" href="#" data-t="2319">38:39</a><h2>Итог урока</h2></div>
+    <blockquote>Есть уже проверенный рабочий алгоритм, тебе остаётся его только повторить. Ни в одном из этих шагов нет ничего сложного, и для этого не нужно уметь программировать.</blockquote>
+  </section>
+
+  <div class="task">
+    <div class="kicker">до второго урока</div>
+    <h3>Три действия, которые займут двадцать минут</h3>
+    <ul>
+      <li><span class="mark"></span><span>Пройти тест на пальцах и записать свой результат: сколько пальцев загнулось.</span></li>
+      <li><span class="mark"></span><span>Выбрать из пяти направлений то, что ближе: боты, автоматизации, контент, сайты или аналитика.</span></li>
+      <li><span class="mark"></span><span>Открыть карту бизнесов и найти три компании без сайта, которым пригодился бы AI-администратор.</span></li>
+    </ul>
+  </div>
+</main>
+
+<footer class="wrap">
+  Конспект урока 1 · <a href="urok-2.html">дальше: урок 2, за что платят →</a>
+</footer>
+
+<script>
+// таймкод открывает видео на нужной секунде; ссылку на плеер подставить в VIDEO
+const VIDEO = '';
+document.querySelectorAll('.tc').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    if(!VIDEO){ return; }
+    const t = a.dataset.t || 0;
+    window.open(VIDEO + (VIDEO.includes('?') ? '&' : '?') + 't=' + t, '_blank');
+  });
+});
+// картинка, у которой заполнен src, автоматически заменяет заглушку
+document.querySelectorAll('.shot img').forEach(im=>{
+  if(im.getAttribute('src')) im.closest('.shot').classList.add('has');
+});
+</script>
+</body>
+</html>
