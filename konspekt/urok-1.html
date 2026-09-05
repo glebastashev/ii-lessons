@@ -87,6 +87,24 @@ blockquote::before{content:'«'}blockquote::after{content:'»'}
 .task li:last-child{border-bottom:none}
 .task .mark{width:19px;height:19px;border:1.5px solid var(--lime);border-radius:5px;flex:none;margin-top:2px}
 
+/* ---------- карусель ---------- */
+.car{margin:16px 0 4px}
+.car-view{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EFEDE6}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track img{flex:0 0 100%;width:100%;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  border:none;background:rgba(16,22,36,.72);color:#fff;font-size:17px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;backdrop-filter:blur(3px)}
+.car-nav:hover{background:var(--navy)}
+.car-nav[disabled]{opacity:.28;cursor:default}
+.car-nav.prev{left:10px}.car-nav.next{right:10px}
+.car-bar{display:flex;align-items:center;gap:12px;margin-top:10px}
+.car-dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(19,26,43,.2);border:none;padding:0;cursor:pointer;transition:.15s}
+.dot.on{background:var(--navy);width:20px;border-radius:99px}
+.car-cnt{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.car-cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;min-height:17px}
 footer{padding:26px 0 40px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
 @media(max-width:600px){
@@ -124,15 +142,16 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <div class="bhead"><span class="bnum">1</span><a class="tc" href="#" data-t="0">0:00</a><h2>Что за профессия</h2></div>
     <p>AI-инженер собирает бизнесу готовые решения на нейросетях и продаёт их как услугу. Разница с обычным пользователем ChatGPT принципиальная: тот переписывается, этот проектирует, внедряет и обслуживает.</p>
     <blockquote>Классический фриланс это отдельный рынок со своим кровавым океаном, где люди бьются, просто демпингуя цены между собой, потому что сейчас нейросети могут делать всё то же самое за 120 рублей: сайты, лендинги, дизайн любой.</blockquote>
-    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 7:08 · «Чем этот рынок отличается от фриланса»</span></div><img alt=""></div>
-    <div class="cap">Как вставить: положить файл рядом со страницей и прописать его в src этой картинки.</div>
+    <div class="shot has"><img src="img/uslugi.jpg" alt="Слайд «Что такое ИИ-услуги»" loading="lazy"></div>
+    <div class="cap">Слайд «Что такое ИИ-услуги»</div>
   </section>
 
   <section class="block" id="b2">
     <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="90">1:30</a><h2>Как устроен тест-драйв</h2></div>
     <p>Пять уроков: шаги для старта, модели заработка, практика, поиск клиентов, продажи. Третий урок — ядро, там собираешь первую услугу руками на нашей платформе. В конце заполняешь паспорт профессии и получаешь персональные рекомендации, для дошедших до конца бесплатно.</p>
     <blockquote>Каждый из вас, кто даже просто умеет пользоваться интернетом, разберётся на этом уроке, как сделать свою первую услугу. Прямо по инструкции, по скринкасту, вместе со мной, по шагам.</blockquote>
-    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 1:30 · план пяти уроков</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/plan.jpg" alt="Слайд «Что тебя ждёт внутри»" loading="lazy"></div>
+    <div class="cap">Слайд «Что тебя ждёт внутри»</div>
   </section>
 
   <section class="block" id="b3">
@@ -143,7 +162,8 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
       <div class="num"><b>2–3</b><span>качели</span></div>
       <div class="num"><b>0–1</b><span>смотреть всё до конца</span></div>
     </div>
-    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 7:53 · пять утверждений</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/test.jpg" alt="Слайд «Теперь посчитай пальцы»" loading="lazy"></div>
+    <div class="cap">Слайд «Теперь посчитай пальцы»</div>
   </section>
 
   <section class="block" id="b4">
@@ -151,7 +171,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <p>Ижевск, обычная семья, отец 25 лет на заводе за одну и ту же зарплату. Забрал документы из колледжа, увидев, к чему это ведёт, и пошёл разнорабочим на стройку. Накопил 12 тысяч, поехал в Москву посмотреть, как живут другие.</p>
     <p>Познакомился с ребятами из онлайн-школы, начал делать им ботов и автоматизации. Первый миллион, через полгода 120 тысяч в чеке при трёх-четырёх часах работы в день.</p>
     <blockquote>Я увидел эти деньги, я увидел, как можно мозгами зарабатывать, как можно делать это не потея на какого-то дядю. И для меня жизнь перевернулась.</blockquote>
-    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 12:24 · фото стройки и первого кабинета</span></div><img alt=""></div>
+    <div class="car">
+      <div class="car-view">
+        <div class="car-track"><img src="img/h1.jpg" alt="Знакомство: пришёл во фриланс и в нейросети, собрал агентство" data-cap="Знакомство: пришёл во фриланс и в нейросети, собрал агентство" loading="lazy"><img src="img/h2.jpg" alt="Обычная семья: мама юрист, папа на заводе" data-cap="Обычная семья: мама юрист, папа на заводе" loading="lazy"><img src="img/h3.jpg" alt="Ижевск: все шли по одному маршруту" data-cap="Ижевск: все шли по одному маршруту" loading="lazy"><img src="img/h4.jpg" alt="Пик эмоционального дна: стройка, ни денег, ни поддержки" data-cap="Пик эмоционального дна: стройка, ни денег, ни поддержки" loading="lazy"><img src="img/h5.jpg" alt="Случайное видео про фриланс: и тут я увидел другую жизнь" data-cap="Случайное видео про фриланс: и тут я увидел другую жизнь" loading="lazy"><img src="img/h6.jpg" alt="Поездка в Москву на 12 тысяч, которая всё решила" data-cap="Поездка в Москву на 12 тысяч, которая всё решила" loading="lazy"><img src="img/h7.jpg" alt="Сценарий, который был предрешён на 30 лет вперёд" data-cap="Сценарий, который был предрешён на 30 лет вперёд" loading="lazy"><img src="img/h8.jpg" alt="Через месяц пришли первые деньги" data-cap="Через месяц пришли первые деньги" loading="lazy"><img src="img/h9.jpg" alt="120 тысяч в чеке: понимание денег перевернулось" data-cap="120 тысяч в чеке: понимание денег перевернулось" loading="lazy"><img src="img/h10.jpg" alt="Из работяги во владельца агентства" data-cap="Из работяги во владельца агентства" loading="lazy"></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button><button class="dot" data-i="3" aria-label="слайд 4"></button><button class="dot" data-i="4" aria-label="слайд 5"></button><button class="dot" data-i="5" aria-label="слайд 6"></button><button class="dot" data-i="6" aria-label="слайд 7"></button><button class="dot" data-i="7" aria-label="слайд 8"></button><button class="dot" data-i="8" aria-label="слайд 9"></button><button class="dot" data-i="9" aria-label="слайд 10"></button></div><span class="car-cnt">1 / 10</span></div>
+      <div class="car-cap">Знакомство: пришёл во фриланс и в нейросети, собрал агентство</div>
+    </div>
   </section>
 
   <section class="block" id="b5">
@@ -163,14 +191,16 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
       <div class="num"><b>870 тыс ₽</b><span>рекорд за 31 день</span></div>
     </div>
     <blockquote>Рекорд ученика: на седьмой месяц после обучения, заходя с нуля, человек заработал 870 тысяч за 31 день.</blockquote>
-    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 16:59 · выписка по счёту агентства</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/cifry.jpg" alt="Слайд «Цифры, за которые я отвечаю»" loading="lazy"></div>
+    <div class="cap">Слайд «Цифры, за которые я отвечаю»</div>
   </section>
 
   <section class="block" id="b6">
     <div class="bhead"><span class="bnum">6</span><a class="tc" href="#" data-t="1186">19:46</a><h2>Почему заходить сейчас</h2></div>
     <blockquote>Ниша AI-инжиниринга пустая. Спрос у клиентов больше, потому что бизнес знает, что можно делать такие автоматизации, ему это нужно, но специалистов мало. Чеки дерут огромные, и люди готовы платить, потому что выбора нет.</blockquote>
     <p>Через год-два в нишу придут те, кто выжимал классический фриланс, и конкуренция вырастет. Сейчас входить дешевле и по деньгам, и по времени.</p>
-    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 19:46 · окно возможности</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/sejchas.jpg" alt="Слайд «А теперь честно»" loading="lazy"></div>
+    <div class="cap">Слайд «А теперь честно»</div>
   </section>
 
   <section class="block" id="b7">
@@ -182,16 +212,19 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
       <div class="num"><b>10–20 тыс ₽</b><span>сопровождение с клиента</span></div>
       <div class="num"><b>55 стран</b><span>виза цифрового кочевника</span></div>
     </div>
-    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 21:58 · математика дохода</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/matematika.jpg" alt="Слайд «Математика одного проекта»" loading="lazy"></div>
+    <div class="cap">Слайд «Математика одного проекта»</div>
   </section>
 
   <section class="block" id="b8">
     <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="1495">24:55</a><h2>Два кейса</h2></div>
     <p><b>Саша.</b> Заходил из найма с зарплатой 40 тысяч. Специализировался на контент-заводах, продаёт их под ключ за 150 тысяч. За прошлый год 2,1 миллиона чистыми, рекордный месяц 220 тысяч. Не программист, технического опыта не было.</p>
-    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 25:42 · проекты Саши и его цифры</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/sasha.jpg" alt="Слайд «2 100 000 ₽ с прошлого года»" loading="lazy"></div>
+    <div class="cap">Слайд «2 100 000 ₽ с прошлого года»</div>
     <p style="margin-top:16px"><b>Елена, 46 лет.</b> 22 года в найме, пять дней в неделю по будильнику.</p>
     <blockquote>Оказалось, что сборка бота это работа на пять минут. У неё получилось заработать первые 300 тысяч через четыре недели, и школа приняла работу с первого раза.</blockquote>
-    <div class="shot"><div class="ph"><b>Место под скрин</b><span>таймкод 32:00 · блок-схема бота Елены</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/elena.jpg" alt="Слайд «Первый заказ через 4 недели»" loading="lazy"></div>
+    <div class="cap">Слайд «Первый заказ через 4 недели»</div>
   </section>
 
   <section class="block" id="b9">
@@ -199,7 +232,8 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
     <p>Осваиваешь один навык, для начала сборку чат-ботов. Упаковываешь его в услугу с понятной ценой и сроком. Определяешь, кому она нужна: офлайн-бизнес, онлайн-школы, магазины. Находишь первого клиента. Получаешь деньги.</p>
     <p>Один навык закрывает сразу пять услуг: сборка ботов, правки в готовых, мини-воронки, ассистенты, рассылки по базе.</p>
     <blockquote>Мы сами ищем клиентов для своих первых учеников. Платим деньги в Яндекс Директ, в телеграм-посевы. Заявки передаём ученикам как готовых горячих клиентов.</blockquote>
-    <div class="shot"><div class="ph"><b>Место под скрин слайда</b><span>таймкод 33:51 · пять шагов захода</span></div><img alt=""></div>
+    <div class="shot has"><img src="img/shema.jpg" alt="Слайд «Как заходят в профессию»" loading="lazy"></div>
+    <div class="cap">Слайд «Как заходят в профессию»</div>
   </section>
 
   <section class="block" id="b10">
@@ -233,6 +267,29 @@ document.querySelectorAll('.tc').forEach(a=>{
     window.open(VIDEO + (VIDEO.includes('?') ? '&' : '?') + 't=' + t, '_blank');
   });
 });
+// карусель истории
+document.querySelectorAll('.car').forEach(car=>{
+  const tr=car.querySelector('.car-track'), sl=[...tr.children];
+  const prev=car.querySelector('.prev'), next=car.querySelector('.next');
+  const dots=[...car.querySelectorAll('.dot')], cnt=car.querySelector('.car-cnt'), cap=car.querySelector('.car-cap');
+  let cur=0;
+  const go=i=>{ cur=Math.max(0,Math.min(sl.length-1,i)); tr.scrollTo({left:cur*tr.clientWidth, behavior:'smooth'}); sync(); };
+  const sync=()=>{
+    dots.forEach((d,i)=>d.classList.toggle('on', i===cur));
+    cnt.textContent = (cur+1)+' / '+sl.length;
+    cap.textContent = sl[cur].dataset.cap || '';
+    prev.disabled = cur===0; next.disabled = cur===sl.length-1;
+  };
+  prev.addEventListener('click',()=>go(cur-1));
+  next.addEventListener('click',()=>go(cur+1));
+  dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
+  tr.addEventListener('scroll',()=>{
+    const i=Math.round(tr.scrollLeft/tr.clientWidth);
+    if(i!==cur){ cur=i; sync(); }
+  }, {passive:true});
+  sync();
+});
+
 // картинка, у которой заполнен src, автоматически заменяет заглушку
 document.querySelectorAll('.shot img').forEach(im=>{
   if(im.getAttribute('src')) im.closest('.shot').classList.add('has');
