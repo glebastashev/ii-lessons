@@ -26,7 +26,7 @@
   <section class="block" id="b3">
     <div class="bhead"><span class="bnum">3</span><a class="tc" href="#" data-t="272">4:32</a><h2>Бот за шесть шагов</h2></div>
     <p>Живой разбор: бот для магазина десертов, который консультирует и принимает заказы. Весь путь от открытия конструктора до денег на карте.</p>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Шаг</th><th>Что делаем</th></tr></thead>
       <tbody>
         <tr><td><b>1</b></td><td>Подключаем нейросети: заходим в подключение и регистрируем аккаунт</td></tr>
@@ -163,7 +163,7 @@
   <section class="block" id="b11">
     <div class="bhead"><span class="bnum">11</span><a class="tc" href="#" data-t="1461">24:21</a><h2>Портрет клиента 2027</h2></div>
     <p>Каким будет заказчик в ближайшие годы и за что он будет платить.</p>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Что делает клиент</th><th>Что это значит для специалиста</th></tr></thead>
       <tbody>
         <tr><td><b>Платит за скорость</b></td><td>Готов доплачивать за быстрый результат</td></tr>
@@ -179,7 +179,7 @@
 
   <section class="block" id="b12">
     <div class="bhead"><span class="bnum">12</span><a class="tc" href="#" data-t="611">10:11</a><h2>Что нужно для старта</h2></div>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Что нужно</th><th>Подробности</th></tr></thead>
       <tbody>
         <tr><td><b>Не нужно программирование</b></td><td>Ни кода, ни айтишного бэкграунда. Работа идёт на русском языке словами</td></tr>
@@ -195,7 +195,7 @@
   <section class="block" id="b13">
     <div class="bhead"><span class="bnum">13</span><a class="tc" href="#" data-t="1720">28:40</a><h2>Плюсы и минусы честно</h2></div>
     <p>Отдельный слайд, где Макс разбирает профессию с двух сторон и снимает ожидание волшебной таблетки.</p>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Минусы</th><th>Плюсы</th></tr></thead>
       <tbody>
         <tr><td>Иногда лень работать</td><td>Много свободного времени</td></tr>

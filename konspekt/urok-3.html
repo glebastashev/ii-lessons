@@ -112,6 +112,7 @@ blockquote::before{content:'«'}blockquote::after{content:'»'}
 table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
 th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);padding:10px 12px;text-align:left;font-weight:500}
 th:last-child,td:last-child{text-align:right}
+table.ltr th:last-child,table.ltr td:last-child{text-align:left}
 td{padding:11px 12px;border-bottom:1px solid var(--line);color:#3A3C45;vertical-align:top}
 tr:last-child td{border-bottom:none}
 tbody tr:nth-child(even){background:#FAFAF7}
@@ -170,7 +171,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b2">
     <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="102">1:42</a><h2>Где у бизнеса дыра</h2></div>
     <p>Локальные бизнесы часто упакованы плохо и по смыслам, и по дизайну. Клиент ищет, куда пойти, забивает запрос в поиск или просит нейросеть найти топ барбершопов, получает список сайтов и выбирает тот, который вызвал больше доверия. Если сайта нет или он слабый, бизнес просто выпадает из этого выбора.</p>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Что у них вместо сайта</th><th>Почему это не работает</th></tr></thead>
       <tbody>
         <tr><td><b>Соцсети</b></td><td>Последний пост мог быть полгода назад, актуальные услуги спрятаны в сторис</td></tr>
@@ -245,7 +246,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b7">
     <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="430">7:10</a><h2>Практическая часть</h2></div>
     <p>Ссылка на страницу практики лежит под видео. Внутри уже добавлены бизнесы, карточки, промпты и ссылки на инструменты.</p>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Шаг</th><th>Действие</th></tr></thead>
       <tbody>
         <tr><td><b>1</b></td><td>Выбери офлайн-бизнес на карте или в списке</td></tr>
@@ -266,7 +267,7 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b8">
     <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="635">10:35</a><h2>Чек-лист: проверяем три вещи</h2></div>
     <p>Готовую страницу проверяют глазами клиента: захотел бы я тут купить.</p>
-    <table>
+    <table class="ltr">
       <thead><tr><th>Что смотрим</th><th>Вопрос к странице</th></tr></thead>
       <tbody>
         <tr><td><b>Смысл</b></td><td>Верно ли описан бизнес, услуга, оффер и клиентская боль</td></tr>
