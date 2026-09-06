@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Урок 2 — конспект · Тест-драйв AI-Инженер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
+  --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+/* ---------- шапка ---------- */
+header{background:var(--ink);color:var(--cream);padding:44px 0 38px;position:relative;overflow:hidden}
+header::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E97A9;margin-bottom:14px}
+header h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,40px);line-height:1.14;letter-spacing:-.01em;margin-bottom:16px}
+header h1 em{font-style:normal;color:var(--lime)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{font-family:var(--mono);font-size:11.5px;border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:6px 12px;color:#C9CEDA}
+.pill.on{background:var(--lime);color:var(--ink);border-color:transparent;font-weight:500}
+
+/* ---------- оглавление ---------- */
+.toc{background:var(--paper);border-bottom:1px solid var(--line);padding:16px 0}
+.toc-in{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+.toc-in::-webkit-scrollbar{display:none}
+.toc a{flex:none;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--navy);
+  border:1px solid var(--line);border-radius:99px;padding:6px 12px;white-space:nowrap;transition:.15s}
+.toc a:hover{background:var(--navy);color:#fff;border-color:transparent}
+
+/* ---------- блоки ---------- */
+main{padding:34px 0 10px}
+.lead{font-size:16px;color:#3A3C45;margin-bottom:30px;max-width:640px}
+.lead b{font-weight:700;color:var(--ink)}
+
+.block{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 24px 22px;margin-bottom:16px;scroll-margin-top:16px}
+.bhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.bnum{font-family:var(--display);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:50%;
+  background:var(--ink);color:var(--cream);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tc{font-family:var(--mono);font-size:12px;font-weight:500;text-decoration:none;color:var(--navy);
+  background:var(--lime);border-radius:99px;padding:5px 11px;transition:.15s}
+.tc:hover{background:var(--navy);color:var(--lime)}
+.block h2{font-family:var(--display);font-weight:700;font-size:clamp(17px,3.2vw,21px);line-height:1.25;flex:1 1 240px}
+.block p{font-size:15px;color:#3A3C45;margin-bottom:12px}
+.block p:last-child{margin-bottom:0}
+.block b{color:var(--ink);font-weight:700}
+
+blockquote{border-left:3px solid var(--lime);background:#FAFAF7;border-radius:0 12px 12px 0;
+  padding:14px 16px;margin:14px 0;font-size:15px;color:var(--navy-deep);font-style:italic}
+blockquote::before{content:'«'}blockquote::after{content:'»'}
+
+.nums{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.num{border:1px solid var(--line);border-radius:12px;padding:9px 13px;background:#FAFAF7}
+.num b{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2}
+.num span{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- место под скрин ---------- */
+.shot{margin:16px 0 4px;border-radius:14px;overflow:hidden;background:#EFEDE6;
+  border:1.5px dashed rgba(33,51,90,.32);position:relative;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;text-align:center}
+.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:none}
+.shot.has img,.shot.has video{display:block}
+.shot.has{border-style:solid;border-color:var(--line);background:none}
+.shot .ph{padding:18px}
+.shot.has .ph{display:none}
+.shot .ph b{display:block;font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:5px}
+.shot .ph span{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5}
+.cap{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:7px}
+
+/* ---------- задание ---------- */
+.task{background:var(--navy);color:#E7EAF1;border-radius:18px;padding:26px 24px;margin:26px 0 10px;position:relative;overflow:hidden}
+.task::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.task .kicker{color:#8E97A9;position:relative}
+.task h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);margin-bottom:14px;color:#fff;position:relative}
+.task ul{list-style:none;position:relative}
+.task li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
+.task li:last-child{border-bottom:none}
+.task .mark{width:19px;height:19px;border:1.5px solid var(--lime);border-radius:5px;flex:none;margin-top:2px}
+
+/* ---------- карусель ---------- */
+.car{margin:16px 0 4px}
+.car-view{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EFEDE6}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track img,.car-track video{flex:0 0 100%;width:100%;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block;background:#EFEDE6}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  border:none;background:rgba(16,22,36,.72);color:#fff;font-size:17px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;backdrop-filter:blur(3px)}
+.car-nav:hover{background:var(--navy)}
+.car-nav[disabled]{opacity:.28;cursor:default}
+.car-nav.prev{left:10px}.car-nav.next{right:10px}
+.car-bar{display:flex;align-items:center;gap:12px;margin-top:10px}
+.car-dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(19,26,43,.2);border:none;padding:0;cursor:pointer;transition:.15s}
+.dot.on{background:var(--navy);width:20px;border-radius:99px}
+.car-cnt{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.car-cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;min-height:17px}
+.block h3{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 10px}
+.def{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;background:#FAFAF7}
+.def dt{font-family:var(--display);font-weight:700;font-size:14.5px;margin-bottom:5px}
+.def dd{font-size:14.5px;color:#3A3C45}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);padding:10px 12px;text-align:left;font-weight:500}
+th:last-child,td:last-child{text-align:right}
+td{padding:11px 12px;border-bottom:1px solid var(--line);color:#3A3C45;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#FAFAF7}
+td b{font-family:var(--display);font-weight:700;color:var(--navy);font-size:14px;white-space:nowrap}
+.toc{position:sticky;top:0;z-index:20}
+.block{scroll-margin-top:74px}
+@media(max-width:600px){table{font-size:13px}td,th{padding:9px 9px}}
+.nextlesson{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--lime);
+ border-radius:18px;padding:26px 24px;margin:16px 0 10px}
+.nextlesson .kicker{color:var(--muted);margin-bottom:10px}
+.nextlesson h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);line-height:1.22;margin-bottom:10px}
+.nextlesson h3 em{font-style:normal;color:var(--navy)}
+.nextlesson .lead2{font-size:15px;color:#3A3C45;margin-bottom:16px}
+.nextlesson ol{list-style:none;counter-reset:n;margin-bottom:18px}
+.nextlesson li{counter-increment:n;display:flex;gap:12px;align-items:flex-start;padding:10px 0;
+ border-bottom:1px solid var(--line);font-size:14.8px;color:#3A3C45}
+.nextlesson li:last-child{border-bottom:none}
+.nextlesson li::before{content:counter(n);flex:none;font-family:var(--display);font-weight:700;font-size:11px;
+ width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--ink);
+ display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.nextlesson li b{color:var(--ink)}
+.nextlesson .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;
+ font-size:14px;text-decoration:none;color:var(--ink);background:var(--lime);
+ border-radius:99px;padding:12px 20px;transition:.15s}
+.nextlesson .go:hover{background:var(--navy);color:var(--lime)}
+footer{padding:26px 0 40px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:600px){
+  .block{padding:20px 18px}
+  header{padding:34px 0 30px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Тест-драйв AI-Инженер · конспект</div>
+    <h1>Урок 2. <em>Траектория старта:</em> откуда берутся деньги</h1>
+    <div class="meta"><span class="pill on">хронометраж 32:11</span><span class="pill">14 блоков</span><span class="pill">чтение 9 минут</span><span class="pill">таймкоды кликаются</span></div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap toc-in"><a href="#b1">о чём урок</a><a href="#b2">словарь</a><a href="#b3">бот за 6 шагов</a><a href="#b4">четыре услуги</a><a href="#b5">почему платят</a><a href="#b6">аксиома</a><a href="#b7">две модели</a><a href="#b8">формула 150</a><a href="#b9">кейс Лидии</a><a href="#b10">почему спрос</a><a href="#b11">клиент 2027</a><a href="#b12">что нужно для старта</a><a href="#b13">плюсы и минусы</a><a href="#b14">задание</a></div></nav>
+<main class="wrap">
+  <p class="lead">Первый урок отвечал на вопрос «что это за профессия». Второй отвечает на вопрос <b>«откуда берутся деньги»</b>: за что платит бизнес, почему не делает это сам, какие есть две модели заработка и из чего складывается доход в 150 тысяч в месяц.</p>
+
+  <section class="block" id="b1">
+    <div class="bhead"><span class="bnum">1</span><a class="tc" href="#" data-t="8">0:08</a><h2>Математика одной услуги</h2></div>
+    <p>Урок открывается чеком: <b>30 000 ₽ за 30 минут работы</b>. Это перевод ученице Лидии за первый заказ, который она взяла на третьей неделе обучения. Дальше весь урок разбирает, как из таких чеков собирается месячный доход.</p>
+    <p>Порядок первых денег в профессии: <b>30–50 тысяч рублей</b> за одну конкретную услугу, срок исполнения максимум неделя. Делается руками и головой вместе с набором нейросетей под задачу.</p>
+    <blockquote>У нас есть фиксированные цены за конкретные услуги, которые ученики получают за то, что выдают заказчику конкретный результат.</blockquote>
+      <div class="shot has"><video src="clip/l2/chek30k.mp4" poster="clip/l2/chek30k.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «30 000 ₽ за 30 минут»"></video></div>
+      <div class="cap">Кадр из урока: «30 000 ₽ за 30 минут»</div>
+  </section>
+
+  <section class="block" id="b2">
+    <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="187">3:07</a><h2>Словарь урока</h2></div>
+    <p>Термины, вокруг которых крутится вся сборка. Дальше в уроке они не объясняются повторно.</p>
+    <dl class="def"><dt>LLM</dt><dd>Большая языковая модель, основа работы AI-инженера. Обучается в три шага: собирает данные, учится на них, выдаёт готовую модель. Именно она пишет код за специалиста.</dd></dl>
+    <dl class="def"><dt>Конструктор чат-ботов</dt><dd>Среда, где бот собирается мышью и текстом. Внутри создаётся отдельный проект под каждого клиента.</dd></dl>
+    <dl class="def"><dt>API-ключ</dt><dd>Строка-пропуск, которая соединяет конструктор с нейросетью. Выставляется один раз при подключении.</dd></dl>
+    <dl class="def"><dt>BotFather</dt><dd>Служебный бот Telegram, который выдаёт токен для нового бота. Шаг 3 в сборке.</dd></dl>
+    <dl class="def"><dt>ТЗ от клиента</dt><dd>Материалы, которые передаёт заказчик: тексты, картинки, ссылки, состав меню, цены. На их основе бот получает базу знаний.</dd></dl>
+    <dl class="def"><dt>Разовая задача</dt><dd>Услуга с началом и концом: собрал, сдал, получил деньги. От 30 000 ₽ за задачу.</dd></dl>
+    <dl class="def"><dt>Абонентская плата</dt><dd>Ежемесячный платёж за поддержание готового решения, добавление функций и правки. Именно она даёт предсказуемый доход.</dd></dl>
+    <dl class="def"><dt>Комплексное сопровождение</dt><dd>Формат, где специалист берёт проект целиком, а не одну задачу. Оплачивается дороже, потому что бизнесу выгоднее один исполнитель на всё.</dd></dl>
+      <div class="shot has"><video src="clip/l2/llm.mp4" poster="clip/l2/llm.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «LLM — это основа»"></video></div>
+      <div class="cap">Кадр из урока: «LLM — это основа»</div>
+  </section>
+
+  <section class="block" id="b3">
+    <div class="bhead"><span class="bnum">3</span><a class="tc" href="#" data-t="272">4:32</a><h2>Бот за шесть шагов</h2></div>
+    <p>Живой разбор: бот для магазина десертов, который консультирует и принимает заказы. Весь путь от открытия конструктора до денег на карте.</p>
+    <table>
+      <thead><tr><th>Шаг</th><th>Что делаем</th></tr></thead>
+      <tbody>
+        <tr><td><b>1</b></td><td>Подключаем нейросети: заходим в подключение и регистрируем аккаунт</td></tr>
+        <tr><td><b>2</b></td><td>Заводим проект под клиента в конструкторе чат-ботов</td></tr>
+        <tr><td><b>3</b></td><td>Создаём бота в Telegram через BotFather и выставляем API-ключ</td></tr>
+        <tr><td><b>4</b></td><td>Закладываем ТЗ от клиента: что и кому бот отвечает</td></tr>
+        <tr><td><b>5</b></td><td>Тестируем на контрольных вопросах и правим ответы</td></tr>
+        <tr><td><b>6</b></td><td>Подключаем клиента, чек в кармане</td></tr>
+      </tbody>
+    </table>
+    <div class="nums">
+      <div class="num"><b>6 шагов</b><span>весь путь</span></div>
+      <div class="num"><b>20–30 минут</b><span>работы</span></div>
+      <div class="num"><b>15–30 тыс ₽</b><span>за такого бота</span></div>
+    </div>
+    <p>Для сравнения на слайде: <b>на окладе это был бы заработок примерно 3 тысячи за день</b>.</p>
+      <div class="shot has"><video src="clip/l2/bot6.mp4" poster="clip/l2/bot6.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Бот за 6 шагов»"></video></div>
+      <div class="cap">Кадр из урока: «Бот за 6 шагов»</div>
+      <div class="shot has"><video src="clip/l2/okladtri.mp4" poster="clip/l2/okladtri.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «А на окладе было бы 3 тысячи за день»"></video></div>
+      <div class="cap">Кадр из урока: «А на окладе было бы 3 тысячи за день»</div>
+  </section>
+
+  <section class="block" id="b4">
+    <div class="bhead"><span class="bnum">4</span><a class="tc" href="#" data-t="423">7:03</a><h2>Четыре услуги, которые продаются</h2></div>
+    <p>По той же логике собирается всё остальное. Шагов чуть больше, инструкция та же.</p>
+    <table>
+      <thead><tr><th>Услуга</th><th>Что внутри</th><th>Цена</th></tr></thead>
+      <tbody>
+        <tr><td><b>Чат-боты</b></td><td>Консультируют, показывают меню, собирают корзину, принимают заказ и передают его менеджеру</td><td><b>40–90 тыс ₽</b></td></tr>
+        <tr><td><b>ИИ-автоматизации</b></td><td>Связки между сервисами: заявки, уведомления, отчёты собираются без ручной работы</td><td><b>от 40 тыс ₽</b></td></tr>
+        <tr><td><b>ИИ-контент</b></td><td>Тексты, картинки, озвучка, оформление под ленту и карусели, массово</td><td><b>от 5 тыс ₽ за задачу</b></td></tr>
+        <tr><td><b>Аналитика и связки</b></td><td>Дашборды по выручке, подключение нейросетей к сервисам клиента</td><td><b>по проекту</b></td></tr>
+      </tbody>
+    </table>
+    <p>Отдельный пример из урока: статью, через которую зритель попал на тест-драйв, выдал такой же бот. На его настройку ушло <b>4 часа</b>, бизнес заказывает подобных ботов <b>за 40–90 тысяч</b>. В самой школе тоже работает AI-инженер: за настройку одной воронки и её поддержание ему платят <b>50 тысяч</b>.</p>
+    <blockquote>Услуга, которой ты сейчас пользуешься как клиент, это и есть товар.</blockquote>
+      <div class="shot has"><video src="clip/l2/chatboty.mp4" poster="clip/l2/chatboty.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Услуга 1. Чат-боты»"></video></div>
+      <div class="cap">Кадр из урока: «Услуга 1. Чат-боты»</div>
+      <div class="shot has"><video src="clip/l2/cherezbota.mp4" poster="clip/l2/cherezbota.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Сюда ты попал через такого бота»"></video></div>
+      <div class="cap">Кадр из урока: «Сюда ты попал через такого бота»</div>
+  </section>
+
+  <section class="block" id="b5">
+    <div class="bhead"><span class="bnum">5</span><a class="tc" href="#" data-t="711">11:51</a><h2>Почему бизнес не делает это сам</h2></div>
+    <p>Главный вопрос урока: если это шесть шагов и полчаса, почему владелец не соберёт бота сам и не наймёт человека в штат. В уроке три причины.</p>
+    <div class="nums">
+      <div class="num"><b>1</b><span>думают, что это дико сложно</span></div>
+      <div class="num"><b>2</b><span>боятся всё сломать</span></div>
+      <div class="num"><b>3</b><span>нет времени и знаний</span></div>
+    </div>
+    <p>В среднем бизнесе решения принимают люди 40–50 лет, с нейросетями они дружат не всегда. У малого бизнеса нет ни финансов на штат, ни времени разбираться.</p>
+    <blockquote>Это как с электричеством. Надо разобраться в проводах, в схеме, почитать документацию. И просто страшно, что ударит током и дом сгорит. Поэтому вызывают мастеров, которые всё это чинят за оверпрайс.</blockquote>
+    <p>Отсюда вывод, который в уроке звучит дважды: <b>платят, лишь бы не лезть самим</b>. И по той же причине почти не торгуются.</p>
+    <blockquote>Когда моя команда начала это всё продавать, люди не торгуются. Лучше заплатить и получить современное качественное решение.</blockquote>
+      <div class="shot has"><video src="clip/l2/nikto.mp4" poster="clip/l2/nikto.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Никто не хочет разбираться сам»"></video></div>
+      <div class="cap">Кадр из урока: «Никто не хочет разбираться сам»</div>
+      <div class="shot has"><video src="clip/l2/electric.mp4" poster="clip/l2/electric.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Как с электричеством»"></video></div>
+      <div class="cap">Кадр из урока: «Как с электричеством»</div>
+      <div class="shot has"><video src="clip/l2/platyat.mp4" poster="clip/l2/platyat.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Платят, лишь бы не лезть самим»"></video></div>
+      <div class="cap">Кадр из урока: «Платят, лишь бы не лезть самим»</div>
+  </section>
+
+  <section class="block" id="b6">
+    <div class="bhead"><span class="bnum">6</span><a class="tc" href="#" data-t="831">13:51</a><h2>За что платят на самом деле</h2></div>
+    <p>Ключевая мысль урока про ценообразование. Стоимость услуги считается не от потраченного времени, а от того, сколько она стоит для заказчика.</p>
+    <p>Пример со слайда: бот экономит салону <b>15 часов работы администратора в неделю</b>, за год это сотни тысяч рублей. На этом фоне 40 тысяч за бота выглядят дёшево.</p>
+    <blockquote>Хорошие деньги это не потраченное на задачу время, а важность задачи для заказчика. Платят за результат.</blockquote>
+    <p>Второй слой той же мысли: специалист становится необходимым звеном. Настроил рассылку, клиенты покупают больше. Сделал бота, заявки не теряются. Без него это просто не работает.</p>
+      <div class="shot has"><video src="clip/l2/aksioma.mp4" poster="clip/l2/aksioma.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Аксиома богатых ИИ-инженеров»"></video></div>
+      <div class="cap">Кадр из урока: «Аксиома богатых ИИ-инженеров»</div>
+  </section>
+
+  <section class="block" id="b7">
+    <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="873">14:33</a><h2>Две модели заработка</h2></div>
+    <p>Заработок в моменте или на абонентской плате. В доходе они обычно делятся так:</p>
+    <table>
+      <thead><tr><th>Модель</th><th>Что это</th><th>Доля в доходе</th></tr></thead>
+      <tbody>
+        <tr><td><b>Разовые задачи</b></td><td>Настройка под конкретный проект, переделка за другими специалистами, новое видение задачи. От 30 000 ₽ за задачу</td><td><b>30–40%</b></td></tr>
+        <tr><td><b>Постоянные проекты</b></td><td>Ежемесячная оплата за поддержание и добавление функций, работа в штате или проектно</td><td><b>60–70%</b></td></tr>
+      </tbody>
+    </table>
+    <h3>Почему начинают именно с разовых</h3>
+    <p>Новичок для рынка пока неизвестный игрок, поэтому влияние нарабатывается разовыми задачами. Дальше путь такой:</p>
+    <ol>
+      <li>Нарабатываете влияние разовыми задачами. Доволен клиент, он вернётся или порекомендует.</li>
+      <li><b>Каждый седьмой-восьмой клиент остаётся на постоянку.</b> Четыре постоянных клиента это 120–160 тысяч каждый месяц, которые приходят без поиска новых заказов.</li>
+      <li>Устраиваетесь «в штат» проекта: берёте на сопровождение полноценный онлайн-проект. На старте реально вести 3–4 проекта одновременно.</li>
+    </ol>
+      <div class="shot has"><video src="clip/l2/dvemodeli.mp4" poster="clip/l2/dvemodeli.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Две модели заработка»"></video></div>
+      <div class="cap">Кадр из урока: «Две модели заработка»</div>
+      <div class="shot has"><video src="clip/l2/neizvestny.mp4" poster="clip/l2/neizvestny.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Вы ещё неизвестный игрок рынка»"></video></div>
+      <div class="cap">Кадр из урока: «Вы ещё неизвестный игрок рынка»</div>
+  </section>
+
+  <section class="block" id="b8">
+    <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="987">16:27</a><h2>Формула на 150 тысяч</h2></div>
+    <p>В уроке предлагается поставить видео на паузу и собрать свою комбинацию. Формула одна, вариантов сборки много.</p>
+    <table>
+      <thead><tr><th>Комбинация</th><th>Что делаете</th><th>Итог</th></tr></thead>
+      <tbody>
+        <tr><td><b>Вариант 1</b></td><td>2 бота по 25 тыс + 2 сопровождения по 35 тыс + 6 контент-задач по 5 тыс</td><td><b>150 тыс ₽</b></td></tr>
+        <tr><td><b>Вариант 2</b></td><td>6 ботов по 25 тыс</td><td><b>150 тыс ₽</b></td></tr>
+        <tr><td><b>Вариант 3</b></td><td>3 сопровождения по 50 тыс</td><td><b>150 тыс ₽</b></td></tr>
+        <tr><td><b>Вариант 4</b></td><td>30 ИИ-контент-задач по 5 тыс</td><td><b>150 тыс ₽</b></td></tr>
+      </tbody>
+    </table>
+    <blockquote>Число, которое у тебя получилось, это не мечта, а план.</blockquote>
+    <h3>Рекомендация Макса</h3>
+    <p>Рынку нужны универсалы: специалисты, готовые взять проект целиком, а не закрыть одну задачу разово. Бизнесу выгоднее заплатить одному человеку за готовое решение, чем собирать его из десяти кусков.</p>
+      <div class="shot has"><video src="clip/l2/sobrat150.mp4" poster="clip/l2/sobrat150.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Собери свои 150 тысяч»"></video></div>
+      <div class="cap">Кадр из урока: «Собери свои 150 тысяч»</div>
+      <div class="shot has"><video src="clip/l2/universaly.mp4" poster="clip/l2/universaly.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Рынку нужны универсалы»"></video></div>
+      <div class="cap">Кадр из урока: «Рынку нужны универсалы»</div>
+  </section>
+
+  <section class="block" id="b9">
+    <div class="bhead"><span class="bnum">9</span><a class="tc" href="#" data-t="1083">18:03</a><h2>Кейс Лидии, 23 года</h2></div>
+    <p>Училась и подрабатывала в общепите, с техникой знакома не была, до обучения не собрала ни одного бота. Первый заказ взяла на третьей неделе.</p>
+    <p>Первого клиента нашла на своей же работе: предложила своему заведению ИИ-бота с меню, картинками и приёмом заказов. Владельцу понравилось, Лидию порекомендовали соседнему заведению. Там она собрала похожий проект и добавила аналитику по Яндекс.Доставке.</p>
+    <div class="nums">
+      <div class="num"><b>3-я неделя</b><span>первый заказ</span></div>
+      <div class="num"><b>60 тыс ₽</b><span>с первых двух заказов</span></div>
+      <div class="num"><b>160 тыс ₽</b><span>в месяц сейчас</span></div>
+    </div>
+    <blockquote>Сделай хорошо один проект, и тебя начинают передавать из рук в руки.</blockquote>
+    <div class="car" id="car-lidia">
+      <div class="car-view">
+        <div class="car-track"><video src="clip/l2/lidia.mp4" poster="clip/l2/lidia.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Лидия, 23 года: училась и подрабатывала в общепите" aria-label="Лидия, 23 года: училась и подрабатывала в общепите"></video><video src="clip/l2/nikakoi.mp4" poster="clip/l2/nikakoi.jpg" autoplay muted loop playsinline preload="metadata" data-cap="До обучения не собрала ни одного бота" aria-label="До обучения не собрала ни одного бота"></video><video src="clip/l2/pervyeklienty.mp4" poster="clip/l2/pervyeklienty.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Первого клиента нашла на своей же работе" aria-label="Первого клиента нашла на своей же работе"></video><video src="clip/l2/shestdesyat.mp4" poster="clip/l2/shestdesyat.jpg" autoplay muted loop playsinline preload="metadata" data-cap="60 тысяч с первых двух заказов" aria-label="60 тысяч с первых двух заказов"></video><video src="clip/l2/chtodala.mp4" poster="clip/l2/chtodala.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Что дала новая профессия: 160 тысяч в месяц" aria-label="Что дала новая профессия: 160 тысяч в месяц"></video><video src="clip/l2/beznachalnikov.mp4" poster="clip/l2/beznachalnikov.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Поддержка на обучении: не осталась одна с задачами" aria-label="Поддержка на обучении: не осталась одна с задачами"></video></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button><button class="dot" data-i="3" aria-label="слайд 4"></button><button class="dot" data-i="4" aria-label="слайд 5"></button><button class="dot" data-i="5" aria-label="слайд 6"></button></div><span class="car-cnt">1 / 6</span></div>
+      <div class="car-cap">Лидия, 23 года: училась и подрабатывала в общепите</div>
+    </div>
+  </section>
+
+  <section class="block" id="b10">
+    <div class="bhead"><span class="bnum">10</span><a class="tc" href="#" data-t="1209">20:09</a><h2>Почему такой спрос</h2></div>
+    <p>Бизнес массово уходит в онлайн: запись в салон, заказ еды, консультация теперь идут через переписку. Проекты, которые раньше держали всё в голове и в блокноте, ведут клиента автоматизацией.</p>
+    <div class="nums">
+      <div class="num"><b>6,59 млн</b><span>офлайн-бизнесов в СНГ</span></div>
+      <div class="num"><b>менее 1%</b><span>используют ботов</span></div>
+      <div class="num"><b>50–60 тыс</b><span>из почти 7 миллионов</span></div>
+      <div class="num"><b>65 тыс</b><span>новых клиентов, если захочет каждый сотый</span></div>
+    </div>
+    <p>Отдельная цифра по онлайн-школам: <b>в 2021 году их было около 16 тысяч, в 2024 уже больше 73 тысяч</b>. И это только школы.</p>
+    <p>Дефицит с другой стороны рынка Макс показывает своей статистикой: <b>только за месяц агентство отказалось от 14 заявок</b>, потому что делать некому.</p>
+    <blockquote>На таких рынках выигрывают не самые опытные, а самые быстрые.</blockquote>
+      <div class="shot has"><video src="clip/l2/millionov.mp4" poster="clip/l2/millionov.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «6,59 млн бизнесов»"></video></div>
+      <div class="cap">Кадр из урока: «6,59 млн бизнесов»</div>
+      <div class="shot has"><video src="clip/l2/novyeklienty.mp4" poster="clip/l2/novyeklienty.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «65 тысяч новых клиентов»"></video></div>
+      <div class="cap">Кадр из урока: «65 тысяч новых клиентов»</div>
+  </section>
+
+  <section class="block" id="b11">
+    <div class="bhead"><span class="bnum">11</span><a class="tc" href="#" data-t="1461">24:21</a><h2>Портрет клиента 2027</h2></div>
+    <p>Каким будет заказчик в ближайшие годы и за что он будет платить.</p>
+    <table>
+      <thead><tr><th>Что делает клиент</th><th>Что это значит для специалиста</th></tr></thead>
+      <tbody>
+        <tr><td><b>Платит за скорость</b></td><td>Готов доплачивать за быстрый результат</td></tr>
+        <tr><td><b>Оптимизирует расходы</b></td><td>Ищет, где сократить расходы в компании и команде</td></tr>
+        <tr><td><b>Заказывает аудит</b></td><td>Нужен аудит бизнес-процессов и внедрение ИИ-аналитики</td></tr>
+        <tr><td><b>Тестирует гипотезы</b></td><td>Готов пробовать много вариантов подряд</td></tr>
+        <tr><td><b>Берёт новые инструменты</b></td><td>Готов пробовать новые инструменты продаж</td></tr>
+      </tbody>
+    </table>
+    <p>Слои бизнеса, где нужен ИИ, идут послойно: от быстрых денег до стратегии. Когда в игру вступят банки, госуслуги и крупные сети, спрос вырастет ещё сильнее.</p>
+      <div class="shot has"><video src="clip/l2/klient2027.mp4" poster="clip/l2/klient2027.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Клиент 2027»"></video></div>
+      <div class="cap">Кадр из урока: «Клиент 2027»</div>
+  </section>
+
+  <section class="block" id="b12">
+    <div class="bhead"><span class="bnum">12</span><a class="tc" href="#" data-t="611">10:11</a><h2>Что нужно для старта</h2></div>
+    <table>
+      <thead><tr><th>Что нужно</th><th>Подробности</th></tr></thead>
+      <tbody>
+        <tr><td><b>Не нужно программирование</b></td><td>Ни кода, ни айтишного бэкграунда. Работа идёт на русском языке словами</td></tr>
+        <tr><td><b>Ноутбук и желание</b></td><td>Компьютер и готовность разобраться, как это устроено</td></tr>
+        <tr><td><b>Небольшие вложения</b></td><td>Подписка на агрегатор нейросетей или конкретную модель, в среднем <b>20 $</b></td></tr>
+      </tbody>
+    </table>
+    <blockquote>Мы работаем на русском языке без какого-либо кода. Просто описываем нейросети задачу словами, а она сама пишет код.</blockquote>
+      <div class="shot has"><video src="clip/l2/chtonuzhno.mp4" poster="clip/l2/chtonuzhno.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Что нужно для старта»"></video></div>
+      <div class="cap">Кадр из урока: «Что нужно для старта»</div>
+      <div class="shot has"><video src="clip/l2/ne2009.mp4" poster="clip/l2/ne2009.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Мы не в 2009-м»"></video></div>
+      <div class="cap">Кадр из урока: «Мы не в 2009-м»</div>
+  </section>
+
+  <section class="block" id="b13">
+    <div class="bhead"><span class="bnum">13</span><a class="tc" href="#" data-t="1720">28:40</a><h2>Плюсы и минусы честно</h2></div>
+    <p>Отдельный слайд, где Макс разбирает профессию с двух сторон и снимает ожидание волшебной таблетки.</p>
+    <table>
+      <thead><tr><th>Минусы</th><th>Плюсы</th></tr></thead>
+      <tbody>
+        <tr><td>Иногда лень работать</td><td>Много свободного времени</td></tr>
+        <tr><td>Мало простора для творчества</td><td>Высокие чеки и большой рынок</td></tr>
+        <tr><td>&nbsp;</td><td>Не разовые услуги, а повторяющийся доход</td></tr>
+        <tr><td>&nbsp;</td><td>Просто в освоении</td></tr>
+      </tbody>
+    </table>
+    <blockquote>Зарабатывать будешь ровно столько, сколько поработал и сколько пользы принёс клиенту. Работаешь ноль часов, зарабатываешь ноль. Это единственная гарантия, которую я даю.</blockquote>
+      <div class="shot has"><video src="clip/l2/tabletki.mp4" poster="clip/l2/tabletki.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Волшебной таблетки не будет»"></video></div>
+      <div class="cap">Кадр из урока: «Волшебной таблетки не будет»</div>
+      <div class="shot has"><video src="clip/l2/plusy.mp4" poster="clip/l2/plusy.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Плюсы и минусы»"></video></div>
+      <div class="cap">Кадр из урока: «Плюсы и минусы»</div>
+  </section>
+
+  <section class="block" id="b14">
+    <div class="bhead"><span class="bnum">14</span><a class="tc" href="#" data-t="1908">31:48</a><h2>Задание после урока</h2></div>
+    <div class="task">
+      <div class="kicker">одно маленькое задание</div>
+      <p>Запиши свою комбинацию на 150 тысяч из середины урока: сколько ботов, сколько сопровождений и сколько контент-задач. Её возьмут за основу на твоём разборе после пятого урока.</p>
+    </div>
+    <p>В конце урока Макс формулирует развилку: закрыть тест-драйв как есть и через год входить в рынок уже в толпе, либо пройти его до конца, собрать первую услугу на практическом уроке и взять первый заказ, пока конкуренция мизерная.</p>
+      <div class="shot has"><video src="clip/l2/itog.mp4" poster="clip/l2/itog.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Услуги, где платят от 150–300к в месяц»"></video></div>
+      <div class="cap">Кадр из урока: «Услуги, где платят от 150–300к в месяц»</div>
+      <div class="shot has"><video src="clip/l2/zadanie.mp4" poster="clip/l2/zadanie.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Одно маленькое задание»"></video></div>
+      <div class="cap">Кадр из урока: «Одно маленькое задание»</div>
+  </section>
+
+  <div class="nextlesson">
+    <div class="kicker">что будет дальше</div>
+    <h3>Урок 3. <em>Практика:</em> собираешь первую услугу руками</h3>
+    <p class="lead2">Второй урок объяснял, за что платят. Третий даёт сделать это руками: за вечер собираешь страницу для реального бизнеса, которую можно показать владельцу и продать за 20–35 тысяч.</p>
+    <ol>
+      <li><b>Где у бизнеса дыра.</b> Что у локальных бизнесов вместо сайта и почему клиент до них не доходит.</li>
+      <li><b>Четыре шага сборки.</b> Собрать данные, добавить ответы, сделать страницу, написать владельцу.</li>
+      <li><b>Промпт по шагам.</b> Что это такое и как страница практики собирает его за тебя.</li>
+      <li><b>Чек-лист из трёх пунктов.</b> Смысл, действие и вид: как проверить готовый результат.</li>
+      <li><b>Правки обычным языком.</b> Как править сайт словами, без единой строчки кода.</li>
+      <li><b>Мини-портфолио за вечер.</b> Три-четыре прототипа, с которыми уже можно идти за заказами.</li>
+    </ol>
+    <a class="go" href="urok-3.html">Смотреть третий урок →</a>
+  </div>
+</main>
+
+<footer class="wrap">Конспект урока 2 · тест-драйв AI-Инженер</footer>
+<script>
+const VIDEO = '';
+document.querySelectorAll('.tc').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    if(!VIDEO) return;
+    window.open(VIDEO + (VIDEO.includes('?')?'&':'?') + 't=' + (a.dataset.t||0), '_blank');
+  });
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target;
+  if(e.isIntersecting && !v.dataset.off){ if(v.paused) v.play().catch(()=>{}); }
+  else if(!v.paused){ v.pause(); }
+}),{threshold:.01});
+document.querySelectorAll('video').forEach(v=>io.observe(v));
+
+document.querySelectorAll('.car').forEach(car=>{
+  const tr=car.querySelector('.car-track'), sl=[...tr.children];
+  const prev=car.querySelector('.car-nav.prev'), next=car.querySelector('.car-nav.next');
+  const dots=[...car.querySelectorAll('.dot')], cnt=car.querySelector('.car-cnt'), cap=car.querySelector('.car-cap');
+  let cur=0;
+  const sync=()=>{
+    dots.forEach((d,i)=>d.classList.toggle('on', i===cur));
+    if(cnt) cnt.textContent=(cur+1)+' / '+sl.length;
+    if(cap) cap.textContent=sl[cur].dataset.cap||'';
+    if(prev) prev.disabled=cur===0;
+    if(next) next.disabled=cur===sl.length-1;
+    sl.forEach((v,i)=>{ if(i===cur){ delete v.dataset.off; v.play&&v.play().catch(()=>{}); }
+                        else { v.dataset.off='1'; v.pause&&v.pause(); } });
+  };
+  const go=i=>{ cur=Math.max(0,Math.min(sl.length-1,i)); tr.scrollTo({left:sl[cur].offsetLeft-tr.offsetLeft,behavior:'smooth'}); sync(); };
+  if(prev) prev.onclick=()=>go(cur-1);
+  if(next) next.onclick=()=>go(cur+1);
+  dots.forEach((d,i)=>d.onclick=()=>go(i));
+  let tm; tr.addEventListener('scroll',()=>{ clearTimeout(tm); tm=setTimeout(()=>{
+    const i=sl.findIndex(s=>Math.abs(s.offsetLeft-tr.offsetLeft-tr.scrollLeft)<40);
+    if(i>=0&&i!==cur){ cur=i; sync(); }
+  },90); });
+  sync();
+});
+</script>
+</body></html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Урок 4 — конспект · Тест-драйв AI-Инженер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
+  --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+/* ---------- шапка ---------- */
+header{background:var(--ink);color:var(--cream);padding:44px 0 38px;position:relative;overflow:hidden}
+header::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E97A9;margin-bottom:14px}
+header h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,40px);line-height:1.14;letter-spacing:-.01em;margin-bottom:16px}
+header h1 em{font-style:normal;color:var(--lime)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{font-family:var(--mono);font-size:11.5px;border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:6px 12px;color:#C9CEDA}
+.pill.on{background:var(--lime);color:var(--ink);border-color:transparent;font-weight:500}
+
+/* ---------- оглавление ---------- */
+.toc{background:var(--paper);border-bottom:1px solid var(--line);padding:16px 0}
+.toc-in{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+.toc-in::-webkit-scrollbar{display:none}
+.toc a{flex:none;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--navy);
+  border:1px solid var(--line);border-radius:99px;padding:6px 12px;white-space:nowrap;transition:.15s}
+.toc a:hover{background:var(--navy);color:#fff;border-color:transparent}
+
+/* ---------- блоки ---------- */
+main{padding:34px 0 10px}
+.lead{font-size:16px;color:#3A3C45;margin-bottom:30px;max-width:640px}
+.lead b{font-weight:700;color:var(--ink)}
+
+.block{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 24px 22px;margin-bottom:16px;scroll-margin-top:16px}
+.bhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.bnum{font-family:var(--display);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:50%;
+  background:var(--ink);color:var(--cream);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tc{font-family:var(--mono);font-size:12px;font-weight:500;text-decoration:none;color:var(--navy);
+  background:var(--lime);border-radius:99px;padding:5px 11px;transition:.15s}
+.tc:hover{background:var(--navy);color:var(--lime)}
+.block h2{font-family:var(--display);font-weight:700;font-size:clamp(17px,3.2vw,21px);line-height:1.25;flex:1 1 240px}
+.block p{font-size:15px;color:#3A3C45;margin-bottom:12px}
+.block p:last-child{margin-bottom:0}
+.block b{color:var(--ink);font-weight:700}
+
+blockquote{border-left:3px solid var(--lime);background:#FAFAF7;border-radius:0 12px 12px 0;
+  padding:14px 16px;margin:14px 0;font-size:15px;color:var(--navy-deep);font-style:italic}
+blockquote::before{content:'«'}blockquote::after{content:'»'}
+
+.nums{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.num{border:1px solid var(--line);border-radius:12px;padding:9px 13px;background:#FAFAF7}
+.num b{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2}
+.num span{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- место под скрин ---------- */
+.shot{margin:16px 0 4px;border-radius:14px;overflow:hidden;background:#EFEDE6;
+  border:1.5px dashed rgba(33,51,90,.32);position:relative;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;text-align:center}
+.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:none}
+.shot.has img,.shot.has video{display:block}
+.shot.has{border-style:solid;border-color:var(--line);background:none}
+.shot .ph{padding:18px}
+.shot.has .ph{display:none}
+.shot .ph b{display:block;font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:5px}
+.shot .ph span{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5}
+.cap{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:7px}
+
+/* ---------- задание ---------- */
+.task{background:var(--navy);color:#E7EAF1;border-radius:18px;padding:26px 24px;margin:26px 0 10px;position:relative;overflow:hidden}
+.task::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.task .kicker{color:#8E97A9;position:relative}
+.task h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);margin-bottom:14px;color:#fff;position:relative}
+.task ul{list-style:none;position:relative}
+.task li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
+.task li:last-child{border-bottom:none}
+.task .mark{width:19px;height:19px;border:1.5px solid var(--lime);border-radius:5px;flex:none;margin-top:2px}
+
+/* ---------- карусель ---------- */
+.car{margin:16px 0 4px}
+.car-view{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EFEDE6}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track img,.car-track video{flex:0 0 100%;width:100%;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block;background:#EFEDE6}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  border:none;background:rgba(16,22,36,.72);color:#fff;font-size:17px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;backdrop-filter:blur(3px)}
+.car-nav:hover{background:var(--navy)}
+.car-nav[disabled]{opacity:.28;cursor:default}
+.car-nav.prev{left:10px}.car-nav.next{right:10px}
+.car-bar{display:flex;align-items:center;gap:12px;margin-top:10px}
+.car-dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(19,26,43,.2);border:none;padding:0;cursor:pointer;transition:.15s}
+.dot.on{background:var(--navy);width:20px;border-radius:99px}
+.car-cnt{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.car-cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;min-height:17px}
+.block h3{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 10px}
+.def{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;background:#FAFAF7}
+.def dt{font-family:var(--display);font-weight:700;font-size:14.5px;margin-bottom:5px}
+.def dd{font-size:14.5px;color:#3A3C45}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);padding:10px 12px;text-align:left;font-weight:500}
+th:last-child,td:last-child{text-align:right}
+td{padding:11px 12px;border-bottom:1px solid var(--line);color:#3A3C45;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#FAFAF7}
+td b{font-family:var(--display);font-weight:700;color:var(--navy);font-size:14px;white-space:nowrap}
+.toc{position:sticky;top:0;z-index:20}
+.block{scroll-margin-top:74px}
+@media(max-width:600px){table{font-size:13px}td,th{padding:9px 9px}}
+.nextlesson{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--lime);
+ border-radius:18px;padding:26px 24px;margin:16px 0 10px}
+.nextlesson .kicker{color:var(--muted);margin-bottom:10px}
+.nextlesson h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);line-height:1.22;margin-bottom:10px}
+.nextlesson h3 em{font-style:normal;color:var(--navy)}
+.nextlesson .lead2{font-size:15px;color:#3A3C45;margin-bottom:16px}
+.nextlesson ol{list-style:none;counter-reset:n;margin-bottom:18px}
+.nextlesson li{counter-increment:n;display:flex;gap:12px;align-items:flex-start;padding:10px 0;
+ border-bottom:1px solid var(--line);font-size:14.8px;color:#3A3C45}
+.nextlesson li:last-child{border-bottom:none}
+.nextlesson li::before{content:counter(n);flex:none;font-family:var(--display);font-weight:700;font-size:11px;
+ width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--ink);
+ display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.nextlesson li b{color:var(--ink)}
+.nextlesson .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;
+ font-size:14px;text-decoration:none;color:var(--ink);background:var(--lime);
+ border-radius:99px;padding:12px 20px;transition:.15s}
+.nextlesson .go:hover{background:var(--navy);color:var(--lime)}
+footer{padding:26px 0 40px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:600px){
+  .block{padding:20px 18px}
+  header{padding:34px 0 30px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Тест-драйв AI-Инженер · конспект</div>
+    <h1>Урок 4. <em>Поиск клиентов:</em> где брать заказы</h1>
+    <div class="meta"><span class="pill on">хронометраж 28:08</span><span class="pill">13 блоков</span><span class="pill">чтение 10 минут</span><span class="pill">таймкоды кликаются</span></div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap toc-in"><a href="#b1">о чём урок</a><a href="#b2">страх продать себя</a><a href="#b3">четыре шага</a><a href="#b4">почему новичок</a><a href="#b5">категории клиентов</a><a href="#b6">кейс Александра</a><a href="#b7">два типа клиентов</a><a href="#b8">перед выходом</a><a href="#b9">семь способов</a><a href="#b10">сарафанка</a><a href="#b11">Lead Finder</a><a href="#b12">без кейсов</a><a href="#b13">задание</a></div></nav>
+<main class="wrap">
+  <p class="lead">Самый прикладной урок тест-драйва: <b>семь способов найти клиента</b>, категории заказчиков с реальными чеками, что подготовить перед первым сообщением и как закрыть сделку, когда у тебя ещё нет ни отзывов, ни кейсов.</p>
+
+  <section class="block" id="b1">
+    <div class="bhead"><span class="bnum">1</span><a class="tc" href="#" data-t="38">0:38</a><h2>Что даёт урок</h2></div>
+    <ol>
+      <li>Как новичку выделиться на фоне опытных ИИ-инженеров и продать себя.</li>
+      <li>Кто основные сегменты клиентов для ИИ-инженера сегодня.</li>
+      <li>Семь рабочих способов поиска клиентов, которые используют Макс и его ученики.</li>
+      <li>Как закрыть клиента даже без отзывов и кейсов.</li>
+    </ol>
+    <p>Разбивка по уровню: <b>три способа для новичков</b> на чек услуг 30–150 тысяч и <b>два секретных способа</b> для опытных на чек 150–500 тысяч.</p>
+      <div class="shot has"><video src="clip/l4/chtouznaesh.mp4" poster="clip/l4/chtouznaesh.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Что ты узнаешь»"></video></div>
+      <div class="cap">Кадр из урока: «Что ты узнаешь»</div>
+  </section>
+
+  <section class="block" id="b2">
+    <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="88">1:28</a><h2>Страх продать себя</h2></div>
+    <p>Проблема восьмидесяти процентов новичков: поставить флаг и сказать «я ИИ-инженер, делаю такие услуги за такую стоимость». Макс проходил это сам.</p>
+    <h3>Что мешает чаще всего</h3>
+    <ul>
+      <li><b>Комфорт.</b> Есть подушка безопасности, незачем суетиться. При этом ни машины, ни квартиры, ни пассивного дохода: стабильности нет, но человек уже расслабился.</li>
+      <li><b>Надуманные страхи.</b> Тревога без отношения к реальности, которая останавливает писать, предлагать услуги и вести переговоры.</li>
+      <li><b>«Я не технарь».</b> Ни один ученик Макса в начале технарём не был, он сам тоже.</li>
+    </ul>
+    <blockquote>Фраза «у меня не технический склад ума» это удобная отговорка, а не особенность. Это то же самое, что сказать «я не умею водить, потому что не родился с рулём в руках».</blockquote>
+    <p>Что вместо этого: чёткие пошаговые действия. Открыл сервис, настроил, проверил, готово. Работа с нейросетями это не про изобретения, весь путь до результата уже протоптан.</p>
+    <blockquote>Его не надо изобретать, его надо применить.</blockquote>
+      <div class="shot has"><video src="clip/l4/komfort.mp4" poster="clip/l4/komfort.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Комфорт это тёплая ловушка»"></video></div>
+      <div class="cap">Кадр из урока: «Комфорт это тёплая ловушка»</div>
+      <div class="shot has"><video src="clip/l4/tehnar.mp4" poster="clip/l4/tehnar.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Технарём быть не обязательно»"></video></div>
+      <div class="cap">Кадр из урока: «Технарём быть не обязательно»</div>
+      <div class="shot has"><video src="clip/l4/algoritm.mp4" poster="clip/l4/algoritm.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Любой результат это просто алгоритм»"></video></div>
+      <div class="cap">Кадр из урока: «Любой результат это просто алгоритм»</div>
+  </section>
+
+  <section class="block" id="b3">
+    <div class="bhead"><span class="bnum">3</span><a class="tc" href="#" data-t="342">5:42</a><h2>Четыре шага до денег</h2></div>
+    <table>
+      <thead><tr><th>Шаг</th><th>Что происходит</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Учим навык</b></td><td>Смотрим записанные уроки, повторяем действия, допиливаем результат с карьерным консультантом. За сверхожидание клиенты часто доплачивают сверху</td></tr>
+        <tr><td><b>2. Превращаем навык в услуги</b></td><td>Из одного навыка выходит 3–4 формата: доработать существующего бота, сделать автоматизацию, собрать бота с нуля, настроить ИИ-контент или аналитику</td></tr>
+        <tr><td><b>3. Запускаем воронку сбора лидов</b></td><td>Списки чатов и площадок, готовые скрипты первых сообщений, уроки по переговорам, методички на возражения</td></tr>
+        <tr><td><b>4. Предоплата и масштаб</b></td><td>Получили предоплату, выполнили услугу, взяли рекомендацию, перевели клиента на сопровождение: с разовых 10–15 тысяч на постоянку 40–90 тысяч в месяц</td></tr>
+      </tbody>
+    </table>
+    <blockquote>Тут не нужно сидеть и ждать удачи, всё уже разложено по шагам, задача просто делать.</blockquote>
+      <div class="shot has"><video src="clip/l4/uchimnavyk.mp4" poster="clip/l4/uchimnavyk.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Учим навык»"></video></div>
+      <div class="cap">Кадр из урока: «Учим навык»</div>
+      <div class="shot has"><video src="clip/l4/voronka.mp4" poster="clip/l4/voronka.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Запускаем воронку сбора лидов»"></video></div>
+      <div class="cap">Кадр из урока: «Запускаем воронку сбора лидов»</div>
+      <div class="shot has"><video src="clip/l4/predoplata.mp4" poster="clip/l4/predoplata.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Предоплата и масштаб»"></video></div>
+      <div class="cap">Кадр из урока: «Предоплата и масштаб»</div>
+  </section>
+
+  <section class="block" id="b4">
+    <div class="bhead"><span class="bnum">4</span><a class="tc" href="#" data-t="648">10:48</a><h2>Зачем бизнесу новичок</h2></div>
+    <p>Главное возражение внутри головы: зачем заказывать у новичка, если есть опытные специалисты. Ответ в уроке простой: опытных на всех не хватает и они дорогие.</p>
+    <p>Обращение в агентство Макса начинается примерно от <b>500 тысяч рублей</b> за проект. Бизнесу нужна автоматизация, а денег на опытных нет. Он выбирает начинающего, который сделает не за 200 тысяч, а за 100, и заодно наработает себе кейс.</p>
+    <blockquote>Клиент получает автоматизацию, вы получаете кейс, отзыв, рекомендацию и деньги. Это абсолютный вин-вин.</blockquote>
+      <div class="shot has"><video src="clip/l4/rynok.mp4" poster="clip/l4/rynok.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Рынок растёт каждый день»"></video></div>
+      <div class="cap">Кадр из урока: «Рынок растёт каждый день»</div>
+  </section>
+
+  <section class="block" id="b5">
+    <div class="bhead"><span class="bnum">5</span><a class="tc" href="#" data-t="696">11:36</a><h2>Категории клиентов, которые платят</h2></div>
+    <p>Макс выделил их на своём опыте, дойдя до чеков 300–500 тысяч за проект. Есть люди, с которыми можно неделю вести переговоры и не получить ничего, эти категории платят.</p>
+    <table>
+      <thead><tr><th>Категория</th><th>Кто это</th><th>Комфортный чек</th></tr></thead>
+      <tbody>
+        <tr><td><b>Малый бизнес</b></td><td>Салоны красоты, барбершопы, автосервисы, магазины, доставки, фитнес-залы, общепит. Всё до 150 млн выручки в год</td><td><b>до 300 тыс ₽</b><br>обычно 100–150</td></tr>
+        <tr><td><b>Онлайн-школы</b></td><td>Курсы по тортам, медицине, ведению блога, шитью, стоматологии, повышению квалификации</td><td><b>до 500 тыс ₽</b></td></tr>
+      </tbody>
+    </table>
+    <p>За что платит малый бизнес: автоматизация, чат-боты по обработке входящих заявок, внедрение аналитики. Онлайн-школы платежеспособнее за счёт юнит-экономики: автоворонки, сквозная аналитика, боты внутри обучений и продуктов.</p>
+    <p>Практический вывод из урока: салону красоты не предлагают решение за миллион, у него нет таких оборотов. Услуга и чек подбираются под категорию.</p>
+      <div class="shot has"><video src="clip/l4/malyi.mp4" poster="clip/l4/malyi.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Малый бизнес»"></video></div>
+      <div class="cap">Кадр из урока: «Малый бизнес»</div>
+      <div class="shot has"><video src="clip/l4/shkoly.mp4" poster="clip/l4/shkoly.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Онлайн-школы»"></video></div>
+      <div class="cap">Кадр из урока: «Онлайн-школы»</div>
+  </section>
+
+  <section class="block" id="b6">
+    <div class="bhead"><span class="bnum">6</span><a class="tc" href="#" data-t="854">14:14</a><h2>Кейс Александра, 49 лет</h2></div>
+    <p>Предприниматель. Пришёл от отсутствия времени на жизнь и постоянного стресса при доходе меньше, чем в найме. Устал от того, что программисты задерживают задачи и забирают большую часть дохода, и решил заменить хотя бы часть процессов нейронками.</p>
+    <blockquote>Ты всем платишь, отвечаешь за косяки всех своими деньгами, и если что-то осталось после расходов, можешь взять себе на скромную жизнь. Иными словами: зарабатывают все, кроме тебя.</blockquote>
+    <p>Отдельная деталь: за два года до этого Александр оплачивал это же обучение своему сыну. Сын применил знания и перегнал отца в доходе, поэтому отец сразу пошёл на личное сопровождение.</p>
+    <h3>Что успели за первый месяц</h3>
+    <ul>
+      <li>Собрали с ИИ всю базу подрядчиков в одну структуру.</li>
+      <li>Половину работы разработчиков забрали нейронки.</li>
+      <li>Подняли чек на услуги.</li>
+      <li>Создали новый продукт на базе нейронок, сейчас это бестселлер.</li>
+    </ul>
+    <div class="nums">
+      <div class="num"><b>от 300 тыс ₽</b><span>чистыми в месяц на партнёра</span></div>
+      <div class="num"><b>−50%</b><span>расходов</span></div>
+      <div class="num"><b>1 месяц</b><span>окупаемость обучения</span></div>
+    </div>
+    <p>Кроме дохода изменилось качество жизни: время на семью, друзей и хобби вместо желания добить месяц в плюс и остаться в строю.</p>
+    <div class="car" id="car-aleksandr">
+      <div class="car-view">
+        <div class="car-track"><video src="clip/l4/aleksandr.mp4" poster="clip/l4/aleksandr.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Александр, 49 лет, предприниматель" aria-label="Александр, 49 лет, предприниматель"></video><video src="clip/l4/predprinimatel.mp4" poster="clip/l4/predprinimatel.jpg" autoplay muted loop playsinline preload="metadata" data-cap="«Зарабатывают все, кроме тебя»" aria-label="«Зарабатывают все, кроме тебя»"></video><video src="clip/l4/pochemu.mp4" poster="clip/l4/pochemu.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Почему решил пойти на обучение" aria-label="Почему решил пойти на обучение"></video><video src="clip/l4/intervyu.mp4" poster="clip/l4/intervyu.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Два года назад оплачивал это обучение сыну" aria-label="Два года назад оплачивал это обучение сыну"></video><video src="clip/l4/pervymesyac.mp4" poster="clip/l4/pervymesyac.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Что успели сделать за первый месяц" aria-label="Что успели сделать за первый месяц"></video><video src="clip/l4/trista.mp4" poster="clip/l4/trista.jpg" autoplay muted loop playsinline preload="metadata" data-cap="От 300 000 ₽ в месяц на партнёра" aria-label="От 300 000 ₽ в месяц на партнёра"></video><video src="clip/l4/dengi.mp4" poster="clip/l4/dengi.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Кроме денег изменилось качество жизни" aria-label="Кроме денег изменилось качество жизни"></video><video src="clip/l4/istoria.mp4" poster="clip/l4/istoria.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Что показывает история Александра" aria-label="Что показывает история Александра"></video></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button><button class="dot" data-i="3" aria-label="слайд 4"></button><button class="dot" data-i="4" aria-label="слайд 5"></button><button class="dot" data-i="5" aria-label="слайд 6"></button><button class="dot" data-i="6" aria-label="слайд 7"></button><button class="dot" data-i="7" aria-label="слайд 8"></button></div><span class="car-cnt">1 / 8</span></div>
+      <div class="car-cap">Александр, 49 лет, предприниматель</div>
+    </div>
+  </section>
+
+  <section class="block" id="b7">
+    <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="996">16:36</a><h2>Два типа клиентов</h2></div>
+    <div class="nums">
+      <div class="num"><b>Разовые задачи</b><span>собрал, сдал, получил деньги</span></div>
+      <div class="num"><b>Постоянное ведение</b><span>абонентская плата каждый месяц</span></div>
+    </div>
+      <div class="shot has"><video src="clip/l4/dvatipa.mp4" poster="clip/l4/dvatipa.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Два типа клиентов»"></video></div>
+      <div class="cap">Кадр из урока: «Два типа клиентов»</div>
+  </section>
+
+  <section class="block" id="b8">
+    <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="1010">16:50</a><h2>Что подготовить перед выходом к клиентам</h2></div>
+    <p>Четыре вещи, которые делаются до первого сообщения. Всё по готовому чек-листу, изобретать ничего не надо.</p>
+    <h3>1. Упаковка услуги</h3>
+    <p>Название, состав, результат для клиента, сроки, цена и что нужно от клиента для старта. Плюс короткое коммерческое предложение, которое не стыдно отправить владельцу.</p>
+    <h3>2. УТП по каждой услуге</h3>
+    <p>УТП отвечает на один вопрос владельца: почему заказать у тебя. Формула: <b>конкретная задача + конкретный срок + понятная цена</b>.</p>
+    <blockquote>«Соберу бота, который сам записывает клиентов, за 5 дней и 25 тысяч» звучит сильнее любого «качественно и недорого».</blockquote>
+    <h3>3. Ценообразование</h3>
+    <table>
+      <thead><tr><th>Услуга</th><th>На старте</th><th>Через 2–3 месяца с кейсами</th></tr></thead>
+      <tbody>
+        <tr><td><b>Бот</b></td><td>20–30 тыс ₽</td><td><b>50–150 тыс ₽</b></td></tr>
+        <tr><td><b>Доработки</b></td><td>10–15 тыс ₽</td><td>растут вместе с чеком</td></tr>
+        <tr><td><b>Сопровождение</b></td><td>40–90 тыс ₽ в месяц</td><td>зависит от объёма рассылок и правок</td></tr>
+      </tbody>
+    </table>
+    <h3>4. Переговоры</h3>
+    <p>Разговор ведётся о клиенте и его выгоде: что автоматизируем, сколько времени и денег это сэкономит, когда будет готово, когда он увидит первый результат. Скрипты переговоров и заготовки ответов выдаются готовыми.</p>
+    <blockquote>Продавцом быть не нужно, нужно быть понятным.</blockquote>
+      <div class="shot has"><video src="clip/l4/upakovka.mp4" poster="clip/l4/upakovka.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Упаковываем услугу по чек-листу»"></video></div>
+      <div class="cap">Кадр из урока: «Упаковываем услугу по чек-листу»</div>
+      <div class="shot has"><video src="clip/l4/utp.mp4" poster="clip/l4/utp.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Собираем УТП по каждой услуге»"></video></div>
+      <div class="cap">Кадр из урока: «Собираем УТП по каждой услуге»</div>
+      <div class="shot has"><video src="clip/l4/ceny.mp4" poster="clip/l4/ceny.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Теперь готовим ценообразование»"></video></div>
+      <div class="cap">Кадр из урока: «Теперь готовим ценообразование»</div>
+  </section>
+
+  <section class="block" id="b9">
+    <div class="bhead"><span class="bnum">9</span><a class="tc" href="#" data-t="1140">19:00</a><h2>Семь способов поиска клиентов</h2></div>
+    <p>У каждого способа есть список площадок, скрипт первого сообщения и порядок действий.</p>
+    <table>
+      <thead><tr><th>Способ</th><th>Что это</th><th>Кому</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Чаты Telegram и клубы онлайн-школ</b></td><td>Заказы от 5 тысяч и полноценные проекты в диапазоне 50–100 тысяч</td><td>новичок</td></tr>
+        <tr><td><b>2. Биржи и доски объявлений</b></td><td>Низкий средний чек, зато много клиентов для обкатки навыков и первых кейсов</td><td>новичок</td></tr>
+        <tr><td><b>3. Передача заказов внутри обучения</b></td><td>Школа отдаёт ученикам живые тёплые заявки со своего трафика, на высокий чек</td><td>новичок</td></tr>
+        <tr><td><b>4. Контент-завод на парсинг заявок</b></td><td>Система постинга роликов и сбора органического трафика на свои услуги через ИИ</td><td>опытный</td></tr>
+        <tr><td><b>5. Платный трафик на свои страницы</b></td><td>Свой лендинг и квизы, готовые рабочие связки в рекламе, тёплые заявки потоком</td><td>опытный</td></tr>
+        <tr><td><b>6. Закрытые платные чаты</b></td><td>Чаты по подписке, куда скидывают жирные заказы только для своих</td><td>бонус</td></tr>
+        <tr><td><b>7. Свои соцсети</b></td><td>Будущие клиенты уже подписаны на тебя, нужно заявить о себе</td><td>бонус</td></tr>
+      </tbody>
+    </table>
+    <div class="nums">
+      <div class="num"><b>15–40 тыс ₽</b><span>на первых задачах</span></div>
+      <div class="num"><b>100–150 тыс ₽</b><span>на сопровождении</span></div>
+      <div class="num"><b>150–300 тыс ₽</b><span>при 2–3 клиентах</span></div>
+    </div>
+    <p>Про третий способ отдельно: школа тратит собственные деньги на привлечение клиентов не себе, а ученикам.</p>
+    <blockquote>Твой первый клиент может прийти не из твоих поисков, а из наших заявок.</blockquote>
+    <div class="car" id="car-sposoby">
+      <div class="car-view">
+        <div class="car-track"><video src="clip/l4/chaty.mp4" poster="clip/l4/chaty.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 1: чаты Telegram и клубы онлайн-школ" aria-label="Способ 1: чаты Telegram и клубы онлайн-школ"></video><video src="clip/l4/birzhi.mp4" poster="clip/l4/birzhi.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 2: биржи и доски объявлений" aria-label="Способ 2: биржи и доски объявлений"></video><video src="clip/l4/peredacha.mp4" poster="clip/l4/peredacha.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 3: передача заказов внутри обучения" aria-label="Способ 3: передача заказов внутри обучения"></video><video src="clip/l4/kontentzavod.mp4" poster="clip/l4/kontentzavod.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 4: контент-завод на парсинг заявок" aria-label="Способ 4: контент-завод на парсинг заявок"></video><video src="clip/l4/platnyi.mp4" poster="clip/l4/platnyi.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 5: платный трафик на свои страницы" aria-label="Способ 5: платный трафик на свои страницы"></video><video src="clip/l4/sekretnye.mp4" poster="clip/l4/sekretnye.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 6: закрытые платные чаты" aria-label="Способ 6: закрытые платные чаты"></video><video src="clip/l4/socseti.mp4" poster="clip/l4/socseti.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Способ 7: свои соцсети" aria-label="Способ 7: свои соцсети"></video></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button><button class="dot" data-i="3" aria-label="слайд 4"></button><button class="dot" data-i="4" aria-label="слайд 5"></button><button class="dot" data-i="5" aria-label="слайд 6"></button><button class="dot" data-i="6" aria-label="слайд 7"></button></div><span class="car-cnt">1 / 7</span></div>
+      <div class="car-cap">Способ 1: чаты Telegram и клубы онлайн-школ</div>
+    </div>
+  </section>
+
+  <section class="block" id="b10">
+    <div class="bhead"><span class="bnum">10</span><a class="tc" href="#" data-t="1397">23:17</a><h2>Сарафанка: три приёма</h2></div>
+    <p>Самый главный блок по словам Макса. Три способа получать клиентов через тех, кто уже с тобой работал.</p>
+    <table>
+      <thead><tr><th>Приём</th><th>Как работает</th></tr></thead>
+      <tbody>
+        <tr><td><b>Чаты с отзывами</b></td><td>Тематические чаты и каналы с отзывами по специалистам. Просишь довольных клиентов написать туда про тебя, взамен скидка на следующую работу</td></tr>
+        <tr><td><b>Партнёрка</b></td><td>Клиент рассказывает о тебе знакомым за процент от первой продажи. Знакомому скидка, клиенту процент</td></tr>
+        <tr><td><b>Контакты ЛПР</b></td><td>Просишь контакты тех, кому могут быть нужны твои услуги, тоже за процент, но поменьше. Нужен контакт лица, принимающего решение</td></tr>
+      </tbody>
+    </table>
+    <blockquote>Но перед этим качественно делай свою работу. Глупо просить рекомендации, когда ты запорол проект.</blockquote>
+    <div class="car" id="car-sarafan">
+      <div class="car-view">
+        <div class="car-track"><video src="clip/l4/otzyvy.mp4" poster="clip/l4/otzyvy.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Приём 1: чаты с отзывами по специалистам" aria-label="Приём 1: чаты с отзывами по специалистам"></video><video src="clip/l4/partnerka.mp4" poster="clip/l4/partnerka.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Приём 2: партнёрка, рекомендация за процент" aria-label="Приём 2: партнёрка, рекомендация за процент"></video><video src="clip/l4/lpr.mp4" poster="clip/l4/lpr.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Приём 3: контакты ЛПР за процент поменьше" aria-label="Приём 3: контакты ЛПР за процент поменьше"></video><video src="clip/l4/kachestvenno.mp4" poster="clip/l4/kachestvenno.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Условие, без которого сарафанка не работает" aria-label="Условие, без которого сарафанка не работает"></video></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button><button class="dot" data-i="3" aria-label="слайд 4"></button></div><span class="car-cnt">1 / 4</span></div>
+      <div class="car-cap">Приём 1: чаты с отзывами по специалистам</div>
+    </div>
+  </section>
+
+  <section class="block" id="b11">
+    <div class="bhead"><span class="bnum">11</span><a class="tc" href="#" data-t="1517">25:17</a><h2>Telegram Lead Finder</h2></div>
+    <p>Скрэпер, который ищет заявки автоматически. Сгружает нужные сообщения из чатов вакансий и чатов, где ищут исполнителей, чтобы не сидеть и не мониторить вручную.</p>
+    <table>
+      <thead><tr><th>Что делает</th><th>Как это выглядит</th></tr></thead>
+      <tbody>
+        <tr><td><b>Собирает сообщения</b></td><td>Парсит чаты и сгружает подходящие заявки в одно окно</td></tr>
+        <tr><td><b>Подсказывает, как писать</b></td><td>Сразу предлагает, как ответить на заявку, чтобы не начинать с нуля</td></tr>
+        <tr><td><b>Сегментирует по теплоте</b></td><td>Показывает тех, кому продать будет легче всего, с них и начинаешь</td></tr>
+      </tbody>
+    </table>
+    <p>Этого же бота передают ученикам: поиск лидов работает на автопилоте, пока ты занят делом.</p>
+      <div class="shot has"><video src="clip/l4/leadfinder.mp4" poster="clip/l4/leadfinder.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Telegram Lead Finder»"></video></div>
+      <div class="cap">Кадр из урока: «Telegram Lead Finder»</div>
+      <div class="shot has"><video src="clip/l4/sortiruet.mp4" poster="clip/l4/sortiruet.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Находит заявки и сортирует по теплоте»"></video></div>
+      <div class="cap">Кадр из урока: «Находит заявки и сортирует по теплоте»</div>
+  </section>
+
+  <section class="block" id="b12">
+    <div class="bhead"><span class="bnum">12</span><a class="tc" href="#" data-t="1583">26:23</a><h2>Как закрыть клиента без кейсов и отзывов</h2></div>
+    <p>Вопрос, который останавливает всех новичков. Ответ в уроке: опираешься не на пустоту, а на реальный опыт команды. Все кейсы и наработки доступны ученикам.</p>
+    <p>Отдельно оговаривается граница честности: это не про выдуманные кейсы, когда зелёный новичок придумывает себе портфолио, всеми правдами закрывает клиента и потом косячит.</p>
+    <blockquote>И это не будет враньём, потому что все задачи по нейросетям ученик делает вместе с нашей командой, а не один.</blockquote>
+      <div class="shot has"><video src="clip/l4/bezkeisov.mp4" poster="clip/l4/bezkeisov.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Как закрыть клиента без кейсов и отзывов»"></video></div>
+      <div class="cap">Кадр из урока: «Как закрыть клиента без кейсов и отзывов»</div>
+      <div class="shot has"><video src="clip/l4/nevydumannye.mp4" poster="clip/l4/nevydumannye.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Это не про выдуманные кейсы»"></video></div>
+      <div class="cap">Кадр из урока: «Это не про выдуманные кейсы»</div>
+  </section>
+
+  <section class="block" id="b13">
+    <div class="bhead"><span class="bnum">13</span><a class="tc" href="#" data-t="1678">27:58</a><h2>Задание после урока</h2></div>
+    <div class="task">
+      <div class="kicker">задание урока</div>
+      <p>Напиши в чат куратору <b>два способа из семи</b>, с которых хочешь начать поиск клиентов. По ним дадут наводки под твою ситуацию и обратную связь, как действовать.</p>
+    </div>
+    <p>Отдельно: интервью со всеми учениками, которых упоминали в тест-драйве, записаны и лежат на платформе. Их можно посмотреть, чтобы услышать детали от тех, кто недавно был на твоём месте.</p>
+      <div class="shot has"><video src="clip/l4/napishi.mp4" poster="clip/l4/napishi.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Напиши в чат два способа»"></video></div>
+      <div class="cap">Кадр из урока: «Напиши в чат два способа»</div>
+  </section>
+
+  <div class="nextlesson">
+    <div class="kicker">что будет дальше</div>
+    <h3>Урок 5. <em>Дорожная карта:</em> путь до 150 000 ₽</h3>
+    <p class="lead2">Заключительный урок тест-драйва. Четыре урока дали профессию, модели заработка, первую услугу руками и способы искать заказы. Пятый собирает это в один маршрут: что делать по неделям, чтобы дойти до первых денег и дальше.</p>
+    <ol>
+      <li><b>Дорожная карта профессии</b> и инструкция, как выйти на доход.</li>
+      <li><b>Что делать сразу после тест-драйва</b> и в каком порядке.</li>
+      <li><b>Паспорт профессии.</b> После пятого урока заполняешь анкету и получаешь персональный разбор своей ситуации: какие навыки осваивать и в какой модели заработка развиваться.</li>
+    </ol>
+    <a class="go" href="#">Пятый урок скоро →</a>
+  </div>
+</main>
+
+<footer class="wrap">Конспект урока 4 · тест-драйв AI-Инженер</footer>
+<script>
+const VIDEO = '';
+document.querySelectorAll('.tc').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    if(!VIDEO) return;
+    window.open(VIDEO + (VIDEO.includes('?')?'&':'?') + 't=' + (a.dataset.t||0), '_blank');
+  });
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target;
+  if(e.isIntersecting && !v.dataset.off){ if(v.paused) v.play().catch(()=>{}); }
+  else if(!v.paused){ v.pause(); }
+}),{threshold:.01});
+document.querySelectorAll('video').forEach(v=>io.observe(v));
+
+document.querySelectorAll('.car').forEach(car=>{
+  const tr=car.querySelector('.car-track'), sl=[...tr.children];
+  const prev=car.querySelector('.car-nav.prev'), next=car.querySelector('.car-nav.next');
+  const dots=[...car.querySelectorAll('.dot')], cnt=car.querySelector('.car-cnt'), cap=car.querySelector('.car-cap');
+  let cur=0;
+  const sync=()=>{
+    dots.forEach((d,i)=>d.classList.toggle('on', i===cur));
+    if(cnt) cnt.textContent=(cur+1)+' / '+sl.length;
+    if(cap) cap.textContent=sl[cur].dataset.cap||'';
+    if(prev) prev.disabled=cur===0;
+    if(next) next.disabled=cur===sl.length-1;
+    sl.forEach((v,i)=>{ if(i===cur){ delete v.dataset.off; v.play&&v.play().catch(()=>{}); }
+                        else { v.dataset.off='1'; v.pause&&v.pause(); } });
+  };
+  const go=i=>{ cur=Math.max(0,Math.min(sl.length-1,i)); tr.scrollTo({left:sl[cur].offsetLeft-tr.offsetLeft,behavior:'smooth'}); sync(); };
+  if(prev) prev.onclick=()=>go(cur-1);
+  if(next) next.onclick=()=>go(cur+1);
+  dots.forEach((d,i)=>d.onclick=()=>go(i));
+  let tm; tr.addEventListener('scroll',()=>{ clearTimeout(tm); tm=setTimeout(()=>{
+    const i=sl.findIndex(s=>Math.abs(s.offsetLeft-tr.offsetLeft-tr.scrollLeft)<40);
+    if(i>=0&&i!==cur){ cur=i; sync(); }
+  },90); });
+  sync();
+});
+</script>
+</body></html>

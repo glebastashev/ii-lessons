@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Урок 3 — конспект · Тест-драйв AI-Инженер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
+  --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+/* ---------- шапка ---------- */
+header{background:var(--ink);color:var(--cream);padding:44px 0 38px;position:relative;overflow:hidden}
+header::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E97A9;margin-bottom:14px}
+header h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,40px);line-height:1.14;letter-spacing:-.01em;margin-bottom:16px}
+header h1 em{font-style:normal;color:var(--lime)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{font-family:var(--mono);font-size:11.5px;border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:6px 12px;color:#C9CEDA}
+.pill.on{background:var(--lime);color:var(--ink);border-color:transparent;font-weight:500}
+
+/* ---------- оглавление ---------- */
+.toc{background:var(--paper);border-bottom:1px solid var(--line);padding:16px 0}
+.toc-in{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+.toc-in::-webkit-scrollbar{display:none}
+.toc a{flex:none;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--navy);
+  border:1px solid var(--line);border-radius:99px;padding:6px 12px;white-space:nowrap;transition:.15s}
+.toc a:hover{background:var(--navy);color:#fff;border-color:transparent}
+
+/* ---------- блоки ---------- */
+main{padding:34px 0 10px}
+.lead{font-size:16px;color:#3A3C45;margin-bottom:30px;max-width:640px}
+.lead b{font-weight:700;color:var(--ink)}
+
+.block{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 24px 22px;margin-bottom:16px;scroll-margin-top:16px}
+.bhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.bnum{font-family:var(--display);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:50%;
+  background:var(--ink);color:var(--cream);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tc{font-family:var(--mono);font-size:12px;font-weight:500;text-decoration:none;color:var(--navy);
+  background:var(--lime);border-radius:99px;padding:5px 11px;transition:.15s}
+.tc:hover{background:var(--navy);color:var(--lime)}
+.block h2{font-family:var(--display);font-weight:700;font-size:clamp(17px,3.2vw,21px);line-height:1.25;flex:1 1 240px}
+.block p{font-size:15px;color:#3A3C45;margin-bottom:12px}
+.block p:last-child{margin-bottom:0}
+.block b{color:var(--ink);font-weight:700}
+
+blockquote{border-left:3px solid var(--lime);background:#FAFAF7;border-radius:0 12px 12px 0;
+  padding:14px 16px;margin:14px 0;font-size:15px;color:var(--navy-deep);font-style:italic}
+blockquote::before{content:'«'}blockquote::after{content:'»'}
+
+.nums{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.num{border:1px solid var(--line);border-radius:12px;padding:9px 13px;background:#FAFAF7}
+.num b{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2}
+.num span{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- место под скрин ---------- */
+.shot{margin:16px 0 4px;border-radius:14px;overflow:hidden;background:#EFEDE6;
+  border:1.5px dashed rgba(33,51,90,.32);position:relative;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;text-align:center}
+.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:none}
+.shot.has img,.shot.has video{display:block}
+.shot.has{border-style:solid;border-color:var(--line);background:none}
+.shot .ph{padding:18px}
+.shot.has .ph{display:none}
+.shot .ph b{display:block;font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:5px}
+.shot .ph span{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5}
+.cap{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:7px}
+
+/* ---------- задание ---------- */
+.task{background:var(--navy);color:#E7EAF1;border-radius:18px;padding:26px 24px;margin:26px 0 10px;position:relative;overflow:hidden}
+.task::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+.task .kicker{color:#8E97A9;position:relative}
+.task h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);margin-bottom:14px;color:#fff;position:relative}
+.task ul{list-style:none;position:relative}
+.task li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
+.task li:last-child{border-bottom:none}
+.task .mark{width:19px;height:19px;border:1.5px solid var(--lime);border-radius:5px;flex:none;margin-top:2px}
+
+/* ---------- карусель ---------- */
+.car{margin:16px 0 4px}
+.car-view{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EFEDE6}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track img,.car-track video{flex:0 0 100%;width:100%;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block;background:#EFEDE6}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  border:none;background:rgba(16,22,36,.72);color:#fff;font-size:17px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;backdrop-filter:blur(3px)}
+.car-nav:hover{background:var(--navy)}
+.car-nav[disabled]{opacity:.28;cursor:default}
+.car-nav.prev{left:10px}.car-nav.next{right:10px}
+.car-bar{display:flex;align-items:center;gap:12px;margin-top:10px}
+.car-dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(19,26,43,.2);border:none;padding:0;cursor:pointer;transition:.15s}
+.dot.on{background:var(--navy);width:20px;border-radius:99px}
+.car-cnt{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.car-cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;min-height:17px}
+.block h3{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 10px}
+.def{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;background:#FAFAF7}
+.def dt{font-family:var(--display);font-weight:700;font-size:14.5px;margin-bottom:5px}
+.def dd{font-size:14.5px;color:#3A3C45}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);padding:10px 12px;text-align:left;font-weight:500}
+th:last-child,td:last-child{text-align:right}
+td{padding:11px 12px;border-bottom:1px solid var(--line);color:#3A3C45;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#FAFAF7}
+td b{font-family:var(--display);font-weight:700;color:var(--navy);font-size:14px;white-space:nowrap}
+.toc{position:sticky;top:0;z-index:20}
+.block{scroll-margin-top:74px}
+@media(max-width:600px){table{font-size:13px}td,th{padding:9px 9px}}
+.nextlesson{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--lime);
+ border-radius:18px;padding:26px 24px;margin:16px 0 10px}
+.nextlesson .kicker{color:var(--muted);margin-bottom:10px}
+.nextlesson h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,23px);line-height:1.22;margin-bottom:10px}
+.nextlesson h3 em{font-style:normal;color:var(--navy)}
+.nextlesson .lead2{font-size:15px;color:#3A3C45;margin-bottom:16px}
+.nextlesson ol{list-style:none;counter-reset:n;margin-bottom:18px}
+.nextlesson li{counter-increment:n;display:flex;gap:12px;align-items:flex-start;padding:10px 0;
+ border-bottom:1px solid var(--line);font-size:14.8px;color:#3A3C45}
+.nextlesson li:last-child{border-bottom:none}
+.nextlesson li::before{content:counter(n);flex:none;font-family:var(--display);font-weight:700;font-size:11px;
+ width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--ink);
+ display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.nextlesson li b{color:var(--ink)}
+.nextlesson .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;
+ font-size:14px;text-decoration:none;color:var(--ink);background:var(--lime);
+ border-radius:99px;padding:12px 20px;transition:.15s}
+.nextlesson .go:hover{background:var(--navy);color:var(--lime)}
+footer{padding:26px 0 40px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:600px){
+  .block{padding:20px 18px}
+  header{padding:34px 0 30px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Тест-драйв AI-Инженер · конспект</div>
+    <h1>Урок 3. <em>Практика:</em> первая услуга своими руками</h1>
+    <div class="meta"><span class="pill on">хронометраж 18:45</span><span class="pill">11 блоков</span><span class="pill">чтение 7 минут</span><span class="pill">таймкоды кликаются</span></div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap toc-in"><a href="#b1">что делаем</a><a href="#b2">дыра у бизнеса</a><a href="#b3">точка входа</a><a href="#b4">четыре шага</a><a href="#b5">словарь</a><a href="#b6">как собрана страница</a><a href="#b7">практика</a><a href="#b8">чек-лист</a><a href="#b9">правки</a><a href="#b10">второй бизнес</a><a href="#b11">домашка</a></div></nav>
+<main class="wrap">
+  <p class="lead">Ядро тест-драйва. За вечер собираешь <b>работающую страницу для реального бизнеса</b> с быстрыми ответами и кнопками связи, правишь её обычным языком и получаешь то, с чем можно зайти к владельцу. Такую работу бизнес заказывает за 20–35 тысяч.</p>
+
+  <section class="block" id="b1">
+    <div class="bhead"><span class="bnum">1</span><a class="tc" href="#" data-t="8">0:08</a><h2>Что делаем сегодня</h2></div>
+    <p>Собираем лендинг для конкретного офлайн-бизнеса: салона, барбершопа, автосервиса, кофейни. Добавляем виджет быстрых ответов, собираем открытую информацию о бизнесе, превращаем её в техническое задание и отдаём нейросети. Всё на платформе тест-драйва, инструменты уже собраны.</p>
+    <blockquote>Даже если вы в нише ничего не понимаете и не знаете, что такое нейросеть, я покажу максимально подробно, шаг за шагом.</blockquote>
+      <div class="shot has"><video src="clip/l3/segodnya.mp4" poster="clip/l3/segodnya.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Сегодня ты сделаешь первую работу руками»"></video></div>
+      <div class="cap">Кадр из урока: «Сегодня ты сделаешь первую работу руками»</div>
+  </section>
+
+  <section class="block" id="b2">
+    <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="102">1:42</a><h2>Где у бизнеса дыра</h2></div>
+    <p>Локальные бизнесы часто упакованы плохо и по смыслам, и по дизайну. Клиент ищет, куда пойти, забивает запрос в поиск или просит нейросеть найти топ барбершопов, получает список сайтов и выбирает тот, который вызвал больше доверия. Если сайта нет или он слабый, бизнес просто выпадает из этого выбора.</p>
+    <table>
+      <thead><tr><th>Что у них вместо сайта</th><th>Почему это не работает</th></tr></thead>
+      <tbody>
+        <tr><td><b>Соцсети</b></td><td>Последний пост мог быть полгода назад, актуальные услуги спрятаны в сторис</td></tr>
+        <tr><td><b>Таплинк</b></td><td>Кнопки есть, ощущения нормальной упаковки и доверия нет</td></tr>
+        <tr><td><b>Карточка на карте</b></td><td>Адрес есть, понятного оффера и маршрута к заявке нет</td></tr>
+        <tr><td><b>Телефон</b></td><td>Клиенту предлагают позвонить, хотя он хотел быстро понять цену и детали</td></tr>
+      </tbody>
+    </table>
+    <p>Проблема шире, чем сайт. Всё держится в ручном режиме: медленные ответы, владелец занят, менеджеры отвечают долго, заявки остывают и люди отваливаются. Записи разговоров нет, CRM нет, заявки попадают в табличку.</p>
+      <div class="shot has"><video src="clip/l3/vmestosaita.mp4" poster="clip/l3/vmestosaita.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Что у них вместо сайта»"></video></div>
+      <div class="cap">Кадр из урока: «Что у них вместо сайта»</div>
+      <div class="shot has"><video src="clip/l3/shire.mp4" poster="clip/l3/shire.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Но проблема шире, чем сайт»"></video></div>
+      <div class="cap">Кадр из урока: «Но проблема шире, чем сайт»</div>
+  </section>
+
+  <section class="block" id="b3">
+    <div class="bhead"><span class="bnum">3</span><a class="tc" href="#" data-t="151">2:31</a><h2>Точка входа может быть разной</h2></div>
+    <p>Страница, автоответчик, форма записи, мини-CRM или простая автоматизация. Берётся то, что закрывает слабое место конкретного бизнеса. На уроке разбирается страница, потому что её результат видно сразу и его легко показать.</p>
+    <p>Дальше принцип, который отличает этот подход от холодных писем: к владельцу приходят <b>не с обещанием, а с готовым прототипом</b>. Его услуги, его контакты, его клиентские вопросы и собранная страница.</p>
+    <blockquote>Первый разговор становится проще и конкретнее.</blockquote>
+      <div class="shot has"><video src="clip/l3/tochkavhoda.mp4" poster="clip/l3/tochkavhoda.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Точка входа может быть разной»"></video></div>
+      <div class="cap">Кадр из урока: «Точка входа может быть разной»</div>
+      <div class="shot has"><video src="clip/l3/gotovaya.mp4" poster="clip/l3/gotovaya.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Приходим с готовой работой»"></video></div>
+      <div class="cap">Кадр из урока: «Приходим с готовой работой»</div>
+      <div class="shot has"><video src="clip/l3/pokazyvaesh.mp4" poster="clip/l3/pokazyvaesh.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Ты показываешь результат»"></video></div>
+      <div class="cap">Кадр из урока: «Ты показываешь результат»</div>
+  </section>
+
+  <section class="block" id="b4">
+    <div class="bhead"><span class="bnum">4</span><a class="tc" href="#" data-t="233">3:53</a><h2>Четыре шага урока</h2></div>
+    <div class="nums">
+      <div class="num"><b>1</b><span>собираем данные о бизнесе</span></div>
+      <div class="num"><b>2</b><span>добавляем ответы на вопросы клиента</span></div>
+      <div class="num"><b>3</b><span>делаем страницу с оффером и кнопками</span></div>
+      <div class="num"><b>4</b><span>пишем владельцу</span></div>
+    </div>
+      <div class="shot has"><video src="clip/l3/chetyre.mp4" poster="clip/l3/chetyre.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Простые 4 шага»"></video></div>
+      <div class="cap">Кадр из урока: «Простые 4 шага»</div>
+  </section>
+
+  <section class="block" id="b5">
+    <div class="bhead"><span class="bnum">5</span><a class="tc" href="#" data-t="298">4:58</a><h2>Словарь урока</h2></div>
+    <dl class="def"><dt>Промпт</dt><dd>Текст-инструкция, который подаётся на вход нейросети, чтобы получить нужный результат. Бывает вопросом («что такое промпт»), инструкцией («напиши пост про X в стиле Y») или системным промптом, который задаёт правила поведения модели.</dd></dl>
+    <dl class="def"><dt>Системный промпт</dt><dd>Правила, по которым модель работает всю сессию. На странице практики он собирается автоматически под выбранный бизнес.</dd></dl>
+    <dl class="def"><dt>Прототип</dt><dd>Аккуратная рабочая версия страницы, которую можно показать владельцу. Идеальный сайт здесь не нужен.</dd></dl>
+    <dl class="def"><dt>Preview</dt><dd>Раздел, где нейросеть показывает собранную страницу целиком. При бесплатном тарифе результат смотрится через кнопку «Посмотреть сайт» на платформе.</dd></dl>
+      <div class="shot has"><video src="clip/l3/prompt.mp4" poster="clip/l3/prompt.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Вводим промт»"></video></div>
+      <div class="cap">Кадр из урока: «Вводим промт»</div>
+  </section>
+
+  <section class="block" id="b6">
+    <div class="bhead"><span class="bnum">6</span><a class="tc" href="#" data-t="278">4:38</a><h2>Как собрана страница практики</h2></div>
+    <p>Макс показывает кухню: та же логика, которую ученик повторит на своём бизнесе.</p>
+    <ol>
+      <li>Зашли в Codex от GPT: среда, где можно дать задачу не только на текст, но и на файлы, код и сборку результата.</li>
+      <li>Ввели промпт с описанием того, что нужно получить.</li>
+      <li>Собрали страницу: карта, список бизнесов, карточки, фильтры, промпт и переход в Qwen или GPT.</li>
+      <li>Сгенерировали шаблон системного промпта, чтобы задание не писать с нуля.</li>
+      <li>Задизайнили так, чтобы было понятно, куда нажимать.</li>
+    </ol>
+    <div class="car" id="car-sborka">
+      <div class="car-view">
+        <div class="car-track"><video src="clip/l3/codex.mp4" poster="clip/l3/codex.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Шаг 1: зашли в Codex от GPT" aria-label="Шаг 1: зашли в Codex от GPT"></video><video src="clip/l3/prompt.mp4" poster="clip/l3/prompt.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Шаг 2: ввели промпт" aria-label="Шаг 2: ввели промпт"></video><video src="clip/l3/stranica.mp4" poster="clip/l3/stranica.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Шаг 3: собрали страницу с этой информацией" aria-label="Шаг 3: собрали страницу с этой информацией"></video><video src="clip/l3/shablon.mp4" poster="clip/l3/shablon.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Шаг 4: сгенерировали шаблон системного промпта" aria-label="Шаг 4: сгенерировали шаблон системного промпта"></video><video src="clip/l3/zadizainili.mp4" poster="clip/l3/zadizainili.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Шаг 5: задизайнили практику" aria-label="Шаг 5: задизайнили практику"></video><video src="clip/l3/poluchilas.mp4" poster="clip/l3/poluchilas.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Готовая страница практики" aria-label="Готовая страница практики"></video></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button><button class="dot" data-i="3" aria-label="слайд 4"></button><button class="dot" data-i="4" aria-label="слайд 5"></button><button class="dot" data-i="5" aria-label="слайд 6"></button></div><span class="car-cnt">1 / 6</span></div>
+      <div class="car-cap">Шаг 1: зашли в Codex от GPT</div>
+    </div>
+  </section>
+
+  <section class="block" id="b7">
+    <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="430">7:10</a><h2>Практическая часть</h2></div>
+    <p>Ссылка на страницу практики лежит под видео. Внутри уже добавлены бизнесы, карточки, промпты и ссылки на инструменты.</p>
+    <table>
+      <thead><tr><th>Шаг</th><th>Действие</th></tr></thead>
+      <tbody>
+        <tr><td><b>1</b></td><td>Выбери офлайн-бизнес на карте или в списке</td></tr>
+        <tr><td><b>2</b></td><td>Собери разбор этого бизнеса: контакты, слабое место, идея входа</td></tr>
+        <tr><td><b>3</b></td><td>Скопируй промпт из карточки и перенеси в Qwen или ChatGPT</td></tr>
+        <tr><td><b>4</b></td><td>Нейросеть сгенерирует сайт с автоответчиком по этому промпту</td></tr>
+        <tr><td><b>5</b></td><td>Внеси желаемые правки</td></tr>
+        <tr><td><b>6</b></td><td>Прикрепи сайт на платформу</td></tr>
+      </tbody>
+    </table>
+    <blockquote>Ты тут не зритель. ИИ собирает черновик, а ты принимаешь решения: что оставить, что поправить, где усилить оффер и как показать владельцу.</blockquote>
+      <div class="shot has"><video src="clip/l3/ssylka.mp4" poster="clip/l3/ssylka.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Откройте ссылку под видео»"></video></div>
+      <div class="cap">Кадр из урока: «Откройте ссылку под видео»</div>
+      <div class="shot has"><video src="clip/l3/nezritel.mp4" poster="clip/l3/nezritel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Ты тут не зритель»"></video></div>
+      <div class="cap">Кадр из урока: «Ты тут не зритель»</div>
+  </section>
+
+  <section class="block" id="b8">
+    <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="635">10:35</a><h2>Чек-лист: проверяем три вещи</h2></div>
+    <p>Готовую страницу проверяют глазами клиента: захотел бы я тут купить.</p>
+    <table>
+      <thead><tr><th>Что смотрим</th><th>Вопрос к странице</th></tr></thead>
+      <tbody>
+        <tr><td><b>Смысл</b></td><td>Верно ли описан бизнес, услуга, оффер и клиентская боль</td></tr>
+        <tr><td><b>Действие</b></td><td>Есть ли кнопка связи, запись или понятный следующий шаг</td></tr>
+        <tr><td><b>Вид</b></td><td>Страница не разваливается, нормально читается, работает на телефоне</td></tr>
+      </tbody>
+    </table>
+      <div class="shot has"><video src="clip/l3/trivesi.mp4" poster="clip/l3/trivesi.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Проверяем три вещи»"></video></div>
+      <div class="cap">Кадр из урока: «Проверяем три вещи»</div>
+  </section>
+
+  <section class="block" id="b9">
+    <div class="bhead"><span class="bnum">9</span><a class="tc" href="#" data-t="657">10:57</a><h2>Правки обычным языком</h2></div>
+    <p>Технический язык не нужен. Правка пишется так же, как объяснил бы её человек: «Сделай первый экран короче. Убери общие фразы, добавь акцент на запись сегодня и кнопку WhatsApp».</p>
+    <h3>Порядок правок</h3>
+    <ol>
+      <li><b>Название и ниша.</b> Нет ошибок в названии бизнеса и в услугах.</li>
+      <li><b>Оффер.</b> Понятно, зачем клиенту оставить заявку.</li>
+      <li><b>Живой язык.</b> Текст звучит как живой бизнес, а не как шаблон.</li>
+    </ol>
+    <p>Отдельно проверяется телефон: большинство клиентов малого бизнеса смотрят с телефона. Если мобильная версия слабая, нейросеть просят поправить.</p>
+    <blockquote>Не требуется идеальный сайт. Нужен аккуратный прототип, который доказывает: ты подготовился и можешь сделать полезное.</blockquote>
+      <div class="shot has"><video src="clip/l3/pravim.mp4" poster="clip/l3/pravim.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Правим обычным языком»"></video></div>
+      <div class="cap">Кадр из урока: «Правим обычным языком»</div>
+      <div class="shot has"><video src="clip/l3/chistimsmysl.mp4" poster="clip/l3/chistimsmysl.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Сначала чистим смысл»"></video></div>
+      <div class="cap">Кадр из урока: «Сначала чистим смысл»</div>
+      <div class="shot has"><video src="clip/l3/telefon.mp4" poster="clip/l3/telefon.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Проверяем на телефоне»"></video></div>
+      <div class="cap">Кадр из урока: «Проверяем на телефоне»</div>
+  </section>
+
+  <section class="block" id="b10">
+    <div class="bhead"><span class="bnum">10</span><a class="tc" href="#" data-t="777">12:57</a><h2>Берём второй бизнес</h2></div>
+    <p>После первого прототипа путь уже понятен, второй собирается быстрее. Цикл повторяется: бизнес и его слабое место, промпт под нишу, первый прототип, правки по смыслу, действию и телефону.</p>
+    <p>На уроке инструмент выбран специально из тех, что можно попробовать бесплатно. Это безопасный вход, чтобы руками почувствовать процесс, и далеко не потолок возможностей.</p>
+    <div class="car" id="car-rezultat">
+      <div class="car-view">
+        <div class="car-track"><video src="clip/l3/sait.mp4" poster="clip/l3/sait.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Первый экран собранного сайта" aria-label="Первый экран собранного сайта"></video><video src="clip/l3/uslugicены.mp4" poster="clip/l3/uslugicены.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Блок услуг и цен" aria-label="Блок услуг и цен"></video><video src="clip/l3/portfolio.mp4" poster="clip/l3/portfolio.jpg" autoplay muted loop playsinline preload="metadata" data-cap="Три-четыре страницы это уже мини-портфолио" aria-label="Три-четыре страницы это уже мини-портфолио"></video></div>
+        <button class="car-nav prev" aria-label="назад">‹</button>
+        <button class="car-nav next" aria-label="вперёд">›</button>
+      </div>
+      <div class="car-bar"><div class="car-dots"><button class="dot on" data-i="0" aria-label="слайд 1"></button><button class="dot" data-i="1" aria-label="слайд 2"></button><button class="dot" data-i="2" aria-label="слайд 3"></button></div><span class="car-cnt">1 / 3</span></div>
+      <div class="car-cap">Первый экран собранного сайта</div>
+    </div>
+      <div class="shot has"><video src="clip/l3/vtoroybiznes.mp4" poster="clip/l3/vtoroybiznes.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Берём второй бизнес»"></video></div>
+      <div class="cap">Кадр из урока: «Берём второй бизнес»</div>
+  </section>
+
+  <section class="block" id="b11">
+    <div class="bhead"><span class="bnum">11</span><a class="tc" href="#" data-t="831">13:51</a><h2>Сдаём домашку</h2></div>
+    <div class="task">
+      <div class="kicker">задание урока</div>
+      <p>Сохрани файл страницы, обычно это <b>index.html</b>. Загрузи его в чат тест-драйва. Макс проверит работу и прокомментирует её лично.</p>
+    </div>
+    <h3>Что получилось на выходе</h3>
+    <p>Умение найти слабое место в бизнесе, собрать демо, поправить результат и зайти к владельцу с конкретикой. Три-четыре таких прототипа за вечер это уже мини-портфолио, с которым можно идти за первыми заказами.</p>
+    <div class="nums">
+      <div class="num"><b>20–35 тыс ₽</b><span>цена такой работы</span></div>
+      <div class="num"><b>за вечер</b><span>время сборки</span></div>
+      <div class="num"><b>3–4 страницы</b><span>мини-портфолио</span></div>
+    </div>
+    <blockquote>Мы собрали её за вечер и бесплатно. В следующем уроке разберём продажи.</blockquote>
+      <div class="shot has"><video src="clip/l3/domashka.mp4" poster="clip/l3/domashka.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Сдаём домашку»"></video></div>
+      <div class="cap">Кадр из урока: «Сдаём домашку»</div>
+      <div class="shot has"><video src="clip/l3/dvadcat35.mp4" poster="clip/l3/dvadcat35.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Такую работу бизнес заказывает за 20–35 тысяч»"></video></div>
+      <div class="cap">Кадр из урока: «Такую работу бизнес заказывает за 20–35 тысяч»</div>
+  </section>
+
+  <div class="nextlesson">
+    <div class="kicker">что будет дальше</div>
+    <h3>Урок 4. <em>Поиск клиентов:</em> где брать заказы</h3>
+    <p class="lead2">Прототип собран, портфолио есть. Четвёртый урок целиком про то, как с этим прийти к деньгам: кому продавать, за сколько и какими способами искать заказы.</p>
+    <ol>
+      <li><b>Как новичку выделиться</b> на фоне опытных специалистов и почему бизнес выбирает именно новичка.</li>
+      <li><b>Категории клиентов с чеками.</b> Малый бизнес до 300 тысяч, онлайн-школы до 500 тысяч.</li>
+      <li><b>Семь рабочих способов поиска клиентов</b> со списком площадок и скриптами первых сообщений.</li>
+      <li><b>Упаковка, УТП и цены.</b> Что подготовить до того, как писать первому клиенту.</li>
+      <li><b>Три приёма сарафанки</b> и как получать рекомендации за процент.</li>
+      <li><b>Кейс Александра, 49 лет.</b> Предприниматель, который вышел на 300 тысяч на партнёра.</li>
+      <li><b>Как закрыть клиента</b> без отзывов и кейсов, честно и без выдуманных историй.</li>
+    </ol>
+    <a class="go" href="urok-4.html">Смотреть четвёртый урок →</a>
+  </div>
+</main>
+
+<footer class="wrap">Конспект урока 3 · тест-драйв AI-Инженер</footer>
+<script>
+const VIDEO = '';
+document.querySelectorAll('.tc').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    if(!VIDEO) return;
+    window.open(VIDEO + (VIDEO.includes('?')?'&':'?') + 't=' + (a.dataset.t||0), '_blank');
+  });
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target;
+  if(e.isIntersecting && !v.dataset.off){ if(v.paused) v.play().catch(()=>{}); }
+  else if(!v.paused){ v.pause(); }
+}),{threshold:.01});
+document.querySelectorAll('video').forEach(v=>io.observe(v));
+
+document.querySelectorAll('.car').forEach(car=>{
+  const tr=car.querySelector('.car-track'), sl=[...tr.children];
+  const prev=car.querySelector('.car-nav.prev'), next=car.querySelector('.car-nav.next');
+  const dots=[...car.querySelectorAll('.dot')], cnt=car.querySelector('.car-cnt'), cap=car.querySelector('.car-cap');
+  let cur=0;
+  const sync=()=>{
+    dots.forEach((d,i)=>d.classList.toggle('on', i===cur));
+    if(cnt) cnt.textContent=(cur+1)+' / '+sl.length;
+    if(cap) cap.textContent=sl[cur].dataset.cap||'';
+    if(prev) prev.disabled=cur===0;
+    if(next) next.disabled=cur===sl.length-1;
+    sl.forEach((v,i)=>{ if(i===cur){ delete v.dataset.off; v.play&&v.play().catch(()=>{}); }
+                        else { v.dataset.off='1'; v.pause&&v.pause(); } });
+  };
+  const go=i=>{ cur=Math.max(0,Math.min(sl.length-1,i)); tr.scrollTo({left:sl[cur].offsetLeft-tr.offsetLeft,behavior:'smooth'}); sync(); };
+  if(prev) prev.onclick=()=>go(cur-1);
+  if(next) next.onclick=()=>go(cur+1);
+  dots.forEach((d,i)=>d.onclick=()=>go(i));
+  let tm; tr.addEventListener('scroll',()=>{ clearTimeout(tm); tm=setTimeout(()=>{
+    const i=sl.findIndex(s=>Math.abs(s.offsetLeft-tr.offsetLeft-tr.scrollLeft)<40);
+    if(i>=0&&i!==cur){ cur=i; sync(); }
+  },90); });
+  sync();
+});
+</script>
+</body></html>
