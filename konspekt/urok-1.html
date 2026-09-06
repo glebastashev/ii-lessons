@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --ink:#101624; --paper:#F5F3EC; --cream:#E9E5DA; --navy:#21335A; --navy-deep:#16213C;
   --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
   --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
 }
@@ -144,6 +144,51 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   .block{padding:20px 18px}
   header{padding:34px 0 30px}
 }
+
+/* ---------- ПРАВКИ ПОД ТЕЛЕФОН ---------- */
+html,body{max-width:100%;overflow-x:hidden}
+main,.block,.nextlesson{min-width:0}
+.block p,.block li,.block dd,blockquote,.cap{overflow-wrap:anywhere}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border-radius:12px}
+.tblwrap table{margin:0}
+/* лёгкая фактура бумаги, как на слайдах */
+.block,.nextlesson,.toc{position:relative}
+.block::before,.nextlesson::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23p)' opacity='.045'/%3E%3C/svg%3E")}
+.block>*{position:relative;z-index:1}
+.nextlesson>*{position:relative;z-index:1}
+
+@media(max-width:640px){
+  .wrap{padding:0 14px}
+  .block{padding:18px 16px 16px;border-radius:14px}
+  .nextlesson{padding:20px 16px}
+  /* таблицы разворачиваются в карточки: колонки в столбик с подписями */
+  .tblwrap{overflow:visible;margin:14px 0}
+  table,thead,tbody,tr,th,td{display:block;width:auto}
+  table{border:none;background:none;box-shadow:none;font-size:14px}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  tr{background:var(--paper);border:1px solid var(--line);border-radius:12px;
+     padding:12px 14px;margin-bottom:10px}
+  tr:last-child{margin-bottom:0}
+  td{border:none;padding:4px 0;text-align:left !important;line-height:1.5}
+  td:first-child{font-family:var(--display);font-weight:700;color:var(--navy);font-size:15px;
+     padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  td:first-child b{font-size:15px;white-space:normal}
+  td:not(:first-child)::before{content:attr(data-th);display:block;
+     font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--muted);margin-bottom:2px}
+  td:not(:first-child):empty,td[data-empty]{display:none}
+  td b{white-space:normal}
+  .nums{grid-template-columns:1fr 1fr;gap:8px}
+  .num b{font-size:15px}
+  blockquote{padding:12px 14px;font-size:14.5px}
+  .shot{margin:14px 0 4px}
+  .def dt{font-size:14.5px}
+}
+@media(max-width:400px){
+  .nums{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -248,15 +293,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b7">
     <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="1186">19:46</a><h2>За что бизнес платит AI-инженеру</h2></div>
     <p>Четыре задачи, под которые бизнес зовёт специалиста чаще всего. Это же список услуг, с которых можно начинать: каждая собирается нейросетью и имеет понятную цену на рынке.</p>
-    <table>
+    <div class="tblwrap"><table>
       <thead><tr><th>Задача бизнеса</th><th>Что делает решение</th><th>Цена</th></tr></thead>
       <tbody>
-        <tr><td><b>Нужен чат-бот</b></td><td>Отвечает на вопросы, записывает на услугу, ведёт клиента по воронке круглосуточно</td><td><b>30–50 тыс ₽</b></td></tr>
-        <tr><td><b>Убрать рутину</b></td><td>Собирает заявки, разносит их по таблицам, отвечает менеджерам, сводит отчёты без ручной работы</td><td><b>20–40 тыс ₽</b></td></tr>
-        <tr><td><b>Нужен контент</b></td><td>Пишет посты, описания товаров, рассылки, делает картинки под задачи бизнеса</td><td><b>15–40 тыс ₽</b></td></tr>
-        <tr><td><b>Нужна аналитика</b></td><td>Собирает цифры, считает выручку, показывает, где бизнес теряет деньги</td><td><b>20–50 тыс ₽</b></td></tr>
+        <tr><td data-th="Задача бизнеса"><b>Нужен чат-бот</b></td><td data-th="Что делает решение">Отвечает на вопросы, записывает на услугу, ведёт клиента по воронке круглосуточно</td><td data-th="Цена"><b>30–50 тыс ₽</b></td></tr>
+        <tr><td data-th="Задача бизнеса"><b>Убрать рутину</b></td><td data-th="Что делает решение">Собирает заявки, разносит их по таблицам, отвечает менеджерам, сводит отчёты без ручной работы</td><td data-th="Цена"><b>20–40 тыс ₽</b></td></tr>
+        <tr><td data-th="Задача бизнеса"><b>Нужен контент</b></td><td data-th="Что делает решение">Пишет посты, описания товаров, рассылки, делает картинки под задачи бизнеса</td><td data-th="Цена"><b>15–40 тыс ₽</b></td></tr>
+        <tr><td data-th="Задача бизнеса"><b>Нужна аналитика</b></td><td data-th="Что делает решение">Собирает цифры, считает выручку, показывает, где бизнес теряет деньги</td><td data-th="Цена"><b>20–50 тыс ₽</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p>Почему платят охотно: своими силами это не закрыть. У среднего бизнеса нет компетенций, у малого нет ни времени, ни денег на штат.</p>
     <blockquote>Ниша AI-инжиниринга пустая. Спрос у клиентов больше, потому что бизнес знает, что можно делать такие автоматизации, ему это нужно, но специалистов мало. Чеки дерут огромные, и люди готовы платить, потому что выбора нет.</blockquote>
       <div class="shot has"><video src="clip/zovut.mp4" poster="img/zovut.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «За чем бизнес зовёт ИИ-инженера»"></video></div>
@@ -274,16 +319,16 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b8">
     <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="2074">34:34</a><h2>Один навык даёт пять услуг</h2></div>
     <p>Главная мысль про деньги: не нужно осваивать всё сразу. Один освоенный навык раскладывается на несколько услуг с разными чеками, и продавать можно все пять одному и тому же клиенту.</p>
-    <table>
+    <div class="tblwrap"><table>
       <thead><tr><th>Услуга из навыка «чат-боты»</th><th>Цена</th></tr></thead>
       <tbody>
-        <tr><td>Создание самого бота</td><td><b>30–50 тыс ₽</b></td></tr>
-        <tr><td>Сборка мини-воронок и AI-ассистента</td><td><b>40–70 тыс ₽</b></td></tr>
-        <tr><td>Помощь в разработке ботов</td><td><b>15–25 тыс ₽</b></td></tr>
-        <tr><td>Внесение правок в готового бота</td><td><b>5–10 тыс ₽</b></td></tr>
-        <tr><td>Рассылки по базе внутри бота</td><td><b>5–10 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга из навыка «чат-боты»">Создание самого бота</td><td data-th="Цена"><b>30–50 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга из навыка «чат-боты»">Сборка мини-воронок и AI-ассистента</td><td data-th="Цена"><b>40–70 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга из навыка «чат-боты»">Помощь в разработке ботов</td><td data-th="Цена"><b>15–25 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга из навыка «чат-боты»">Внесение правок в готового бота</td><td data-th="Цена"><b>5–10 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга из навыка «чат-боты»">Рассылки по базе внутри бота</td><td data-th="Цена"><b>5–10 тыс ₽</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
       <div class="shot has"><video src="clip/navyk5.mp4" poster="img/navyk5.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Один навык — 5 услуг и больше»"></video></div>
       <div class="cap">Кадр из урока: «Один навык — 5 услуг и больше»</div>
     <p>Дальше навык надо упаковать: что входит, сколько стоит, сколько занимает по времени. Клиент платит не за то, что вы умеете, а за то, что вы решаете его задачу.</p>
@@ -314,15 +359,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b10">
     <div class="bhead"><span class="bnum">10</span><a class="tc" href="#" data-t="1318">21:58</a><h2>Математика дохода</h2></div>
     <p>Арифметика одного проекта, без обещаний. Базовый бот для салона красоты собирается за два-четыре вечера.</p>
-    <table>
+    <div class="tblwrap"><table>
       <thead><tr><th>Что считаем</th><th>Сколько</th></tr></thead>
       <tbody>
-        <tr><td>Бот для салона красоты, собирается за 2–4 вечера</td><td><b>30–40 тыс ₽</b></td></tr>
-        <tr><td>Таких проектов в месяц</td><td><b>× 2</b></td></tr>
-        <tr><td>К твоему текущему доходу</td><td><b>+60–80 тыс ₽/мес</b></td></tr>
-        <tr><td>Сопровождение: бот работает, ты за ним следишь</td><td><b>+10–20 тыс ₽/мес с клиента</b></td></tr>
+        <tr><td data-th="Что считаем">Бот для салона красоты, собирается за 2–4 вечера</td><td data-th="Сколько"><b>30–40 тыс ₽</b></td></tr>
+        <tr><td data-th="Что считаем">Таких проектов в месяц</td><td data-th="Сколько"><b>× 2</b></td></tr>
+        <tr><td data-th="Что считаем">К твоему текущему доходу</td><td data-th="Сколько"><b>+60–80 тыс ₽/мес</b></td></tr>
+        <tr><td data-th="Что считаем">Сопровождение: бот работает, ты за ним следишь</td><td data-th="Сколько"><b>+10–20 тыс ₽/мес с клиента</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
       <div class="shot has"><video src="clip/matematika.mp4" poster="img/matematika.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Математика одного проекта»"></video></div>
       <div class="cap">Кадр из урока: «Математика одного проекта»</div>
     <p>Следующая ступень: если брать больше ответственности и вести проект целиком, чек выходит на <b>300–700 тысяч в месяц</b>. Там уже нужны помощники или инженеры в штат.</p>

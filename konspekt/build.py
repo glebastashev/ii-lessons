@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Собирает страницу конспекта: build.py <номер урока>"""
 import json, re, sys, os
+import tables
 n = sys.argv[1]
 d = f'l{n}'
 cfg = json.load(open(f'{d}/meta.json', encoding='utf-8'))
@@ -16,6 +17,7 @@ BODY = open(f'{d}/_body.tpl', encoding='utf-8').read()
 for k, v in car.items():
     BODY = BODY.replace('{{CAR_' + k + '}}', v)
 BODY = re.sub(r'\{\{SHOT:(\w+)\|([^}]+)\}\}', lambda m: shot(m.group(1), m.group(2)), BODY)
+BODY = tables.prepare(BODY)
 
 toc = ''.join(f'<a href="#{i}">{t}</a>' for i, t in cfg['toc'])
 pills = ''.join(f'<span class="pill{" on" if k==0 else ""}">{p}</span>' for k, p in enumerate(cfg['pills']))

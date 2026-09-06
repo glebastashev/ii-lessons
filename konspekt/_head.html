@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --ink:#101624; --paper:#F5F3EC; --cream:#E9E5DA; --navy:#21335A; --navy-deep:#16213C;
   --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
   --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
 }
@@ -143,6 +143,51 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
 @media(max-width:600px){
   .block{padding:20px 18px}
   header{padding:34px 0 30px}
+}
+
+/* ---------- ПРАВКИ ПОД ТЕЛЕФОН ---------- */
+html,body{max-width:100%;overflow-x:hidden}
+main,.block,.nextlesson{min-width:0}
+.block p,.block li,.block dd,blockquote,.cap{overflow-wrap:anywhere}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border-radius:12px}
+.tblwrap table{margin:0}
+/* лёгкая фактура бумаги, как на слайдах */
+.block,.nextlesson,.toc{position:relative}
+.block::before,.nextlesson::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23p)' opacity='.045'/%3E%3C/svg%3E")}
+.block>*{position:relative;z-index:1}
+.nextlesson>*{position:relative;z-index:1}
+
+@media(max-width:640px){
+  .wrap{padding:0 14px}
+  .block{padding:18px 16px 16px;border-radius:14px}
+  .nextlesson{padding:20px 16px}
+  /* таблицы разворачиваются в карточки: колонки в столбик с подписями */
+  .tblwrap{overflow:visible;margin:14px 0}
+  table,thead,tbody,tr,th,td{display:block;width:auto}
+  table{border:none;background:none;box-shadow:none;font-size:14px}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  tr{background:var(--paper);border:1px solid var(--line);border-radius:12px;
+     padding:12px 14px;margin-bottom:10px}
+  tr:last-child{margin-bottom:0}
+  td{border:none;padding:4px 0;text-align:left !important;line-height:1.5}
+  td:first-child{font-family:var(--display);font-weight:700;color:var(--navy);font-size:15px;
+     padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  td:first-child b{font-size:15px;white-space:normal}
+  td:not(:first-child)::before{content:attr(data-th);display:block;
+     font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--muted);margin-bottom:2px}
+  td:not(:first-child):empty,td[data-empty]{display:none}
+  td b{white-space:normal}
+  .nums{grid-template-columns:1fr 1fr;gap:8px}
+  .num b{font-size:15px}
+  blockquote{padding:12px 14px;font-size:14.5px}
+  .shot{margin:14px 0 4px}
+  .def dt{font-size:14.5px}
+}
+@media(max-width:400px){
+  .nums{grid-template-columns:1fr}
 }
 </style>
 </head>

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --ink:#101624; --paper:#F5F3EC; --cream:#E9E5DA; --navy:#21335A; --navy-deep:#16213C;
   --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
   --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
 }
@@ -144,6 +144,51 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   .block{padding:20px 18px}
   header{padding:34px 0 30px}
 }
+
+/* ---------- ПРАВКИ ПОД ТЕЛЕФОН ---------- */
+html,body{max-width:100%;overflow-x:hidden}
+main,.block,.nextlesson{min-width:0}
+.block p,.block li,.block dd,blockquote,.cap{overflow-wrap:anywhere}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border-radius:12px}
+.tblwrap table{margin:0}
+/* лёгкая фактура бумаги, как на слайдах */
+.block,.nextlesson,.toc{position:relative}
+.block::before,.nextlesson::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23p)' opacity='.045'/%3E%3C/svg%3E")}
+.block>*{position:relative;z-index:1}
+.nextlesson>*{position:relative;z-index:1}
+
+@media(max-width:640px){
+  .wrap{padding:0 14px}
+  .block{padding:18px 16px 16px;border-radius:14px}
+  .nextlesson{padding:20px 16px}
+  /* таблицы разворачиваются в карточки: колонки в столбик с подписями */
+  .tblwrap{overflow:visible;margin:14px 0}
+  table,thead,tbody,tr,th,td{display:block;width:auto}
+  table{border:none;background:none;box-shadow:none;font-size:14px}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  tr{background:var(--paper);border:1px solid var(--line);border-radius:12px;
+     padding:12px 14px;margin-bottom:10px}
+  tr:last-child{margin-bottom:0}
+  td{border:none;padding:4px 0;text-align:left !important;line-height:1.5}
+  td:first-child{font-family:var(--display);font-weight:700;color:var(--navy);font-size:15px;
+     padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  td:first-child b{font-size:15px;white-space:normal}
+  td:not(:first-child)::before{content:attr(data-th);display:block;
+     font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--muted);margin-bottom:2px}
+  td:not(:first-child):empty,td[data-empty]{display:none}
+  td b{white-space:normal}
+  .nums{grid-template-columns:1fr 1fr;gap:8px}
+  .num b{font-size:15px}
+  blockquote{padding:12px 14px;font-size:14.5px}
+  .shot{margin:14px 0 4px}
+  .def dt{font-size:14.5px}
+}
+@media(max-width:400px){
+  .nums{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -171,15 +216,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b2">
     <div class="bhead"><span class="bnum">2</span><a class="tc" href="#" data-t="102">1:42</a><h2>Где у бизнеса дыра</h2></div>
     <p>Локальные бизнесы часто упакованы плохо и по смыслам, и по дизайну. Клиент ищет, куда пойти, забивает запрос в поиск или просит нейросеть найти топ барбершопов, получает список сайтов и выбирает тот, который вызвал больше доверия. Если сайта нет или он слабый, бизнес просто выпадает из этого выбора.</p>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Что у них вместо сайта</th><th>Почему это не работает</th></tr></thead>
       <tbody>
-        <tr><td><b>Соцсети</b></td><td>Последний пост мог быть полгода назад, актуальные услуги спрятаны в сторис</td></tr>
-        <tr><td><b>Таплинк</b></td><td>Кнопки есть, ощущения нормальной упаковки и доверия нет</td></tr>
-        <tr><td><b>Карточка на карте</b></td><td>Адрес есть, понятного оффера и маршрута к заявке нет</td></tr>
-        <tr><td><b>Телефон</b></td><td>Клиенту предлагают позвонить, хотя он хотел быстро понять цену и детали</td></tr>
+        <tr><td data-th="Что у них вместо сайта"><b>Соцсети</b></td><td data-th="Почему это не работает">Последний пост мог быть полгода назад, актуальные услуги спрятаны в сторис</td></tr>
+        <tr><td data-th="Что у них вместо сайта"><b>Таплинк</b></td><td data-th="Почему это не работает">Кнопки есть, ощущения нормальной упаковки и доверия нет</td></tr>
+        <tr><td data-th="Что у них вместо сайта"><b>Карточка на карте</b></td><td data-th="Почему это не работает">Адрес есть, понятного оффера и маршрута к заявке нет</td></tr>
+        <tr><td data-th="Что у них вместо сайта"><b>Телефон</b></td><td data-th="Почему это не работает">Клиенту предлагают позвонить, хотя он хотел быстро понять цену и детали</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p>Проблема шире, чем сайт. Всё держится в ручном режиме: медленные ответы, владелец занят, менеджеры отвечают долго, заявки остывают и люди отваливаются. Записи разговоров нет, CRM нет, заявки попадают в табличку.</p>
       <div class="shot has"><video src="clip/l3/vmestosaita.mp4" poster="clip/l3/vmestosaita.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Что у них вместо сайта»"></video></div>
       <div class="cap">Кадр из урока: «Что у них вместо сайта»</div>
@@ -247,17 +292,17 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b7">
     <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="430">7:10</a><h2>Практическая часть</h2></div>
     <p>Ссылка на страницу практики лежит под видео. Внутри уже добавлены бизнесы, карточки, промпты и ссылки на инструменты.</p>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Шаг</th><th>Действие</th></tr></thead>
       <tbody>
-        <tr><td><b>1</b></td><td>Выбери офлайн-бизнес на карте или в списке</td></tr>
-        <tr><td><b>2</b></td><td>Собери разбор этого бизнеса: контакты, слабое место, идея входа</td></tr>
-        <tr><td><b>3</b></td><td>Скопируй промпт из карточки и перенеси в Qwen или ChatGPT</td></tr>
-        <tr><td><b>4</b></td><td>Нейросеть сгенерирует сайт с автоответчиком по этому промпту</td></tr>
-        <tr><td><b>5</b></td><td>Внеси желаемые правки</td></tr>
-        <tr><td><b>6</b></td><td>Прикрепи сайт на платформу</td></tr>
+        <tr><td data-th="Шаг"><b>1</b></td><td data-th="Действие">Выбери офлайн-бизнес на карте или в списке</td></tr>
+        <tr><td data-th="Шаг"><b>2</b></td><td data-th="Действие">Собери разбор этого бизнеса: контакты, слабое место, идея входа</td></tr>
+        <tr><td data-th="Шаг"><b>3</b></td><td data-th="Действие">Скопируй промпт из карточки и перенеси в Qwen или ChatGPT</td></tr>
+        <tr><td data-th="Шаг"><b>4</b></td><td data-th="Действие">Нейросеть сгенерирует сайт с автоответчиком по этому промпту</td></tr>
+        <tr><td data-th="Шаг"><b>5</b></td><td data-th="Действие">Внеси желаемые правки</td></tr>
+        <tr><td data-th="Шаг"><b>6</b></td><td data-th="Действие">Прикрепи сайт на платформу</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <blockquote>Ты тут не зритель. ИИ собирает черновик, а ты принимаешь решения: что оставить, что поправить, где усилить оффер и как показать владельцу.</blockquote>
       <div class="shot has"><video src="clip/l3/ssylka.mp4" poster="clip/l3/ssylka.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Откройте ссылку под видео»"></video></div>
       <div class="cap">Кадр из урока: «Откройте ссылку под видео»</div>
@@ -268,14 +313,14 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b8">
     <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="635">10:35</a><h2>Чек-лист: проверяем три вещи</h2></div>
     <p>Готовую страницу проверяют глазами клиента: захотел бы я тут купить.</p>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Что смотрим</th><th>Вопрос к странице</th></tr></thead>
       <tbody>
-        <tr><td><b>Смысл</b></td><td>Верно ли описан бизнес, услуга, оффер и клиентская боль</td></tr>
-        <tr><td><b>Действие</b></td><td>Есть ли кнопка связи, запись или понятный следующий шаг</td></tr>
-        <tr><td><b>Вид</b></td><td>Страница не разваливается, нормально читается, работает на телефоне</td></tr>
+        <tr><td data-th="Что смотрим"><b>Смысл</b></td><td data-th="Вопрос к странице">Верно ли описан бизнес, услуга, оффер и клиентская боль</td></tr>
+        <tr><td data-th="Что смотрим"><b>Действие</b></td><td data-th="Вопрос к странице">Есть ли кнопка связи, запись или понятный следующий шаг</td></tr>
+        <tr><td data-th="Что смотрим"><b>Вид</b></td><td data-th="Вопрос к странице">Страница не разваливается, нормально читается, работает на телефоне</td></tr>
       </tbody>
-    </table>
+    </table></div>
       <div class="shot has"><video src="clip/l3/trivesi.mp4" poster="clip/l3/trivesi.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Проверяем три вещи»"></video></div>
       <div class="cap">Кадр из урока: «Проверяем три вещи»</div>
   </section>

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#101624; --paper:#fff; --cream:#F2EFE8; --navy:#21335A; --navy-deep:#16213C;
+  --ink:#101624; --paper:#F5F3EC; --cream:#E9E5DA; --navy:#21335A; --navy-deep:#16213C;
   --lime:#C2F07B; --muted:#6E7789; --line:rgba(19,26,43,.14);
   --display:'Unbounded',sans-serif; --body:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
 }
@@ -144,6 +144,51 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   .block{padding:20px 18px}
   header{padding:34px 0 30px}
 }
+
+/* ---------- ПРАВКИ ПОД ТЕЛЕФОН ---------- */
+html,body{max-width:100%;overflow-x:hidden}
+main,.block,.nextlesson{min-width:0}
+.block p,.block li,.block dd,blockquote,.cap{overflow-wrap:anywhere}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border-radius:12px}
+.tblwrap table{margin:0}
+/* лёгкая фактура бумаги, как на слайдах */
+.block,.nextlesson,.toc{position:relative}
+.block::before,.nextlesson::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23p)' opacity='.045'/%3E%3C/svg%3E")}
+.block>*{position:relative;z-index:1}
+.nextlesson>*{position:relative;z-index:1}
+
+@media(max-width:640px){
+  .wrap{padding:0 14px}
+  .block{padding:18px 16px 16px;border-radius:14px}
+  .nextlesson{padding:20px 16px}
+  /* таблицы разворачиваются в карточки: колонки в столбик с подписями */
+  .tblwrap{overflow:visible;margin:14px 0}
+  table,thead,tbody,tr,th,td{display:block;width:auto}
+  table{border:none;background:none;box-shadow:none;font-size:14px}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  tr{background:var(--paper);border:1px solid var(--line);border-radius:12px;
+     padding:12px 14px;margin-bottom:10px}
+  tr:last-child{margin-bottom:0}
+  td{border:none;padding:4px 0;text-align:left !important;line-height:1.5}
+  td:first-child{font-family:var(--display);font-weight:700;color:var(--navy);font-size:15px;
+     padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  td:first-child b{font-size:15px;white-space:normal}
+  td:not(:first-child)::before{content:attr(data-th);display:block;
+     font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--muted);margin-bottom:2px}
+  td:not(:first-child):empty,td[data-empty]{display:none}
+  td b{white-space:normal}
+  .nums{grid-template-columns:1fr 1fr;gap:8px}
+  .num b{font-size:15px}
+  blockquote{padding:12px 14px;font-size:14.5px}
+  .shot{margin:14px 0 4px}
+  .def dt{font-size:14.5px}
+}
+@media(max-width:400px){
+  .nums{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -188,17 +233,17 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b3">
     <div class="bhead"><span class="bnum">3</span><a class="tc" href="#" data-t="272">4:32</a><h2>Бот за шесть шагов</h2></div>
     <p>Живой разбор: бот для магазина десертов, который консультирует и принимает заказы. Весь путь от открытия конструктора до денег на карте.</p>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Шаг</th><th>Что делаем</th></tr></thead>
       <tbody>
-        <tr><td><b>1</b></td><td>Подключаем нейросети: заходим в подключение и регистрируем аккаунт</td></tr>
-        <tr><td><b>2</b></td><td>Заводим проект под клиента в конструкторе чат-ботов</td></tr>
-        <tr><td><b>3</b></td><td>Создаём бота в Telegram через BotFather и выставляем API-ключ</td></tr>
-        <tr><td><b>4</b></td><td>Закладываем ТЗ от клиента: что и кому бот отвечает</td></tr>
-        <tr><td><b>5</b></td><td>Тестируем на контрольных вопросах и правим ответы</td></tr>
-        <tr><td><b>6</b></td><td>Подключаем клиента, чек в кармане</td></tr>
+        <tr><td data-th="Шаг"><b>1</b></td><td data-th="Что делаем">Подключаем нейросети: заходим в подключение и регистрируем аккаунт</td></tr>
+        <tr><td data-th="Шаг"><b>2</b></td><td data-th="Что делаем">Заводим проект под клиента в конструкторе чат-ботов</td></tr>
+        <tr><td data-th="Шаг"><b>3</b></td><td data-th="Что делаем">Создаём бота в Telegram через BotFather и выставляем API-ключ</td></tr>
+        <tr><td data-th="Шаг"><b>4</b></td><td data-th="Что делаем">Закладываем ТЗ от клиента: что и кому бот отвечает</td></tr>
+        <tr><td data-th="Шаг"><b>5</b></td><td data-th="Что делаем">Тестируем на контрольных вопросах и правим ответы</td></tr>
+        <tr><td data-th="Шаг"><b>6</b></td><td data-th="Что делаем">Подключаем клиента, чек в кармане</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="nums">
       <div class="num"><b>6 шагов</b><span>весь путь</span></div>
       <div class="num"><b>20–30 минут</b><span>работы</span></div>
@@ -214,15 +259,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b4">
     <div class="bhead"><span class="bnum">4</span><a class="tc" href="#" data-t="423">7:03</a><h2>Четыре услуги, которые продаются</h2></div>
     <p>По той же логике собирается всё остальное. Шагов чуть больше, инструкция та же.</p>
-    <table>
+    <div class="tblwrap"><table>
       <thead><tr><th>Услуга</th><th>Что внутри</th><th>Цена</th></tr></thead>
       <tbody>
-        <tr><td><b>Чат-боты</b></td><td>Консультируют, показывают меню, собирают корзину, принимают заказ и передают его менеджеру</td><td><b>40–90 тыс ₽</b></td></tr>
-        <tr><td><b>ИИ-автоматизации</b></td><td>Связки между сервисами: заявки, уведомления, отчёты собираются без ручной работы</td><td><b>от 40 тыс ₽</b></td></tr>
-        <tr><td><b>ИИ-контент</b></td><td>Тексты, картинки, озвучка, оформление под ленту и карусели, массово</td><td><b>от 5 тыс ₽ за задачу</b></td></tr>
-        <tr><td><b>Аналитика и связки</b></td><td>Дашборды по выручке, подключение нейросетей к сервисам клиента</td><td><b>по проекту</b></td></tr>
+        <tr><td data-th="Услуга"><b>Чат-боты</b></td><td data-th="Что внутри">Консультируют, показывают меню, собирают корзину, принимают заказ и передают его менеджеру</td><td data-th="Цена"><b>40–90 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга"><b>ИИ-автоматизации</b></td><td data-th="Что внутри">Связки между сервисами: заявки, уведомления, отчёты собираются без ручной работы</td><td data-th="Цена"><b>от 40 тыс ₽</b></td></tr>
+        <tr><td data-th="Услуга"><b>ИИ-контент</b></td><td data-th="Что внутри">Тексты, картинки, озвучка, оформление под ленту и карусели, массово</td><td data-th="Цена"><b>от 5 тыс ₽ за задачу</b></td></tr>
+        <tr><td data-th="Услуга"><b>Аналитика и связки</b></td><td data-th="Что внутри">Дашборды по выручке, подключение нейросетей к сервисам клиента</td><td data-th="Цена"><b>по проекту</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p>Отдельный пример из урока: статью, через которую зритель попал на тест-драйв, выдал такой же бот. На его настройку ушло <b>4 часа</b>, бизнес заказывает подобных ботов <b>за 40–90 тысяч</b>. В самой школе тоже работает AI-инженер: за настройку одной воронки и её поддержание ему платят <b>50 тысяч</b>.</p>
     <blockquote>Услуга, которой ты сейчас пользуешься как клиент, это и есть товар.</blockquote>
       <div class="shot has"><video src="clip/l2/chatboty.mp4" poster="clip/l2/chatboty.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Услуга 1. Чат-боты»"></video></div>
@@ -264,13 +309,13 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b7">
     <div class="bhead"><span class="bnum">7</span><a class="tc" href="#" data-t="873">14:33</a><h2>Две модели заработка</h2></div>
     <p>Заработок в моменте или на абонентской плате. В доходе они обычно делятся так:</p>
-    <table>
+    <div class="tblwrap"><table>
       <thead><tr><th>Модель</th><th>Что это</th><th>Доля в доходе</th></tr></thead>
       <tbody>
-        <tr><td><b>Разовые задачи</b></td><td>Настройка под конкретный проект, переделка за другими специалистами, новое видение задачи. От 30 000 ₽ за задачу</td><td><b>30–40%</b></td></tr>
-        <tr><td><b>Постоянные проекты</b></td><td>Ежемесячная оплата за поддержание и добавление функций, работа в штате или проектно</td><td><b>60–70%</b></td></tr>
+        <tr><td data-th="Модель"><b>Разовые задачи</b></td><td data-th="Что это">Настройка под конкретный проект, переделка за другими специалистами, новое видение задачи. От 30 000 ₽ за задачу</td><td data-th="Доля в доходе"><b>30–40%</b></td></tr>
+        <tr><td data-th="Модель"><b>Постоянные проекты</b></td><td data-th="Что это">Ежемесячная оплата за поддержание и добавление функций, работа в штате или проектно</td><td data-th="Доля в доходе"><b>60–70%</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <h3>Почему начинают именно с разовых</h3>
     <p>Новичок для рынка пока неизвестный игрок, поэтому влияние нарабатывается разовыми задачами. Дальше путь такой:</p>
     <ol>
@@ -287,15 +332,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b8">
     <div class="bhead"><span class="bnum">8</span><a class="tc" href="#" data-t="987">16:27</a><h2>Формула на 150 тысяч</h2></div>
     <p>В уроке предлагается поставить видео на паузу и собрать свою комбинацию. Формула одна, вариантов сборки много.</p>
-    <table>
+    <div class="tblwrap"><table>
       <thead><tr><th>Комбинация</th><th>Что делаете</th><th>Итог</th></tr></thead>
       <tbody>
-        <tr><td><b>Вариант 1</b></td><td>2 бота по 25 тыс + 2 сопровождения по 35 тыс + 6 контент-задач по 5 тыс</td><td><b>150 тыс ₽</b></td></tr>
-        <tr><td><b>Вариант 2</b></td><td>6 ботов по 25 тыс</td><td><b>150 тыс ₽</b></td></tr>
-        <tr><td><b>Вариант 3</b></td><td>3 сопровождения по 50 тыс</td><td><b>150 тыс ₽</b></td></tr>
-        <tr><td><b>Вариант 4</b></td><td>30 ИИ-контент-задач по 5 тыс</td><td><b>150 тыс ₽</b></td></tr>
+        <tr><td data-th="Комбинация"><b>Вариант 1</b></td><td data-th="Что делаете">2 бота по 25 тыс + 2 сопровождения по 35 тыс + 6 контент-задач по 5 тыс</td><td data-th="Итог"><b>150 тыс ₽</b></td></tr>
+        <tr><td data-th="Комбинация"><b>Вариант 2</b></td><td data-th="Что делаете">6 ботов по 25 тыс</td><td data-th="Итог"><b>150 тыс ₽</b></td></tr>
+        <tr><td data-th="Комбинация"><b>Вариант 3</b></td><td data-th="Что делаете">3 сопровождения по 50 тыс</td><td data-th="Итог"><b>150 тыс ₽</b></td></tr>
+        <tr><td data-th="Комбинация"><b>Вариант 4</b></td><td data-th="Что делаете">30 ИИ-контент-задач по 5 тыс</td><td data-th="Итог"><b>150 тыс ₽</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <blockquote>Число, которое у тебя получилось, это не мечта, а план.</blockquote>
     <h3>Рекомендация Макса</h3>
     <p>Рынку нужны универсалы: специалисты, готовые взять проект целиком, а не закрыть одну задачу разово. Бизнесу выгоднее заплатить одному человеку за готовое решение, чем собирать его из десяти кусков.</p>
@@ -347,16 +392,16 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b11">
     <div class="bhead"><span class="bnum">11</span><a class="tc" href="#" data-t="1461">24:21</a><h2>Портрет клиента 2027</h2></div>
     <p>Каким будет заказчик в ближайшие годы и за что он будет платить.</p>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Что делает клиент</th><th>Что это значит для специалиста</th></tr></thead>
       <tbody>
-        <tr><td><b>Платит за скорость</b></td><td>Готов доплачивать за быстрый результат</td></tr>
-        <tr><td><b>Оптимизирует расходы</b></td><td>Ищет, где сократить расходы в компании и команде</td></tr>
-        <tr><td><b>Заказывает аудит</b></td><td>Нужен аудит бизнес-процессов и внедрение ИИ-аналитики</td></tr>
-        <tr><td><b>Тестирует гипотезы</b></td><td>Готов пробовать много вариантов подряд</td></tr>
-        <tr><td><b>Берёт новые инструменты</b></td><td>Готов пробовать новые инструменты продаж</td></tr>
+        <tr><td data-th="Что делает клиент"><b>Платит за скорость</b></td><td data-th="Что это значит для специалиста">Готов доплачивать за быстрый результат</td></tr>
+        <tr><td data-th="Что делает клиент"><b>Оптимизирует расходы</b></td><td data-th="Что это значит для специалиста">Ищет, где сократить расходы в компании и команде</td></tr>
+        <tr><td data-th="Что делает клиент"><b>Заказывает аудит</b></td><td data-th="Что это значит для специалиста">Нужен аудит бизнес-процессов и внедрение ИИ-аналитики</td></tr>
+        <tr><td data-th="Что делает клиент"><b>Тестирует гипотезы</b></td><td data-th="Что это значит для специалиста">Готов пробовать много вариантов подряд</td></tr>
+        <tr><td data-th="Что делает клиент"><b>Берёт новые инструменты</b></td><td data-th="Что это значит для специалиста">Готов пробовать новые инструменты продаж</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p>Слои бизнеса, где нужен ИИ, идут послойно: от быстрых денег до стратегии. Когда в игру вступят банки, госуслуги и крупные сети, спрос вырастет ещё сильнее.</p>
       <div class="shot has"><video src="clip/l2/klient2027.mp4" poster="clip/l2/klient2027.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Клиент 2027»"></video></div>
       <div class="cap">Кадр из урока: «Клиент 2027»</div>
@@ -364,14 +409,14 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
 
   <section class="block" id="b12">
     <div class="bhead"><span class="bnum">12</span><a class="tc" href="#" data-t="611">10:11</a><h2>Что нужно для старта</h2></div>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Что нужно</th><th>Подробности</th></tr></thead>
       <tbody>
-        <tr><td><b>Не нужно программирование</b></td><td>Ни кода, ни айтишного бэкграунда. Работа идёт на русском языке словами</td></tr>
-        <tr><td><b>Ноутбук и желание</b></td><td>Компьютер и готовность разобраться, как это устроено</td></tr>
-        <tr><td><b>Небольшие вложения</b></td><td>Подписка на агрегатор нейросетей или конкретную модель, в среднем <b>20 $</b></td></tr>
+        <tr><td data-th="Что нужно"><b>Не нужно программирование</b></td><td data-th="Подробности">Ни кода, ни айтишного бэкграунда. Работа идёт на русском языке словами</td></tr>
+        <tr><td data-th="Что нужно"><b>Ноутбук и желание</b></td><td data-th="Подробности">Компьютер и готовность разобраться, как это устроено</td></tr>
+        <tr><td data-th="Что нужно"><b>Небольшие вложения</b></td><td data-th="Подробности">Подписка на агрегатор нейросетей или конкретную модель, в среднем <b>20 $</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <blockquote>Мы работаем на русском языке без какого-либо кода. Просто описываем нейросети задачу словами, а она сама пишет код.</blockquote>
       <div class="shot has"><video src="clip/l2/chtonuzhno.mp4" poster="clip/l2/chtonuzhno.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Что нужно для старта»"></video></div>
       <div class="cap">Кадр из урока: «Что нужно для старта»</div>
@@ -382,15 +427,15 @@ footer a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--li
   <section class="block" id="b13">
     <div class="bhead"><span class="bnum">13</span><a class="tc" href="#" data-t="1720">28:40</a><h2>Плюсы и минусы честно</h2></div>
     <p>Отдельный слайд, где Макс разбирает профессию с двух сторон и снимает ожидание волшебной таблетки.</p>
-    <table class="ltr">
+    <div class="tblwrap"><table class="ltr">
       <thead><tr><th>Минусы</th><th>Плюсы</th></tr></thead>
       <tbody>
-        <tr><td>Иногда лень работать</td><td>Много свободного времени</td></tr>
-        <tr><td>Мало простора для творчества</td><td>Высокие чеки и большой рынок</td></tr>
-        <tr><td>&nbsp;</td><td>Не разовые услуги, а повторяющийся доход</td></tr>
-        <tr><td>&nbsp;</td><td>Просто в освоении</td></tr>
+        <tr><td data-th="Минусы">Иногда лень работать</td><td data-th="Плюсы">Много свободного времени</td></tr>
+        <tr><td data-th="Минусы">Мало простора для творчества</td><td data-th="Плюсы">Высокие чеки и большой рынок</td></tr>
+        <tr><td data-th="Минусы" data-empty="1">&nbsp;</td><td data-th="Плюсы">Не разовые услуги, а повторяющийся доход</td></tr>
+        <tr><td data-th="Минусы" data-empty="1">&nbsp;</td><td data-th="Плюсы">Просто в освоении</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <blockquote>Зарабатывать будешь ровно столько, сколько поработал и сколько пользы принёс клиенту. Работаешь ноль часов, зарабатываешь ноль. Это единственная гарантия, которую я даю.</blockquote>
       <div class="shot has"><video src="clip/l2/tabletki.mp4" poster="clip/l2/tabletki.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Кадр из урока: «Волшебной таблетки не будет»"></video></div>
       <div class="cap">Кадр из урока: «Волшебной таблетки не будет»</div>
