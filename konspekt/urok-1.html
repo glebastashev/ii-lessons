@@ -39,8 +39,19 @@ header h1 em{font-style:normal;color:var(--lime)}
 
 /* ---------- блоки ---------- */
 main{padding:34px 0 10px}
-.lead{font-size:16px;color:#3A3C45;margin-bottom:30px;max-width:640px}
-.lead b{font-weight:700;color:var(--ink)}
+.lead{position:relative;background:var(--paper);border:1px solid var(--line);
+  border-left:5px solid var(--lime);border-radius:16px;padding:20px 24px 21px;
+  margin:0 0 26px;max-width:none;font-size:17.5px;line-height:1.5;color:#2C2F38;
+  letter-spacing:-.005em}
+.lead::before{content:'о чём урок';display:block;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.lead[data-k]::before{content:attr(data-k)}
+.lead b{font-weight:700;color:var(--navy);
+  background:linear-gradient(transparent 62%, rgba(194,240,123,.85) 62%);
+  padding:0 2px;border-radius:2px}
+@media(max-width:640px){
+  .lead{padding:16px 16px 17px;font-size:16px;border-radius:13px;margin-bottom:18px}
+}
 
 .block{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 24px 22px;margin-bottom:16px;scroll-margin-top:16px}
 .bhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
@@ -214,7 +225,7 @@ main,.block,.nextlesson{min-width:0}
 </div></nav>
 
 <main class="wrap">
-  <p class="lead">Что даёт урок: кто такой AI-инженер и за что ему платят, <b>сколько стоит каждая услуга</b>, кому её продавать, почему в эту нишу сейчас проще войти, чем в классический фриланс, и с какого конкретно навыка начинать.</p>
+  <p class="lead">Кто такой AI-инженер и за что ему платят, <b>сколько стоит каждая услуга</b>, кому её продавать, почему в эту нишу сейчас проще войти, чем в классический фриланс, и с какого конкретно навыка начинать.</p>
 
   <section class="block" id="b1">
     <div class="bhead"><span class="bnum">1</span><a class="tc" href="#" data-t="0">0:00</a><h2>Что за профессия</h2></div>
