@@ -204,6 +204,17 @@ main,.block,.nextlesson{min-width:0}
   .def dt{font-size:14.5px}
 }
 
+
+/* списки внутри блоков: номера внутри колонки, абзац после списка отбит */
+.block>ol,.block>ul{padding-left:26px;margin:12px 0 16px}
+.block>ol{list-style:decimal}
+.block>ul{list-style:disc}
+.block>ol>li,.block>ul>li{margin-bottom:7px;padding-left:2px}
+.block>ol>li::marker{font-family:var(--display);font-weight:700;color:var(--navy);font-size:14px}
+.block>ul>li::marker{color:var(--navy)}
+.block>ol>li:last-child,.block>ul>li:last-child{margin-bottom:0}
+.block h3+ol,.block h3+ul{margin-top:8px}
+@media(max-width:640px){.block>ol,.block>ul{padding-left:22px}}
 </style>
 </head>
 <body>
