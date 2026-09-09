@@ -143,12 +143,13 @@ td b{font-family:var(--display);font-weight:700;color:var(--navy);font-size:14px
 .nextlesson h3 em{font-style:normal;color:var(--navy)}
 .nextlesson .lead2{font-size:15px;color:#3A3C45;margin-bottom:16px}
 .nextlesson ol{list-style:none;counter-reset:n;margin-bottom:18px}
-.nextlesson li{counter-increment:n;display:flex;gap:12px;align-items:flex-start;padding:10px 0;
+.nextlesson li{counter-increment:n;position:relative;padding:10px 0 10px 34px;
  border-bottom:1px solid var(--line);font-size:14.8px;color:#3A3C45}
 .nextlesson li:last-child{border-bottom:none}
-.nextlesson li::before{content:counter(n);flex:none;font-family:var(--display);font-weight:700;font-size:11px;
+.nextlesson li::before{content:counter(n);position:absolute;left:0;top:12px;
+ font-family:var(--display);font-weight:700;font-size:11px;
  width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--ink);
- display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+ display:flex;align-items:center;justify-content:center}
 .nextlesson li b{color:var(--ink)}
 .nextlesson .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;
  font-size:14px;text-decoration:none;color:var(--ink);background:var(--lime);
