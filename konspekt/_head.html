@@ -69,9 +69,9 @@ blockquote{border-left:3px solid var(--lime);background:#FAFAF7;border-radius:0 
   padding:14px 16px;margin:14px 0;font-size:15px;color:var(--navy-deep);font-style:italic}
 blockquote::before{content:'«'}blockquote::after{content:'»'}
 
-.nums{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
-.num{border:1px solid var(--line);border-radius:12px;padding:9px 13px;background:#FAFAF7}
-.num b{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(156px,1fr));gap:9px;margin:14px 0}
+.num{border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:#FAFAF7;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.num b{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2;white-space:nowrap;margin-bottom:3px}
 .num span{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 
 /* ---------- место под скрин ---------- */
@@ -96,6 +96,11 @@ blockquote::before{content:'«'}blockquote::after{content:'»'}
 .task ul{list-style:none;position:relative}
 .task li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
 .task li:last-child{border-bottom:none}
+.task p{position:relative}
+.task .go{position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+ font-family:var(--display);font-weight:700;font-size:15px;text-decoration:none;
+ background:var(--lime);color:var(--ink);border-radius:99px;padding:13px 22px;transition:.15s}
+.task .go:hover{background:#fff}
 .task .mark{width:19px;height:19px;border:1.5px solid var(--lime);border-radius:5px;flex:none;margin-top:2px}
 
 /* ---------- карусель ---------- */
@@ -191,15 +196,13 @@ main,.block,.nextlesson{min-width:0}
      color:var(--muted);margin-bottom:2px}
   td:not(:first-child):empty,td[data-empty]{display:none}
   td b{white-space:normal}
-  .nums{grid-template-columns:1fr 1fr;gap:8px}
+  .nums{grid-template-columns:repeat(2,1fr);gap:8px}
   .num b{font-size:15px}
   blockquote{padding:12px 14px;font-size:14.5px}
   .shot{margin:14px 0 4px}
   .def dt{font-size:14.5px}
 }
-@media(max-width:400px){
-  .nums{grid-template-columns:1fr}
-}
+
 </style>
 </head>
 <body>
